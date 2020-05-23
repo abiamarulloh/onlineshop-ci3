@@ -1,0 +1,20 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Restorasi_vespa extends CI_Controller {
+	public  function __construct()
+	{
+		parent::__construct();
+		is_logged_in_admin();
+		is_logged_in();
+	}
+
+	public function index()
+	{
+		$this->load->view('templates/admin/header');
+		$this->load->view('templates/admin/sidebar');
+		$this->load->view('templates/admin/topbar');
+		$this->load->view('admin/restorasi_vespa/index');
+		$this->load->view('templates/admin/footer');
+	}
+}
