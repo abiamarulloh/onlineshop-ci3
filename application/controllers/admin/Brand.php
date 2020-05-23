@@ -97,13 +97,6 @@ class Brand extends CI_Controller {
 				$this->load->library('upload', $config);
 
 				if($this->upload->do_upload("image")){
-					$Query_foto_lama = $this->db->get("brand")->row_array();
-					$foto_lama = $Query_foto_lama['image'];
-
-					if($foto_lama){
-						unlink(FCPATH . "assets/admin/img/brand" . $foto_lama);
-					}
-
 					$image_new = $this->upload->data("file_name");
 					$this->db->set("image", $image_new );
 				}else {
@@ -189,6 +182,10 @@ class Brand extends CI_Controller {
 
 
 	public function brand_delete($id){
+		$Query_delete_foto = $this->db->get_where("brand", ['id' => $id])->row_array();
+		$delete_foto = $Query_delete_foto['image'];
+		unlink(FCPATH . "./assets/admin/img/brand/" . $delete_foto);
+
 		$query = $this->db->get_where('brand', ['id' => $id])->row();
 		$this->Brand_model->delete_brand($id);
 		$this->session->set_flashdata('brand', '<div class="alert alert-danger" role="alert"> brand ' . $query->name . ' berhasil dihapus ! </div>');

@@ -11,7 +11,14 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
-
+		if($this->session->has_userdata('email') == true){
+			if($this->session->userdata('role_id') == 1 ){
+				redirect('dashboard');
+			}else{
+				redirect('member');
+			}
+		}
+		
 		$data['title'] = "Online Shop";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		
@@ -52,7 +59,7 @@ class Auth extends CI_Controller {
 				];
 
 				$this->session->set_userdata($data);
-
+		
 				// Update Last Login
 				$this->db->set(['last_login' => time()]);
 				$this->db->where('email', $user['email']);
@@ -87,9 +94,16 @@ class Auth extends CI_Controller {
   
 	public function register()
 	{
+		if($this->session->has_userdata('email') == true){
+			if($this->session->userdata('role_id') == 1 ){
+				redirect('dashboard');
+			}else{
+				redirect('member');
+			}
+		}
 
-		
-        $data['title'] = "Register";
+		$data['title'] = "Register";
+		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		
 		$this->form_validation->set_rules('fullname', '', 'required', [
 			'required' => "Nama Lengkap harus diisi !"
@@ -114,7 +128,7 @@ class Auth extends CI_Controller {
 		}else{
 			$data = [
 				'role_id' 		=> 2,
-				'image' 		=> 'default.jpg',
+				'image' 		=> 'default.png',
 				'fullname' 		=> htmlspecialchars($this->input->post('fullname',true)),
 				'email' 		=> htmlspecialchars($this->input->post('email',true)),
 				'password' 		=> password_hash($this->input->post('password1', true), PASSWORD_DEFAULT),

@@ -33,10 +33,10 @@
             </ul>
             <div class="ml-auto text-center">
 
-            <a href="<?= base_url("cart"); ?>" class="nav-link text-white d-inline" data-toggle="tooltip" title="Keranjang Belanjaan"> 
-                <i class="fa fa-shopping-cart fa-2x"></i> <span class="badge badge-light">4</span>
-                <span class="d-sm-block d-md-none">Cart</span>
-              </a>
+                <a href="<?= base_url("cart"); ?>" class="nav-link text-white d-inline" data-toggle="tooltip" title="Keranjang Belanjaan"> 
+                    <i class="fa fa-shopping-cart fa-2x"></i> <span class="badge badge-light">4</span>
+                    <span class="d-sm-block d-md-none">Cart</span>
+                </a>
 
                 <?php if($user) : ?>
                     <a href="<?= base_url("member"); ?>" class="nav-link nav-card-account d-inline text-white" data-toggle="tooltip" title="Akun"> 
@@ -44,7 +44,9 @@
                     <a href="<?= base_url("login"); ?>" class="nav-link nav-card-account d-inline text-white" data-toggle="tooltip" title="Akun"> 
                 <?php endif; ?>
                     <i class="fa fa-user-circle fa-2x"></i>
-                    <span class="d-sm-block d-md-none">Cart</span>
+                    <span class="d-sm-block d-md-none">
+                        Akun
+                    </span>
                 </a>
              
             </div>

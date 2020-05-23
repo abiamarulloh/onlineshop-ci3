@@ -49,7 +49,11 @@ class Blog extends CI_Controller {
 		if( $this->input->post('keyword')) {
 			$keyword = $this->input->post('keyword');
 			$this->db->like('title', $keyword);
-			$data['list_blog'] = $this->db->get('blog')->result();
+			$this->db->or_like('name', $keyword);
+			$this->db->select('*');
+			$this->db->from('blog');
+			$this->db->join('blog_category', 'blog_category.id = blog.category_id');
+			$data['list_blog'] = $this->db->get()->result();
 		}
 		
 
@@ -108,22 +112,7 @@ class Blog extends CI_Controller {
 				
 				if($this->upload->do_upload("image")){
 					$image_new = $this->upload->data("file_name");
-					$config['image_library'] 	= 'gd2';
-					$config['source_image'] 	= './assets/admin/img/blog/' . $image_new;
-					$config['maintain_ratio'] 	= TRUE;
-					$config['create_thumb'] 	= TRUE;
-					$config['width']         	= 224;
-					$config['height']       	= 239;
-					
-					$this->load->library('image_lib', $config);
-
-					if ( $this->image_lib->resize())
-					{
-						$this->db->set("image", $image_new );
-					}else{
-						echo $this->image_lib->display_errors();
-					}
-
+					$this->db->set("image", $image_new );
 				}else {
 					echo $this->upload->display_errors();
 				}
@@ -173,7 +162,7 @@ class Blog extends CI_Controller {
 			$this->load->view('admin/blog/blog_edit', $data);
 			$this->load->view('templates/admin/footer', $data);
 		}else{
-			$id_blog 				= htmlspecialchars($this->input->post('id', true) );
+			$id_blog 			= htmlspecialchars($this->input->post('id', true) );
 			$title 				= htmlspecialchars($this->input->post('title', true) );
 			$body 				= $this->input->post('body');
 			$category_id	 	= htmlspecialchars($this->input->post('category_id', true) );
@@ -189,6 +178,11 @@ class Blog extends CI_Controller {
 				$this->load->library('upload', $config);
 				
 				if($this->upload->do_upload("image")){
+					$Query_foto_lama = $this->db->get_where("blog", ['id' => $id])->row_array();
+					$foto_lama = $Query_foto_lama['image'];
+
+					unlink(FCPATH . "./assets/admin/img/blog/" . $foto_lama);
+
 					$image_new = $this->upload->data("file_name");
 					$this->db->set("image", $image_new );
 				}else {
@@ -216,6 +210,7 @@ class Blog extends CI_Controller {
 	// Add category
 	public function category()
 	{
+		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
 		$this->form_validation->set_rules('category', '', 'required',[
 			"required" => 'Category harus dilengkapi !'
@@ -249,6 +244,8 @@ class Blog extends CI_Controller {
 	// Delete Category
 	public function delete_category($id)
 	{	
+		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+		
 		$query = $this->db->get_where('blog_category', ['id' => $id])->row();
 		$this->Blog_model->delete_category($id);
 		$this->session->set_flashdata('blog', '<div class="alert alert-danger" role="alert"> Category ' . $query->name . ' berhasil dihapus ! </div>');
@@ -257,6 +254,10 @@ class Blog extends CI_Controller {
 
 
 	public function blog_delete($id){
+		$Query_delete_foto = $this->db->get_where("blog", ['id' => $id])->row_array();
+		$delete_foto = $Query_delete_foto['image'];
+		unlink(FCPATH . "./assets/admin/img/blog/" . $delete_foto);
+
 		$query = $this->db->get_where('blog', ['id' => $id])->row();
 		$this->Blog_model->delete_blog($id);
 		$this->session->set_flashdata('blog', '<div class="alert alert-danger" role="alert"> Blog ' . $query->title . ' berhasil dihapus ! </div>');

@@ -12,55 +12,60 @@ class Ecommerce extends CI_Controller {
 	// List Product
 	public function index()
 	{
-		$this->load->view('templates/admin/header');
-		$this->load->view('templates/admin/sidebar');
-		$this->load->view('templates/admin/topbar');
-		$this->load->view('admin/ecommerce/index');
-		$this->load->view('templates/admin/footer');
+		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+		$this->load->view('templates/admin/header', $data);
+		$this->load->view('templates/admin/sidebar', $data);
+		$this->load->view('templates/admin/topbar', $data);
+		$this->load->view('admin/ecommerce/index', $data);
+		$this->load->view('templates/admin/footer', $data);
 	}
 
 
 	// Add Product
 	public function add()
 	{
-		$this->load->view('templates/admin/header');
-		$this->load->view('templates/admin/sidebar');
-		$this->load->view('templates/admin/topbar');
-		$this->load->view('admin/ecommerce/add');
-		$this->load->view('templates/admin/footer');
+		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+		$this->load->view('templates/admin/header', $data);
+		$this->load->view('templates/admin/sidebar', $data);
+		$this->load->view('templates/admin/topbar', $data);
+		$this->load->view('admin/ecommerce/add', $data);
+		$this->load->view('templates/admin/footer', $data);
 	}
 
 
 	//  category Product
 	public function category()
 	{
-		$this->load->view('templates/admin/header');
-		$this->load->view('templates/admin/sidebar');
-		$this->load->view('templates/admin/topbar');
-		$this->load->view('admin/ecommerce/category');
-		$this->load->view('templates/admin/footer');
+		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+		$this->load->view('templates/admin/header', $data);
+		$this->load->view('templates/admin/sidebar', $data);
+		$this->load->view('templates/admin/topbar', $data);
+		$this->load->view('admin/ecommerce/category', $data);
+		$this->load->view('templates/admin/footer', $data);
 	}
 
 
 	//  Orders
 	public function orders()
 	{
-		$this->load->view('templates/admin/header');
-		$this->load->view('templates/admin/sidebar');
-		$this->load->view('templates/admin/topbar');
-		$this->load->view('admin/ecommerce/orders');
-		$this->load->view('templates/admin/footer');
+		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+		$this->load->view('templates/admin/header', $data);
+		$this->load->view('templates/admin/sidebar', $data);
+		$this->load->view('templates/admin/topbar', $data);
+		$this->load->view('admin/ecommerce/orders', $data);
+		$this->load->view('templates/admin/footer', $data);
 	}
 
 
 	// Add Discount Codes
 	public function discount_codes()
 	{
-		$this->load->view('templates/admin/header');
-		$this->load->view('templates/admin/sidebar');
-		$this->load->view('templates/admin/topbar');
-		$this->load->view('admin/ecommerce/discount_codes');
-		$this->load->view('templates/admin/footer');
+		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+		$this->load->view('templates/admin/header', $data);
+		$this->load->view('templates/admin/sidebar', $data);
+		$this->load->view('templates/admin/topbar', $data);
+		$this->load->view('admin/ecommerce/discount_codes', $data);
+		$this->load->view('templates/admin/footer', $data);
 	}
 
 }

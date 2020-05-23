@@ -28,10 +28,10 @@
                                 </div>
                             <?php endif; ?>
                         </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
+                        <!-- <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" name="remember_me" value="1" id="rememberme">
+                            <label class="form-check-label" for="rememberme">Ingat saya </label>
+                        </div> -->
                         <button type="submit" class="btn btn-auth btn-sm btn-block mb-2">Submit</button>
                         <a href="<?= base_url("register"); ?>"><small class="text-muted ">Belum punya akun ? Daftar</small></a>
                     </form> 

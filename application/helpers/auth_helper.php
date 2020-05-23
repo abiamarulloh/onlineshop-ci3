@@ -2,7 +2,7 @@
 
 function is_logged_in(){
     $bee = get_instance();
-    if(!$bee->session->userdata('email')){
+    if(!$bee->session->has_userdata('email')){
         redirect('login');
     }
 }
@@ -10,7 +10,7 @@ function is_logged_in(){
 
 function is_logged_in_admin(){
     $bee = get_instance();
-    if($bee->session->userdata('role_id') == 2){
+    if($bee->session->userdata('role_id') == 2 && $bee->session->userdata('email')  ){
         redirect('member');
     }
 }
@@ -20,6 +20,7 @@ function is_logged_in_member(){
     if($bee->session->userdata('role_id') == 1){
         redirect('dashboard');
     }
+
 }
 
 

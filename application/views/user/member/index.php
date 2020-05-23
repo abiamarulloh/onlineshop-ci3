@@ -54,6 +54,7 @@
                     </div>
                 
                     <button type="submit" class="btn btn-primary">Update Profile</button>
+                    <a href="<?= base_url(); ?>logout" class="btn btn-outline-secondary">Keluar</a>
                 </form>
                 </div>
             </div>
