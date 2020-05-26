@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg  fixed-top navbar-light shadow-sm navbar-custom" style="background-color:#00cec9;">
+<nav class="navbar navbar-expand-lg  fixed-top navbar-light shadow-sm navbar-custom" style="background-color:#00cec9; border-bottom:6px solid #81ecec;">
     <div class="container">
         <a class="navbar-brand text-white text-bolder" href="#">
             Wagiman Supply
@@ -13,7 +13,7 @@
                     <a class="nav-link text-white" href="<?= base_url("home"); ?>">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item navbar-custome ml-2 text-center">
-                    <a class="nav-link text-white" href="<?= base_url("online.shop"); ?>">Online Shop</a>
+                    <a class="nav-link text-white" href="<?= base_url("ecommerce"); ?>">Online Shop</a>
                 </li>
                 <li class="nav-item navbar-custome ml-2 text-center">
                     <a class="nav-link text-white" href="<?= base_url("stock"); ?>">Stock</a>
@@ -32,17 +32,13 @@
                 </li>
             </ul>
             <div class="ml-auto text-center">
-
+                <?php $cart = $this->cart->total_items();  ?>
                 <a href="<?= base_url("cart"); ?>" class="nav-link text-white d-inline" data-toggle="tooltip" title="Keranjang Belanjaan"> 
-                    <i class="fa fa-shopping-cart fa-2x"></i> <span class="badge badge-light">4</span>
+                    <i class="fa fa-shopping-cart fa-2x"></i> <span class="badge badge-light"><?= $cart; ?></span>
                     <span class="d-sm-block d-md-none">Cart</span>
                 </a>
-
-                <?php if($user) : ?>
-                    <a href="<?= base_url("member"); ?>" class="nav-link nav-card-account d-inline text-white" data-toggle="tooltip" title="Akun"> 
-                <?php  else :?>
-                    <a href="<?= base_url("login"); ?>" class="nav-link nav-card-account d-inline text-white" data-toggle="tooltip" title="Akun"> 
-                <?php endif; ?>
+        
+                <a href="<?= base_url("login"); ?>" class="nav-link nav-card-account d-inline text-white" data-toggle="tooltip" title="Akun"> 
                     <i class="fa fa-user-circle fa-2x"></i>
                     <span class="d-sm-block d-md-none">
                         Akun

@@ -5,13 +5,17 @@ class Member extends CI_Controller {
 	public  function __construct()
 	{
 		parent::__construct();
-		// $this->load->model('Blog_model');
+		$this->load->model('Invoice_model');
 		is_logged_in_member();
 		is_logged_in();
 	}
 
 	public function index()
 	{	
+		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+
+		$id_auth = $data['user']->id;
+		$data['list_invoice_by_auth'] = $this->Invoice_model->get_invoice_by_auth($id_auth);
 
 		$this->form_validation->set_rules('fullname', '', 'required',[
 			"required" => 'Nama Lengkap harus dilengkapi !'
@@ -31,7 +35,6 @@ class Member extends CI_Controller {
 		{
 		
 			$data['title'] = "Member";
-			$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 			$this->load->view('templates/user/header', $data);
 			$this->load->view('templates/user/navbar', $data);
 			$this->load->view('user/member/index', $data);
@@ -54,7 +57,7 @@ class Member extends CI_Controller {
 				$this->load->library('upload', $config);
 				
 				if($this->upload->do_upload("image")){
-					$Query_foto_lama = $this->db->get("auth")->row_array();
+					$Query_foto_lama = $this->db->get_where("auth", ['id' => $id])->row_array();
 					$foto_lama = $Query_foto_lama['image'];
 
 					if($foto_lama != "default.png"){

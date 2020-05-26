@@ -15,9 +15,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
 
+  <!-- Custom styles for this template-->
+    <link href="<?= base_url(); ?>assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+
+    <!-- Data Tables -->
+    <link href="<?= base_url(); ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
     <!-- CSS Custome -->
     <link rel="stylesheet" href="<?= base_url("assets/user/css/style.css") ?>">
-    <title>Wagiman Supply</title>
+
+     <!-- Lightbox -->
+    <link href="<?= base_url(); ?>assets/user/css/lightbox.min.css" rel="stylesheet" />
+
+    <title><?= $title; ?></title>
   </head>
   <body>
 

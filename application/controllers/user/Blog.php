@@ -18,7 +18,7 @@ class Blog extends CI_Controller {
 		//konfigurasi pagination
 		$config['base_url'] =  site_url('blog');
 		$config['total_rows'] = $this->db->count_all('blog'); //total row
-		$config['per_page'] = 6;  //show record per halaman
+		$config['per_page'] = 12;  //show record per halaman
 		$config['first_link']       = 'First';
         $config['last_link']        = 'Last';
         $config['next_link']        = 'Next';

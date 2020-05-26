@@ -1,6 +1,6 @@
 
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url("dashboard"); ?>">
@@ -117,6 +117,20 @@
       <h6 class="collapse-header">Options:</h6>
       <a class="collapse-item" href="<?= base_url("brand_publish_post") ?>"><i class="far fa-plus-square"></i> Publish  Brands</a>
       <a class="collapse-item" href="<?= base_url("brand_admin") ?>"><i class="far fa-folder-open"></i> Brands</a>
+    </div>
+  </div>
+</li>
+
+<!-- Nav Item - Pages Collapse Brands -->
+<li class="nav-item text-uppercase">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Invoice" aria-expanded="true" aria-controls="Invoice">
+    <i class="fas fa-fw fa-envelope-open"></i>
+    <span>Invoice</span>
+  </a>
+  <div id="Invoice" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <h6 class="collapse-header">Options:</h6>
+      <a class="collapse-item" href="<?= base_url("invoice_admin") ?>"><i class="far fa-folder-open"></i> Invoice</a>
     </div>
   </div>
 </li>

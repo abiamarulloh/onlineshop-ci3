@@ -20,6 +20,9 @@
 
   <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
+  <!-- Lightbox -->
+  <link href="<?= base_url(); ?>assets/admin/css/lightbox.min.css" rel="stylesheet" />
+  
 </head>
 
 <body id="page-top">
