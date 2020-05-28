@@ -57,8 +57,25 @@
   <script src="<?= base_url(); ?>assets/admin/vendor/chart.js/Chart.min.js"></script>
 
   <script src="<?= base_url(); ?>assets/admin/js/lightbox.min.js"></script>
+
+
+  <!-- Page level plugins -->
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+  
   <script>
     CKEDITOR.replace('body');
+
+    // LightBOX
+      lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    })
+
+    $(document).ready(function() {
+        $('#dataTable').DataTable( {
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+        } );
+    } );
   </script>
 
 </body>

@@ -9,7 +9,7 @@
                     <div class="table-responsive-md table-responsive-sm">
 
                      <!-- Detail AKUN Pemesan -->
-                     <table class="table table-striped mb-5">
+                     <table class="table table-striped table-borderless mb-5">
                         <thead>
                             <tr class="text-uppercase">
                             <th scope="col">Foto</th>
@@ -35,7 +35,7 @@
 
 
                     <!-- Detail Pemesan -->
-                    <table class="table table-striped mb-5">
+                    <table class="table table-striped table-borderless mb-5">
                         <thead>
                             <tr class="text-uppercase">
                             <th scope="col">Nama Pemesan</th>
@@ -71,7 +71,7 @@
                     </table>
 
                     <!-- Detail Pesanan -->
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-borderless ">
                         <thead>
                             <tr class="text-uppercase">
                             <th scope="col">ID barang</th>

@@ -11,16 +11,14 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:14px">
+                <table class="table table-striped table-borderless display" id="dataTable" width="100%" cellspacing="0" style="font-size:14px">
                     <thead>
                     <tr>
-                        <th>Bukti Pembayaran</th>
                         <th>ID Invoice</th>
-                        <th>Status</th>
+                        <th>Bukti Pembayaran</th>
                         <th>Resi</th>
+                        <th>Status</th>
                         <th>Nama Pemesan</th>
-                        <th>Alamat Pengiriman</th>
-                        <th>No Telepon</th>
                         <th>Tanggal Pemesanan</th>
                         <th>Batas Pembayaran</th> 
                         <th>Aksi</th>
@@ -28,13 +26,11 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Bukti Pembayaran</th>
                             <th>ID Invoice</th>
-                            <th>Status</th>
+                            <th>Bukti Pembayaran</th>
                             <th>Resi</th>
+                            <th>Status</th>
                             <th>Nama Pemesan</th>
-                            <th>Alamat Pengiriman</th>
-                            <th>No Telepon</th>
                             <th>Tanggal Pemesanan</th>
                             <th>Batas Pembayaran</th> 
                             <th>Aksi</th>
@@ -48,38 +44,48 @@
                         <?php else : ?>
                             <?php foreach ($list_invoice as $invoice):?>
                             <tr>
+                                <td><?= $invoice->id; ?></td>
+
                                 <td>
-                                    <?php  if( $invoice->status == 0 ) : ?>
+                                    <?php  if( $invoice->image_payment == null ) : ?>
                                         Belum ada bukti    
                                     <?php else : ?>
-                                        <a  href="<?= base_url(); ?>assets/user/images/payment/payment_sample.png" rel="lightbox" title="Bukti Transaksi" style="width:200%; height:100%;"> 
-                                            <img src="<?= base_url(); ?>assets/user/images/payment/payment_sample.png" class="w-75">
+                                        <a  href="<?= base_url(); ?>assets/user/images/payment/<?= $invoice->image_payment; ?>" rel="lightbox" title="Bukti Transaksi"> 
+                                            <img src="<?= base_url(); ?>assets/user/images/payment/<?= $invoice->image_payment; ?>" class="w-25">
                                         </a>
                                     <?php endif; ?>
                                 </td>
+
+                                <td>
+                                    <?php if($invoice->resi  ) : ?>
+                                        <?= $invoice->resi; ?>
+                                    <?php else : ?>
+                                        -
+                                    <?php endif;  ?>
                                 
-                                <td><?= $invoice->id; ?></td>
-                                <?php  if( $invoice->status == 0 ) : ?>
-                                    <td class="bg-warning"> 
-                                        <small class="text-white font-weight-bold">Belum dibayar</small>
-                                    </td>
-                                <?php elseif( $invoice->status == 1) : ?>
-                                    <td class="bg-primary"> 
-                                        <small class="text-white font-weight-bold">Proses Pengemasan barang</small>
-                                    </td>
-                                <?php elseif( $invoice->status == 2) : ?>
-                                    <td class="bg-success"> 
-                                        <small class="text-white font-weight-bold">Pesanan sedang dikirim</small>
-                                    </td>
-                                <?php elseif( $invoice->status == 3) : ?>
-                                    <td class="bg-success"> 
-                                        <small class="text-white font-weight-bold">Selesai</small>
-                                    </td>
-                                <?php endif; ?>
-                                <td><?= $invoice->resi; ?>1211212</td>
+                                </td>
+                                
+
+                                <td>
+                                    <?php  if( $invoice->status == 0 ) : ?>
+                                    
+                                        <?php if($invoice->image_payment == "No-Image-Available.png") : ?>
+                                            <small class="badge badge-danger p-2 font-weight-bold">Belum dibayar</small>
+                                        <?php elseif($invoice->image_payment != null) : ?>
+                                            <small class="badge badge-info p-2 font-weight-bold">Menunggu konfirmasi pembayaran dari admin</small>
+                                        <?php endif; ?>
+
+                                    <?php elseif( $invoice->status == 1) : ?>
+                                        <small class="badge badge-warning p-2 font-weight-bold">Proses Pengemasan barang</small>
+                                    <?php elseif( $invoice->status == 2) : ?>
+                                        <small class="badge badge-primary p-2 font-weight-bold">Pesanan sedang dikirim</small>
+                                    <?php elseif( $invoice->status == 3) : ?>
+                                        <small class="badge badge-success p-2 font-weight-bold">Selesai</small>
+                                    <?php endif; ?>
+                                </td>
+
+                                
                                 <td><?= $invoice->fullname; ?></td>
-                                <td><?= $invoice->address; ?></td>
-                                <td><?= $invoice->phone; ?></td>
                                 <td><?= date("D, d M Y H:i:s",  $invoice->date_buyying ); ?></td>
                                 <td><?= date("D, d M Y H:i:s", $invoice->dateline_buyying); ?></td>
                                 <td>
@@ -90,7 +96,10 @@
                                         3 =  Selesai
                                     -->
                                     <?php  if( $invoice->status == 0 ) : ?>
-                                            <a href="<?= base_url(); ?>invoice_status/<?= $invoice->id; ?>" class="btn btn-sm  btn-primary">Proses</a>
+                                            <?php if($invoice->image_payment != "No-Image-Available.png") : ?>
+                                                <a href="<?= base_url(); ?>invoice_status/<?= $invoice->id; ?>" class="btn btn-sm  btn-primary">Proses</a>
+                                            <?php endif; ?>
+
                                     <?php elseif( $invoice->status == 1) : ?>
                                             <a href="<?= base_url(); ?>invoice_status/<?= $invoice->id; ?>" class="btn btn-sm  btn-info">Dikirim</a>
                                     <?php elseif($invoice->status == 2)  :?>

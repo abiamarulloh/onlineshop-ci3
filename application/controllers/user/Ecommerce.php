@@ -133,6 +133,7 @@ class Ecommerce extends CI_Controller {
 				'fullname' 			=> htmlspecialchars($this->input->post('fullname', true)),
 				'address' 			=> htmlspecialchars($this->input->post('address', true)),
 				'phone' 			=> htmlspecialchars($this->input->post('phone', true)),
+				'image_payment'		=> "No-Image-Available.png",
 				'date_buyying' 		=> time(),
 				'dateline_buyying' 	=> time()+60*60*24*2
 			];

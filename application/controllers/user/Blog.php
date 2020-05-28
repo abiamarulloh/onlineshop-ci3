@@ -47,7 +47,7 @@ class Blog extends CI_Controller {
 			$keyword = $this->input->post('keyword');
 			$this->db->like('title', $keyword);
 			$this->db->or_like('name', $keyword);
-			$this->db->select('*');
+			$this->db->select('*, blog.id as id');
 			$this->db->from('blog');
 			$this->db->join('blog_category', 'blog_category.id = blog.category_id');
 			$data['list_blog'] = $this->db->get()->result();
@@ -71,6 +71,7 @@ class Blog extends CI_Controller {
 			$data['title'] = "Not Found";
 			$this->load->view('errors/notfound', $data);
 		}else {
+			$data['title'] = "Blog";
 			$data['blog_detail'] = $this->Blog_model->blog_detail($id);
 			$this->load->view('templates/user/header', $data);
 			$this->load->view('templates/user/navbar', $data);

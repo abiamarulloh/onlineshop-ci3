@@ -54,6 +54,8 @@ $route['about'] = 'user/about/index';
 
 
 $route['member'] = 'user/member/index';
+$route['update_image_payment/(:num)'] = 'user/member/update_image_payment/$1';
+$route['getIdByAjaxImagePayment'] = 'user/member/update_image_payment_id/';
 
 
 

@@ -89,4 +89,53 @@ class Member extends CI_Controller {
 			redirect('member');
 		}	
 	}
+
+
+	public  function update_image_payment($invoice_id){
+			$invoice_id	 		= $this->input->post('invoice_id', true);
+
+			// Cek Jika ada gambar yang di upload
+			$upload_image = $_FILES['image']['name'];
+
+			if($upload_image){
+				$config['upload_path'] = "./assets/user/images/payment/";
+				$config['allowed_types'] = "jpg|jpeg|png";
+				$config['max_size'] = "2048" ;
+				$this->load->library('upload', $config);
+
+				if($this->upload->do_upload("image")){
+					$Query_foto_lama = $this->db->get_where("invoice", ['id' => $invoice_id])->row_array();
+					$foto_lama = $Query_foto_lama['image_payment'];
+
+					if($foto_lama != "No-Image-Available.png") {
+						unlink(FCPATH . "./assets/user/images/payment/" . $foto_lama);
+					}
+
+					$image_new = $this->upload->data("file_name");
+					$this->db->set("image_payment", $image_new );
+				}else {
+					echo $this->upload->display_errors();
+				}
+
+			}
+			
+			$this->db->where('id' , $invoice_id);
+			$this->db->update("invoice");
+			$this->session->set_flashdata('invoice', '<div class="alert alert-success" role="alert"> Yey, Gambar Bukti Pembayaran pada invoice '. $invoice_id .' Berhasil ditambahkan. </div>');
+			redirect('member');
+	
+	}
+
+
+	// Menampilkan Gambar di modal
+	public function update_image_payment_id(){
+		if($this->input->is_ajax_request()){
+			$id = $this->input->post('id');
+			$invoice = $this->db->get_where("invoice", ['id' => $id])->row();
+			echo json_encode($invoice);
+		}	
+	}
+
+	
+
 }

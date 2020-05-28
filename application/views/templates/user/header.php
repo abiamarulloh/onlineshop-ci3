@@ -4,7 +4,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -20,15 +19,18 @@
 
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
-
-    <!-- Data Tables -->
-    <link href="<?= base_url(); ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
     <!-- CSS Custome -->
     <link rel="stylesheet" href="<?= base_url("assets/user/css/style.css") ?>">
 
      <!-- Lightbox -->
     <link href="<?= base_url(); ?>assets/user/css/lightbox.min.css" rel="stylesheet" />
+
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.css">
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js" 
+			integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+			  crossorigin="anonymous"></script>
+		<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script>
 
     <title><?= $title; ?></title>
   </head>

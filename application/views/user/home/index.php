@@ -109,66 +109,18 @@
         </div>
     </div>
     <div class="row">
+
+        <?php foreach($list_blog as $blog):  ?>    
         <div class="col-md-2 mb-3">
             <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
+                <img src="<?= base_url() ?>assets/user/images/blog/<?= $blog->image; ?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">Rp 20.000</p>
                 </div>
             </div>
         </div>
-
-        <div class="col-md-2 mb-3">
-            <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Rp 20.000</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2 mb-3">
-            <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Rp 20.000</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2 mb-3">
-            <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Rp 20.000</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2 mb-3">
-            <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Rp 20.000</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2 mb-3">
-            <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Rp 20.000</p>
-                </div>
-            </div>
-        </div>
-
+        <?php endforeach; ?>
     </div>
 
 
@@ -191,65 +143,17 @@
         </div>
     </div>
     <div class="row">
+        <?php foreach($list_blog as $blog):  ?>    
         <div class="col-md-2 mb-3">
             <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
+                <img src="<?= base_url() ?>assets/admin/img/blog/<?= $blog->image; ?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
-                    <p class="card-text"> title and make up the bulk of the card's content.</p>
+                    <p class="card-text">Rp 20.000</p>
                 </div>
             </div>
         </div>
-
-        <div class="col-md-2 mb-3">
-            <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text"> title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2 mb-3">
-            <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text"> title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2 mb-3">
-            <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text"> title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2 mb-3">
-            <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text"> title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2 mb-3">
-            <div class="card shadow-sm">
-                <img src="https://images.pexels.com/photos/4273439/pexels-photo-4273439.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text"> title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 
 
