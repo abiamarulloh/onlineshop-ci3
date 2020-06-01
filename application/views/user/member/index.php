@@ -16,7 +16,6 @@
             <div class="col-md-8 my-5 d-flex justify-content-center">
                 <form action="" method="post" enctype="multipart/form-data">
                 <?= $this->session->flashdata("member"); ?>
-
                     <div class="form-row">
                         <div class="col-md-4">
 
@@ -67,6 +66,20 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="address">Alamat Lengkp</label>
+                                <input type="text"
+                                    class="form-control  <?php if(form_error('address')) {echo "is-invalid";} ?>"
+                                    id="address" style="font-size:14px;" name="address"
+                                    value="<?= $user->address ?>">
+                                <?php if(form_error('address')) : ?>
+                                <div class="invalid-feedback">
+                                    <?= form_error("address"); ?>
+                                </div>
+                                <?php endif; ?>
+                            </div>
+
+
+                            <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password"
                                     class="form-control  <?php if(form_error('password')) {echo "is-invalid";} ?>"
@@ -78,6 +91,8 @@
                                 </div>
                                 <?php endif; ?>
                             </div>
+
+
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success btn-block btn-sm">Update Profile</button>
@@ -107,7 +122,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-borderless data table-hover" id="dataTable" width="100%" cellspacing="0" style="font-size:12px">
+                <table class="table table-borderless table-hover" id="dataTable" width="100%" cellspacing="0" style="font-size:12px">
                     <thead>
                         <tr>
                             <th>ID Invoice</th>
@@ -129,11 +144,6 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php  if($list_invoice_by_auth == null) : ?>
-                        <tr>
-                            <th colspan="9" class="text-center">Belum ada data invoice masuk</th>
-                        </tr>
-                        <?php else : ?>
                         <?php foreach ($list_invoice_by_auth as $invoice):?>
                         <tr>
                             <td><?= $invoice->invoice_id; ?></td>
@@ -181,7 +191,6 @@
                             </td>
                         </tr>
                         <?php endforeach; ?>
-                        <?php endif;  ?>
                     </tbody>
                 </table>
             </div>

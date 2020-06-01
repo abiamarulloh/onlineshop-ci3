@@ -50,5 +50,23 @@ class Invoice extends CI_Controller {
 		$this->load->view('templates/admin/footer', $data);
 	}
 
+	public function invoice_download_pdf($id){
+	
+		$data['id_invoice'] = $id;
+
+		$data['detail_invoice_order'] = $this->Invoice_model->get_invoice_order_by_id($id);
+		$data['detail_auth_order'] = $this->Invoice_model->get_auth_order_by_id($id);
+		$data['detail_invoice'] = $this->Invoice_model->get_invoice_by_id($id);
+
+		// Get Admin Wagiman Supply
+		$data['get_admin'] = $this->db->get_where('auth', ['role_id' => 1])->row();
+
+		$this->load->library('pdf');
+		$data['title'] = "Download Invoice";
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "Invoice-". $id ;
+		$this->pdf->load_view('admin/invoice/invoice_download_pdf', $data);;
+	}
+
 
 }

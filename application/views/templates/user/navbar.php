@@ -1,34 +1,61 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg  fixed-top navbar-light shadow-sm navbar-custom" style="background-color:#00cec9; border-bottom:6px solid #81ecec;">
+<nav class="navbar navbar-expand-lg  fixed-top navbar-light shadow-sm navbar-custom" style="background-color:#00cec9;">
     <div class="container">
-        <a class="navbar-brand text-white text-bolder" href="#">
+        <a class="navbar-brand font-weight-bolder shadow-sm bg-white p-2 rounded text-tosca" href="<?= base_url(); ?>" style="color: #00cec9">
             Wagiman Supply
         <a/>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav  mx-auto">
-                <li class="nav-item navbar-custome ml-2  text-center">
-                    <a class="nav-link text-white" href="<?= base_url("home"); ?>">Home <span class="sr-only">(current)</span></a>
+            <ul class="navbar-nav  mx-auto  pt-2 pb-2">
+                <?php if($title == "Home") : ?>
+                    <li class="nav-item bg-dark navbar-custome ml-2  text-center rounded">
+                <?php else  : ?>
+                    <li class="nav-item  navbar-custome ml-2  text-center">
+                <?php endif; ?>
+                    <a class="nav-link text-white" href="<?= base_url("home"); ?>"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item navbar-custome ml-2 text-center">
-                    <a class="nav-link text-white" href="<?= base_url("ecommerce"); ?>">Online Shop</a>
+                
+                <?php if($title == "Online Shop") : ?>
+                    <li class="nav-item bg-dark navbar-custome ml-2  text-center rounded">
+                <?php else  : ?>
+                    <li class="nav-item  navbar-custome ml-2  text-center">
+                <?php endif; ?>
+                    <a class="nav-link text-white" href="<?= base_url("ecommerce"); ?>"><i class="fa fa-store"></i> Online Shop</a>
                 </li>
-                <li class="nav-item navbar-custome ml-2 text-center">
-                    <a class="nav-link text-white" href="<?= base_url("stock"); ?>">Stock</a>
+                
+      
+                <?php if($title == "Restorasi") : ?>
+                    <li class="nav-item bg-dark navbar-custome ml-2  text-center rounded">
+                <?php else  : ?>
+                    <li class="nav-item  navbar-custome ml-2  text-center">
+                <?php endif; ?>
+                    <a class="nav-link text-white" href="<?= base_url("restorasi.vespa"); ?>"> <i class="fas fa-motorcycle"></i> Restorasi </a>
                 </li>
-                <li class="nav-item navbar-custome ml-2 text-center">
-                    <a class="nav-link text-white" href="<?= base_url("restorasi.vespa"); ?>">Restorasi Vespa </a>
+                
+                <?php if($title == "Blog") : ?>
+                    <li class="nav-item bg-dark navbar-custome ml-2  text-center rounded">
+                <?php else  : ?>
+                    <li class="nav-item  navbar-custome ml-2  text-center">
+                <?php endif; ?>
+                    <a class="nav-link text-white" href="<?= base_url("blog"); ?>"><i class="fab fa-blogger"></i> Blog</a>
                 </li>
-                <li class="nav-item navbar-custome ml-2 text-center">
-                    <a class="nav-link text-white" href="<?= base_url("blog"); ?>">Blog</a>
+                
+                <?php if($title == "Brand") : ?>
+                    <li class="nav-item bg-dark navbar-custome ml-2  text-center rounded">
+                <?php else  : ?>
+                    <li class="nav-item  navbar-custome ml-2  text-center">
+                <?php endif; ?>
+                    <a class="nav-link text-white" href="<?= base_url("brand"); ?>"> <i class="fas fa-random"></i> Brand</a>
                 </li>
-                <li class="nav-item navbar-custome ml-2 text-center">
-                    <a class="nav-link text-white" href="<?= base_url("brand"); ?>">Brand</a>
-                </li>
-                <li class="nav-item navbar-custome ml-2 text-center">
-                    <a class="nav-link text-white" href="<?= base_url("about"); ?>">About</a>
+                
+                <?php if($title == "About") : ?>
+                    <li class="nav-item bg-dark navbar-custome ml-2  text-center rounded">
+                <?php else  : ?>
+                    <li class="nav-item  navbar-custome ml-2  text-center">
+                <?php endif; ?>
+                    <a class="nav-link text-white" href="<?= base_url("about"); ?>"> <i class="fas fa-address-card"></i> About</a>
                 </li>
             </ul>
             <div class="ml-auto text-center">

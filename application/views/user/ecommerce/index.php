@@ -2,10 +2,9 @@
 <!-- Wagiman Supply ONLINE SHOP -->
 <div class="container online_shop my-5">
     <div class="row">
-        <div class="col-md-12 text-center">
-            <h1>Wagiman Supply <b> Online Shop</b> </h1> 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, nemo.</p>
-            <hr>
+        <div class="col-md-12 mt-5 text-center">
+            <h2 class="lora"><span class="text-tosca">Wagiman Supply</span> <b> Online Shop</b> </h2> 
+            <p class="lead">Produk kebutuhanmu sekarang sudah tersedia di Online Shop Wagiman Supply</p>
         </div>
     </div>
 
@@ -27,9 +26,9 @@
         <?php if($list_product)  :?> 
             <?php foreach ($list_product as $product) :?>
             <div class="col-md-3 mb-3 p-1">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm border-0">
                     <div class="card-header bg-white text-center">
-                        <img src="<?= base_url(); ?>assets/admin/img/ecommerce/<?= $product->image; ?>" style="height:200px; width:200px;" class="card-img-top img-fluid p-2">
+                        <img src="<?= base_url(); ?>assets/admin/img/ecommerce/<?= $product->image; ?>" style="height:200px; width:200px;" class="card-img-top img-fluid p-2 image-zoom">
                     </div>
                     <div class="card-body">
                         <div class="card-title text-center">
@@ -37,8 +36,8 @@
                             <small class="badge badge-pill badge-success m-0">Rp<?= number_format($product->price); ?></small>
                         </div>
                         <div class="card-footer">
-                            <a href="<?= base_url(); ?>ecommerce_add_to_cart/<?= $product->id++; ?>" class="btn btn-primary btn-block btn-sm" style="font-size:12px">Tambah ke keranjang</a> 
-                            <a href="" class="btn btn-info btn-sm btn-block" style="font-size:12px">Detail</a>
+                            <a href="<?= base_url(); ?>ecommerce_add_to_cart/<?= $product->id; ?>" class="btn btn-primary btn-block btn-sm" style="font-size:12px">Tambah ke keranjang</a> 
+                            <a href="<?= base_url(); ?>ecommerce_preview/<?= $product->id; ?>" class="btn btn-info btn-sm btn-block" style="font-size:12px">Detail</a>
                         </div>
                     </div>
                 </div>

@@ -150,7 +150,7 @@ class Ecommerce extends CI_Controller {
 
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
-		$data['list_product_by_id'] = $this->Ecommerce_model->get_product_by_id($id);
+		$data['list_product_by_id'] = $this->Ecommerce_model->get_product_by_id($id)->row();
 
 		// View Category
 		$data['list_category'] = $this->Ecommerce_model->get_category();

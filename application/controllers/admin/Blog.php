@@ -50,7 +50,7 @@ class Blog extends CI_Controller {
 			$keyword = $this->input->post('keyword');
 			$this->db->like('title', $keyword);
 			$this->db->or_like('name', $keyword);
-			$this->db->select('*');
+			$this->db->select('*, blog.id as id');
 			$this->db->from('blog');
 			$this->db->join('blog_category', 'blog_category.id = blog.category_id');
 			$data['list_blog'] = $this->db->get()->result();

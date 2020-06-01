@@ -49,15 +49,47 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
 
+
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url(); ?>assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Lightbox -->
     <script src="<?= base_url(); ?>assets/admin/js/lightbox.min.js"></script>
 
+    <!-- Page level plugins -->
+    <script src="<?= base_url(); ?>assets/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url(); ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+    <!-- Page level custom scripts -->
+    <script src="<?= base_url(); ?>assets/admin/js/demo/datatables-demo.js"></script>
+
+    <script src="<?= base_url(); ?>assets/user/js/zoom-master/jquery.zoom.js"></script>
+
+    <!-- owl Carausel -->
+    <script src="<?= base_url(); ?>assets/user/js/owl/owl.carousel.min.js"></script>
 
     <script>
+        
+        // Owl Carausel ( slider )
+        $(document).ready(function(){
+          $(".owl-carousel").owlCarousel();
+        });
+
+
+        // Zoom Image
+        $(document).ready(function(){
+          $('.image-zoom')
+          .wrap('<span style="display:inline-block"></span>')
+          .css('display', 'block')
+          .parent()
+          .zoom({
+            url: $(this).find('img').attr('data-zoom')
+          });
+        });
+        
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        } );
     
         $('.nav-link').tooltip('enable');
         $('.cart').tooltip('enable');
@@ -68,11 +100,9 @@
           'wrapAround': true
         })
 
-        $(document).ready(function(){
-          $(document).ready(function(){
-            $('.data').DataTable();
-          });
 
+        $(document).ready(function(){
+          
             $('#updateUploadImagePayment').on('show.bs.modal', function (e) {
                 var id = $(e.relatedTarget).data('id');
                 //menggunakan fungsi ajax untuk pengambilan data

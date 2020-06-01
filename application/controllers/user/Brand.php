@@ -14,9 +14,9 @@ class Brand extends CI_Controller {
 
 		
 		//konfigurasi pagination
-		$config['base_url'] =  site_url('brand_admin');
+		$config['base_url'] =  site_url('brand');
 		$config['total_rows'] = $this->db->count_all('brand'); //total row
-		$config['per_page'] = 3;  //show record per halaman
+		$config['per_page'] = 6;  //show record per halaman
 		$config['first_link']       = 'First';
         $config['last_link']        = 'Last';
         $config['next_link']        = 'Next';
@@ -51,7 +51,7 @@ class Brand extends CI_Controller {
 
 		$data['pagination'] = $this->pagination->create_links();
 
-		$data['title'] = "Brands";
+		$data['title'] = "Brand";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		$this->load->view('templates/user/header', $data);
 		$this->load->view('templates/user/navbar', $data);

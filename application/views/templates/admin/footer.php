@@ -58,24 +58,73 @@
 
   <script src="<?= base_url(); ?>assets/admin/js/lightbox.min.js"></script>
 
-
   <!-- Page level plugins -->
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+  <script src="<?= base_url(); ?>assets/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?= base_url(); ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="<?= base_url(); ?>assets/admin/js/demo/datatables-demo.js"></script>
   
   <script>
+    // Preview before uploading image
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#preview').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#img").change(function() {
+        readURL(this);
+    });
+
+
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    } );
+
+    
     CKEDITOR.replace('body');
 
     // LightBOX
       lightbox.option({
       'resizeDuration': 200,
       'wrapAround': true
+    });
+
+    $("#inputFile").change(function(event) {  
+      fadeInAdd();
+      getURL(this);    
+    });
+
+    $("#inputFile").on('click',function(event){
+      fadeInAdd();
+    });
+
+
+
+    // Menyeting provinsi dan kota website
+    $(document).ready(function(){
+        $("#province").change(function() {
+
+            fetch("<?= base_url('ecommerce_checkout_city/'); ?>"+this.value, {
+                method: "GET",
+            })
+            .then((response) => response.text())
+            .then((data) => {
+                document.getElementById("city").innerHTML = data;
+            })
+            
+        })
     })
 
-    $(document).ready(function() {
-        $('#dataTable').DataTable( {
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
-        } );
-    } );
+
+
+
   </script>
 
 </body>

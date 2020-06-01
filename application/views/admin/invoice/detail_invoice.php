@@ -47,7 +47,9 @@
                             </tr>
                         </thead>
                         <?php $total = 0; ?>
+                        <?php $invoice_id = 0;  ?>
                         <?php foreach ($detail_invoice as $invoice) :?>
+                        <?php $invoice_id = $invoice->id; ?>
                             <tbody>
                                 <tr>
                                     <th scope="row"><?= $invoice->fullname; ?></th>
@@ -109,7 +111,7 @@
                         </tbody>
                     </table>
                     <a href="<?= base_url(); ?>invoice_admin"  class="btn btn-secondary">Kembali</a>
-                    <a href="<?= base_url(); ?>invoice_download_pdf"  class="btn btn-secondary float-right"> <i class="fa fa-download"></i> Download</a>
+                    <a href="<?= base_url(); ?>invoice_download_pdf/<?= $invoice_id; ?>"  class="btn btn-secondary float-right"> <i class="fa fa-download"></i> Download</a>
                     </div>
                 </div>
             </div>

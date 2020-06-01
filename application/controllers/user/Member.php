@@ -12,6 +12,8 @@ class Member extends CI_Controller {
 
 	public function index()
 	{	
+
+
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
 		$id_auth = $data['user']->id;
@@ -21,14 +23,19 @@ class Member extends CI_Controller {
 			"required" => 'Nama Lengkap harus dilengkapi !'
 		]);
 
-		$this->form_validation->set_rules('phone', '', 'integer',[
-			"required" => 'No HP harus dilengkapi !',
-			"integer" => 'No Hp harus berupa angka !'
+		$this->form_validation->set_rules('phone', '', 'integer|min_length[10]',[
+			"integer" => 'No Hp harus berupa angka !',
+			"min_length" => "Mohon Masukkan Nomor yang benar"
 		]);
 
 		$this->form_validation->set_rules('password', '', 'min_length[6]',[
 			"required" => 'Password harus dilengkapi !',
 			"min_length" => 'Password minimal 6 karakter !'
+		]);
+
+		$this->form_validation->set_rules('address', '', 'max_length[230]|min_length[10]',[
+			"min_length" => 'Alamat Terlalu singkat !',
+			"max_length" => 'Alamat Terlalu Panjang !'
 		]);
 
 		if ($this->form_validation->run() == FALSE)
@@ -43,6 +50,7 @@ class Member extends CI_Controller {
 			$id	 				= htmlspecialchars($this->input->post('id', true) );
 			$fullname 			= htmlspecialchars($this->input->post('fullname', true) );
 			$phone 				= htmlspecialchars($this->input->post('phone', true) );
+			$address 				= htmlspecialchars($this->input->post('address', true) );
 			
 			$updated_date 		= time();
 
@@ -74,6 +82,7 @@ class Member extends CI_Controller {
 			
 			$this->db->set("fullname", $fullname );
 			$this->db->set("phone", $phone );
+			$this->db->set("address", $address );
 
 			// Jika inputan tidak kosong maka isi password 
 			if($this->input->post("password") != null) {

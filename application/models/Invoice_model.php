@@ -33,7 +33,7 @@ class Invoice_model extends CI_Model {
 	}
 
 	public function get_auth_order_by_id($id) {
-		$this->db->select('auth.fullname as auth_fullname, auth.image as auth_image, auth.email as auth_email, auth.phone as auth_phone,  auth.created_date as auth_created_date');
+		$this->db->select('auth.fullname as auth_fullname, auth.image as auth_image, auth.email as auth_email, auth.phone as auth_phone,  auth.created_date as auth_created_date, auth.address as auth_address');
 		$this->db->from('order');
 		$this->db->join('invoice', 'invoice.id = order.invoice_id');
 		$this->db->join('auth', 'auth.id = order.auth_id');

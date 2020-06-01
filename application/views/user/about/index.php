@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12 text-center">
             <h1>About</h1>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates, neque!</p>
+            <p>Tentang Wagiman Supply</p>
         </div>
     </div>
     <div class="row">

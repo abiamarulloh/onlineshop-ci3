@@ -6,7 +6,7 @@ class Restorasi_vespa extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = "Restorasi vespa";
+		$data['title'] = "Restorasi";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		$this->load->view('templates/user/header', $data);
 		$this->load->view('templates/user/navbar', $data);

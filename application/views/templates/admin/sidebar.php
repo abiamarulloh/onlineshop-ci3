@@ -43,8 +43,6 @@
         <i class="far fa-folder-open"></i> Product</a>
       <a class="collapse-item" href="<?=base_url('ecommerce_category') ?>">
         <i class="fas fa-align-center"></i>  Shop Categories</a>
-      <a class="collapse-item" href="<?=base_url('ecommerce_orders') ?>"> 
-        <i class="fas fa-sort-numeric-up"></i> Orders</a>
       <a class="collapse-item" href="<?=base_url('ecommerce_discount_codes') ?>"> 
         <i class="fas fa-percent"></i> Discount Codes</a>
     </div>
@@ -67,24 +65,6 @@
         <i class="far fa-folder-open"></i> Post</a>
       <a class="collapse-item" href="<?=base_url('blog_category') ?>">
         <i class="fas fa-align-center"></i> Categories</a>
-    </div>
-  </div>
-</li>
-
-
-
-<!-- Nav Item - Pages Collapse Stock -->
-<li class="nav-item text-uppercase">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#stock" aria-expanded="true" aria-controls="stock">
-    <i class="fas fa-fw fa-cubes"></i>
-    <span>Stock</span>
-  </a>
-  <div id="stock" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-      <h6 class="collapse-header">Options:</h6>
-      <a class="collapse-item" href="<?=base_url('stock_publish_post') ?>"><i class="far fa-plus-square"></i> Publish Stock</a>
-      <a class="collapse-item" href="<?=base_url('stock_admin') ?>"><i class="far fa-folder-open"></i> Stock</a>
-      <a class="collapse-item" href="<?=base_url('stock_category') ?>"><i class="fas fa-align-center"></i>  Categories</a>
     </div>
   </div>
 </li>
@@ -135,6 +115,12 @@
   </div>
 </li>
 
+<!-- Nav Item - About -->
+<li class="nav-item  text-uppercase">
+  <a class="nav-link" href="<?=base_url('about_admin') ?>">
+    <i class="fas fa-fw fa-info"></i>
+    <span>About</span></a>
+</li>
 
 
 

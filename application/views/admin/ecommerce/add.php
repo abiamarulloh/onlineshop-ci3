@@ -15,6 +15,11 @@
                 </div>
 
                 <div class="form-group">
+                    <input type="file" id="img" name="image_thumb" />
+                    <img id="preview" class="w-25" src="#" alt="your image" />
+                </div>
+
+                <div class="form-group">
                     <label for="name">Nama Product</label>
                     <input type="text" class="form-control  <?php if(form_error('name')) {echo "is-invalid";} ?>" id="name"  name="name" value="<?= set_value('name') ?>">
                     <?php if(form_error('name')) : ?>

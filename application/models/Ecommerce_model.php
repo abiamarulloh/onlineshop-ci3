@@ -24,11 +24,11 @@ class Ecommerce_model extends CI_Model {
 	}
 
 	public function get_product_by_id($id){
-		$this->db->select('*, product.name as name, product.id as product_id');
+		$this->db->select('*, product.name as name, product.id as product_id, product_category.name as category_name');
 		$this->db->from('product');
 		$this->db->join('product_category', 'product_category.id = product.category_id');
 		$this->db->where('product.id', $id);
-		return $this->db->get()->row();
+		return $this->db->get();
 	}
 
 

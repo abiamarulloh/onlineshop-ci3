@@ -9,15 +9,33 @@
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="<?= base_url(); ?>assets/user/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?= base_url(); ?>assets/user/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?= base_url(); ?>assets/user/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url(); ?>assets/user/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?= base_url(); ?>assets/user/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?= base_url(); ?>assets/user/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?= base_url(); ?>assets/user/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?= base_url(); ?>assets/user/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url(); ?>assets/user/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="<?= base_url(); ?>assets/user/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= base_url(); ?>assets/user/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?= base_url(); ?>assets/user/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(); ?>assets/user/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
-  <!-- Custom styles for this template-->
+    <!-- Custom styles for this template-->
     <link href="<?= base_url(); ?>assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
 
-    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
     <!-- CSS Custome -->
     <link rel="stylesheet" href="<?= base_url("assets/user/css/style.css") ?>">
@@ -25,13 +43,13 @@
      <!-- Lightbox -->
     <link href="<?= base_url(); ?>assets/user/css/lightbox.min.css" rel="stylesheet" />
 
-    
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.css">
-		<script src="https://code.jquery.com/jquery-2.2.4.min.js" 
-			integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-			  crossorigin="anonymous"></script>
-		<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script>
+   
+    <!-- Custom styles for this page -->
+    <link href="<?= base_url(); ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/user/css/owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/user/css/owl/owl.theme.default.min.css">
+    
     <title><?= $title; ?></title>
   </head>
   <body>

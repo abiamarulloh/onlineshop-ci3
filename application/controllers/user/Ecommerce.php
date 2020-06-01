@@ -64,6 +64,8 @@ class Ecommerce extends CI_Controller {
 	public function add_to_cart($id){
 		is_logged_in();
 
+		
+
 
 
 		$product = $this->Ecommerce_model->find($id);
@@ -84,6 +86,7 @@ class Ecommerce extends CI_Controller {
 	public function cart(){
 		is_logged_in();
 
+		
 		$data['title'] = "Cart ";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
@@ -103,6 +106,32 @@ class Ecommerce extends CI_Controller {
 	public function checkout_ecommerce(){
 		is_logged_in();
 
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => "https://api.rajaongkir.com/starter/province",
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => "",
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "GET",
+		CURLOPT_HTTPHEADER => array(
+			"key: f7a871e6101e1700265f71ae65328cd3"
+		),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$data['provinsi'] = json_decode($response);
+		}
+
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
 
@@ -121,10 +150,7 @@ class Ecommerce extends CI_Controller {
 		if ($this->form_validation->run() == FALSE)
 		{
 			$data['title'] = "Checkout ";
-			$this->load->view('templates/user/header', $data);
-			$this->load->view('templates/user/navbar', $data);
 			$this->load->view('user/ecommerce/checkout', $data);
-			$this->load->view('templates/user/footer', $data);
 		}else{
 			$user = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
@@ -137,7 +163,6 @@ class Ecommerce extends CI_Controller {
 				'date_buyying' 		=> time(),
 				'dateline_buyying' 	=> time()+60*60*24*2
 			];
-
 
 			$this->db->insert('invoice', $invoice);
 			$id_invoice = $this->db->insert_id();
@@ -161,6 +186,50 @@ class Ecommerce extends CI_Controller {
 
 	}
 
+
+	public function checkout_ecommerce_city($provinsi_id){
+
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://api.rajaongkir.com/starter/city?&province=".$provinsi_id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => array(
+			"key: f7a871e6101e1700265f71ae65328cd3"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$city = json_decode($response, true);
+
+			if($city['rajaongkir']['status']['code'] == "200") {
+
+				foreach($city['rajaongkir']['results'] as $city) {
+					echo "<option value='". $city['city_id'] ."'>" . $city['city_name'] . "</option>";
+				}
+
+			}
+
+
+		}
+
+
+	}
+
+
 	public function checkout_success_buy(){
 		is_logged_in();
 
@@ -177,6 +246,22 @@ class Ecommerce extends CI_Controller {
 
 
 
+
+	// Ecommerce Preview 
+	public function ecommerce_preview($id){
+	
+		if(empty($this->Ecommerce_model->get_product_by_id($id))){
+			$data['title'] = "Not Found";
+			$this->load->view('errors/notfound', $data);
+		}else {
+			$data['title'] = "Detail Product";
+			$data['list_product_by_id'] = $this->Ecommerce_model->get_product_by_id($id)->result();
+			$this->load->view('templates/user/header', $data);
+			$this->load->view('templates/user/navbar', $data);
+			$this->load->view('user/ecommerce/ecommerce_preview', $data);
+			$this->load->view('templates/user/footer', $data);
+		}
+	}
 	
 
 }

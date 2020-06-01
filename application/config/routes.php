@@ -18,12 +18,14 @@ $route['home'] = 'home';
 $route['ecommerce'] = 'user/ecommerce/index';
 $route['ecommerce/(:num)'] = 'user/ecommerce/index/$1';
 $route['ecommerce_add_to_cart/(:num)'] = 'user/ecommerce/add_to_cart/$1';
+$route['ecommerce_preview/(:num)'] = 'user/ecommerce/ecommerce_preview/$1';
 
 
 // User Cart
 $route['cart'] = 'user/ecommerce/cart';
 $route['ecommerce_delete_product_checkout'] = 'user/ecommerce/delete_cart';
 $route['ecommerce_checkout'] = 'user/ecommerce/checkout_ecommerce';
+$route['ecommerce_checkout_city/(:num)'] = 'user/ecommerce/checkout_ecommerce_city/$1';
 $route['ecommerce_success_buyying'] = 'user/ecommerce/checkout_success_buy';
 
 
@@ -45,6 +47,7 @@ $route['blog_preview/(:num)'] = 'user/blog/blog_preview/$1';
 
 // User Brands
 $route['brand'] = 'user/brand/index';
+$route['brand/(:num)'] = 'user/brand/index/$1';
 
 
 // User about
@@ -98,6 +101,7 @@ $route['stock_category'] = 'admin/stock/category';
 // Admin Brands
 $route['brand_publish_post'] = 'admin/brand/add';
 $route['brand_admin'] = 'admin/brand/index';
+$route['brand_admin/(:num)'] = 'admin/brand/index/$1';
 $route['brand_edit/(:num)'] = 'admin/brand/brand_edit/$1';
 $route['brand_delete/(:num)'] = 'admin/brand/brand_delete/$1';
 
@@ -107,5 +111,8 @@ $route['brand_delete/(:num)'] = 'admin/brand/brand_delete/$1';
 $route['invoice_admin'] = 'admin/invoice/index';
 $route['invoice_status/(:num)'] = 'admin/invoice/update_invoice_status/$1';
 $route['invoice_detail/(:num)'] = 'admin/invoice/detail_invoice/$1';
+$route['invoice_download_pdf/(:num)'] = 'admin/invoice/invoice_download_pdf/$1';
 
 
+// about admin
+$route['about_admin'] = 'admin/about/index';

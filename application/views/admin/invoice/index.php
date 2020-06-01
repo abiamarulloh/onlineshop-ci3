@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped table-borderless display" id="dataTable" width="100%" cellspacing="0" style="font-size:14px">
+                <table class="table table-striped table-borderless" id="dataTable" width="100%" cellspacing="0" style="font-size:14px">
                     <thead>
                     <tr>
                         <th>ID Invoice</th>
@@ -37,15 +37,9 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php  if($list_invoice == null) : ?>
-                            <tr>
-                                <th colspan="9" class="text-center">Belum ada data invoice masuk</th>
-                            </tr>
-                        <?php else : ?>
                             <?php foreach ($list_invoice as $invoice):?>
                             <tr>
                                 <td><?= $invoice->id; ?></td>
-
                                 <td>
                                     <?php  if( $invoice->image_payment == null ) : ?>
                                         Belum ada bukti    
@@ -62,7 +56,6 @@
                                     <?php else : ?>
                                         -
                                     <?php endif;  ?>
-                                
                                 </td>
                                 
 
@@ -113,7 +106,6 @@
                                 </td>
                             </tr>
                             <?php endforeach; ?>
-                        <?php endif;  ?>
                     </tbody>
                 </table>
             </div>
