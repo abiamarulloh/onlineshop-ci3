@@ -11,9 +11,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-sm-12">
-            <form  method="post"  action="">
+            <form  method="get"  action="">
                 <div class="input-group my-3">
-                    <input type="text" class="form-control" placeholder="search" name="keyword">
+                    <input type="text" class="form-control" placeholder="search your favorite brand" name="keyword">
                     <div class="input-group-append">
                         <button class="btn btn-tosca" type="submit" ><i class="fa fa-search"></i></button>
                     </div>
@@ -21,13 +21,7 @@
             </form>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4 mx-auto">
-            <?php if($this->session->flashdata('search-brand')) : ?>
-                <?= $this->session->flashdata('search-brand'); ?>
-            <?php endif; ?>
-        </div>
-    </div>
+
 
     <!-- Data -->
     <div class="row my-5">

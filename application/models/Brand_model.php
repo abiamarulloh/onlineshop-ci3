@@ -17,5 +17,10 @@ class Brand_model extends CI_Model {
 		return $this->db->get_where('brand', ['id' => $id])->row();
 	}
 
+	public function get_product_by_brand($id, $limit, $start){
+		$this->db->select('product.image as product_image, product.name as product_name, product.price as price, product.id product_id');
+		return $this->db->get_where('product', ["brand_id" => $id] ,$limit, $start)->result();
+	}
+
 
 }

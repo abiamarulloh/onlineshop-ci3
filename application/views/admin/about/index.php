@@ -11,7 +11,7 @@ curl_setopt_array($curl, array(
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => array(
-    "key: f7a871e6101e1700265f71ae65328cd3"
+    "key: 0575c15d25c683c7b81b8133971a25a8"
     ),
 ));
 
@@ -106,7 +106,7 @@ if ($err) {
                             <div class="form-group col-md-4">
                                 <label for="cityince">Provinsi</label>
                                 <select class="form-control" name="province" id="province">
-                                    <option>Pilih Provinsi</option>
+                                    <option value="0">Pilih Provinsi</option>
                                     <?php foreach ($provinsi->rajaongkir->results as $prov) : ?>
                                     <option value="<?= $prov->province_id; ?>" <?php if($prov->province_id == $about->province){echo "selected";} ?> >
                                         <?= $prov->province; ?>
@@ -117,7 +117,7 @@ if ($err) {
                             <div class="form-group col-md-2">
                                 <label for="city">Kota </label>
                                 <select class="form-control" name="city" id="city">
-                                    <option>Pilih Kota</option>
+                                    <option value="0">Pilih Kota</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
@@ -131,7 +131,7 @@ if ($err) {
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row my-5">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -173,7 +173,7 @@ if ($err) {
                 </h6> 
                 
                 <h6><span class="btn btn-info btn-sm">Kota            : </span>
-                <br><br> <?php foreach ($data['city']['rajaongkir']['results'] as $city) : ?><?php  if($city['city_id'] == $about->city) : ?> <?= $city['city_name']; ?><?php endif; ?><?php endforeach; ?>  
+                <br><br> <?php foreach ($data['city']['rajaongkir']['results'] as $city) : ?><?php  if($city['city_id'] == $about->city) : ?> <?= $city['type'] . " " . $city['city_name']; ?><?php endif; ?><?php endforeach; ?>  
                 </h6> 
              </pre>
                 </div>

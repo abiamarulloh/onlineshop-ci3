@@ -33,9 +33,8 @@ class Member extends CI_Controller {
 			"min_length" => 'Password minimal 6 karakter !'
 		]);
 
-		$this->form_validation->set_rules('address', '', 'max_length[230]|min_length[10]',[
-			"min_length" => 'Alamat Terlalu singkat !',
-			"max_length" => 'Alamat Terlalu Panjang !'
+		$this->form_validation->set_rules('address', '', 'min_length[10]',[
+			"min_length" => 'Alamat Terlalu singkat !'
 		]);
 
 		if ($this->form_validation->run() == FALSE)
@@ -60,7 +59,7 @@ class Member extends CI_Controller {
 
 			if($upload_image){
 				$config['upload_path'] = "assets/user/images/profile";
-				$config['allowed_types'] = "jpg|jpeg|png|svg";
+				$config['allowed_types'] = "jpg|jpeg|png";
 				$config['max_size'] = "2048" ;
 				$this->load->library('upload', $config);
 				

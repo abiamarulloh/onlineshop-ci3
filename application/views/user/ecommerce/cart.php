@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12 text-center">
             <h1>Keranjang Belanja</h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum vero </p>
+            <p>Belanja mudah dan aman hanya di wagiman supply <span class="text-tosca">Online Shop</span></p>
             <hr>
         </div>
     </div>
@@ -22,12 +22,6 @@
                             <div class="ml-3">
                                 <h6 class="text-nama-produk"><?= $item['name']; ?></h6>
                                 <small class="text-muted">Rp<?= number_format($item['price'],0,",","."); ?></small>
-                                <!-- Produk Action -->
-                                <!-- <form class="form-inline mt-4">
-                                    <button type="submit" class="btn btn-grey mb-2">-</button>
-                                    <input type="number" min="0" value="<?= $item['qty'] ?>"  class="form-control w-25 mb-2 mr-2 ml-2" id="value_produk">
-                                    <button type="submit" class="btn btn-orange mb-2">+</button>
-                                </form> -->
                                 <small class="text-muted d-block">
                                 Jumlah  : 
                                 <?= $item['qty']; ?>

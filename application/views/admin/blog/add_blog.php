@@ -37,16 +37,24 @@
                 
                 <div class="form-group">
                     <label for="category_id">Pilih Kategori</label>
-                    <select multiple class="form-control text-center" id="category_id" name="category_id">
-                        <option disabled > ---  Pilih Kategori --- </option>
+                    <select  class="form-control text-center <?php if(form_error('category_id')) {echo "is-invalid";} ?>" id="category_id" name="category_id">
+                        <option  value="0"> ---  Pilih Kategori --- </option>
                         <?php foreach ($list_category as $category) : ?>
-                            <option value="<?= $category->id ?>"><?= $category->name; ?></option>
+                            <option value="<?= $category->id ?>"   <?=  set_select('category_id', $category->id ); ?> ><?= $category->name; ?></option>
                         <?php endforeach; ?>
+                        <?php if(form_error('category_id')) : ?>
+                            <div class="invalid-feedback">
+                                <?= form_error("category_id"); ?>
+                            </div>
+                        <?php endif; ?>
                     </select>
                 </div>
+
               
-                <button type="submit" class="btn btn-primary">Publish Product</button>
+                <button type="submit" class="btn btn-primary float-left mr-3">Publish Product</button>
             </form>
+
+            <a href="<?= base_url(); ?>blog_admin" class="btn btn-outline-info">Kembali</a>
         </div>
     </div>
 </div>

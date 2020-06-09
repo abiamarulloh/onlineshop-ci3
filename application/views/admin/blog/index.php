@@ -28,6 +28,7 @@
             <?php foreach ($list_blog as $blog) : ?>
             <div class="col-md-3 my-2 mx-auto">
                 <div class="card">
+            
                     <img src="<?= base_url(); ?>assets/admin/img/blog/<?= $blog->image; ?>" class="card-img-top" alt="<?= $blog->image; ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?= $blog->title;  ?></h5>
@@ -44,10 +45,11 @@
                             <?php endforeach; ?>
                             </small>
                         </p>
+
                     
-                        <a href="<?= base_url(); ?>blog_preview/<?= $blog->id; ?>" class="btn btn-primary btn-sm m-2">Preview</a>
-                        <a href="<?= base_url(); ?>blog_edit/<?= $blog->id; ?>" class="btn btn-warning btn-sm m-2">Edit</a>
-                        <a href="<?= base_url(); ?>blog_delete/<?= $blog->id; ?>" class="btn btn-danger btn-sm m-2">Delete</a>
+                        <a href="<?= base_url(); ?>blog_preview/<?= $blog->id; ?>" class="btn btn-primary btn-sm m-2"> <i class="fas fa-eye"></i> </a>
+                        <a href="<?= base_url(); ?>blog_edit/<?= $blog->id; ?>" class="btn btn-warning btn-sm m-2"> <i class="fas fa-edit"></i> </a>
+                        <a href="<?= base_url(); ?>blog_delete/<?= $blog->id; ?>" class="btn btn-danger btn-sm m-2"><i class="fas fa-trash"></i> </a>
                     </div>
                 </div>
             </div>

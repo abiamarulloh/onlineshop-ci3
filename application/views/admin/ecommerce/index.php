@@ -26,20 +26,20 @@
             </div>
         <?php else : ?>
             <?php foreach ($list_product as $product) : ?>
-            <div class="col-md-3 my-2 mx-auto">
-                <div class="card">
-                    <div class="card-header bg-white text-center">
-                        <img src="<?= base_url(); ?>assets/admin/img/ecommerce/<?= $product->image; ?>" style="height:200px; width:200px;" class=" card-img-top img-fluid p-2">
+            <div class="col-md-3 my-2 mx-auto text-center">
+                <div class="card border-0">
+                    <div class="card-header bg-white">
+                        <img src="<?= base_url(); ?>assets/admin/img/ecommerce/<?= $product->product_image; ?>" style="height:200px; width:200px;" class=" card-img-top img-fluid p-2 image-zoom">
                     </div>
                     <div class="card-body">
-                        <div class="card-title text-center">
-                            <p class="card-text m-0"><?= $product->name; ?></p>
+                        <div class="card-title">
+                            <p class="card-text m-0"><?= $product->product_name; ?></p>
                             <small class="badge badge-pill badge-success m-0">Rp<?= number_format($product->price); ?></small>
                         </div>
                         <div class="card-footer">
-                            <a href="<?= base_url(); ?>ecommerce_preview/<?= $product->id; ?>" class="btn btn-primary btn-sm m-2 btn-block">Preview</a>
-                            <a href="<?= base_url(); ?>ecommerce_product_edit/<?= $product->id; ?>" class="btn btn-warning btn-sm m-2 btn-block">Edit</a>
-                            <a href="<?= base_url(); ?>ecommerce_product_delete/<?= $product->id; ?>" class="btn btn-danger btn-sm m-2 btn-block">Delete</a>
+                            <a href="<?= base_url(); ?>ecommerce_preview/<?= $product->product_id; ?>" class="btn btn-primary btn-sm m-2 "> <i class="fas fa-eye"></i> </a>
+                            <a href="<?= base_url(); ?>ecommerce_product_edit/<?= $product->product_id; ?>" class="btn btn-warning btn-sm m-2 "><i class="fas fa-edit"></i></a>
+                            <a href="<?= base_url(); ?>ecommerce_product_delete/<?= $product->product_id; ?>" class="btn btn-danger btn-sm m-2 " onclick="return confirm('yakin ingin menghapus data product <?= $product->name; ?> ?')"><i class="fas fa-trash"></i></a>
                         </div>
                     </div>
                        

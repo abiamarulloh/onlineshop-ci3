@@ -21,15 +21,21 @@ $route['ecommerce_add_to_cart/(:num)'] = 'user/ecommerce/add_to_cart/$1';
 $route['ecommerce_preview/(:num)'] = 'user/ecommerce/ecommerce_preview/$1';
 
 
+// User Online Shop search_by_category
+$route['search_by_category/(:num)'] = 'user/ecommerce/search_by_category/$1';
+$route['search_by_brand/(:num)'] = 'user/ecommerce/search_by_brand/$1';
+
+
 // User Cart
 $route['cart'] = 'user/ecommerce/cart';
 $route['ecommerce_delete_product_checkout'] = 'user/ecommerce/delete_cart';
 $route['ecommerce_checkout'] = 'user/ecommerce/checkout_ecommerce';
 $route['ecommerce_checkout_city/(:num)'] = 'user/ecommerce/checkout_ecommerce_city/$1';
+$route['ecommerce_checkout_form_finnaly_ekspedisi'] = 'user/ecommerce/checkout_form_finnaly_ekspedisi';
+$route['ecommerce_checkout_form_finnaly_sub_ekspedisi'] = 'user/ecommerce/checkout_form_finnaly_sub_ekspedisi';
+$route['ecommerce_checkout_form_finnaly_city_receiver'] = 'user/ecommerce/checkout_form_finnaly_city_receiver';
+
 $route['ecommerce_success_buyying'] = 'user/ecommerce/checkout_success_buy';
-
-
-
 
 
 // User Stock
@@ -48,6 +54,8 @@ $route['blog_preview/(:num)'] = 'user/blog/blog_preview/$1';
 // User Brands
 $route['brand'] = 'user/brand/index';
 $route['brand/(:num)'] = 'user/brand/index/$1';
+$route['brand_preview/(:num)'] = 'user/brand/brand_preview/$1';
+$route['brand_preview/(:num)/(:num)'] = 'user/brand/brand_preview/$1/$1';
 
 
 // User about
@@ -71,7 +79,7 @@ $route['dashboard'] = 'admin/dashboard/index';
 // Admin E-commerce
 $route['ecommerce_admin'] = 'admin/ecommerce/index';
 $route['ecommerce_admin/(:num)'] = 'admin/ecommerce/index';
-$route['ecommerce_discount_codes'] = 'admin/ecommerce/discount_codes';
+// $route['ecommerce_discount_codes'] = 'admin/ecommerce/discount_codes';
 $route['ecommerce_orders'] = 'admin/ecommerce/orders';
 $route['ecommerce_category'] = 'admin/ecommerce/category';
 
@@ -93,9 +101,9 @@ $route['blog_delete/(:num)'] = 'admin/blog/blog_delete/$1';
 
 
 // Admin Stock
-$route['stock_admin'] = 'admin/stock/index';
-$route['stock_publish_post'] = 'admin/stock/add';
-$route['stock_category'] = 'admin/stock/category';
+// $route['stock_admin'] = 'admin/stock/index';
+// $route['stock_publish_post'] = 'admin/stock/add';
+// $route['stock_category'] = 'admin/stock/category';
 
 
 // Admin Brands

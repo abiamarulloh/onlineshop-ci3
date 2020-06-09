@@ -8,11 +8,10 @@
       </div>
       <div class="col-md-6 d-flex align-items-center info-footer">
         <div>
-          <p><i class="fa fa-phone"></i> +62 83159313115</p>
-          <p><i class="fa fa-envelope"></i> abiamarulloh06@gmail.com </p>
-          <p>
+          <p><i class="fa fa-phone"></i> +</p>
+          <p><i class="fa fa-envelope"></i>  </p>
+          <p class="text-lowercase">
           <i class="fa fa-map-pin"></i>
-          Poris Gaga, RT 003/RW 02, No. 50, Kelurahan Poris Gaga Kecamatan Batuceper, Kota Tangerang, Banten 15122
           </p>
         </div>
       </div>
@@ -20,7 +19,7 @@
 
     <div class="row mt-3">
       <div class="col-md-6 ">
-         © 2020 Inoda • All rights reserved • Love from Tangerang <i class="fa fa-heart"></i>
+         © 2020 • All rights reserved • Love from Tangerang <i class="fa fa-heart"></i>
       </div>
       <div class="col-md-6 social-media-footer d-flex justify-content-end">
         <div>
@@ -68,13 +67,10 @@
     <!-- owl Carausel -->
     <script src="<?= base_url(); ?>assets/user/js/owl/owl.carousel.min.js"></script>
 
-    <script>
-        
-        // Owl Carausel ( slider )
-        $(document).ready(function(){
-          $(".owl-carousel").owlCarousel();
-        });
+    <!-- Disqus -->
+    <script id="dsq-count-scr" src="//wagimansupply.disqus.com/count.js" async></script>
 
+    <script>
 
         // Zoom Image
         $(document).ready(function(){
@@ -86,6 +82,13 @@
             url: $(this).find('img').attr('data-zoom')
           });
         });
+        
+        // Owl Carausel ( slider )
+        $(document).ready(function(){
+          $(".owl-carousel").owlCarousel();
+        });
+
+
         
         $(document).ready(function() {
             $('#dataTable').DataTable();
@@ -135,6 +138,133 @@
                 });
             });
         });
+
+
+        // Search By Category
+        $(document).ready(function() {
+            $("#search_by_category").change(function() {
+
+                fetch("<?= base_url('search_by_category/'); ?>" + this.value, {
+                        method: "GET",
+                    })
+                    .then((response) => response.text())
+                    .then((data) => {
+                        document.getElementById("search_by_body").innerHTML = data;
+                    })
+            })
+        })
+
+      // Seach By Brand
+      $(document).ready(function() {
+          $("#search_by_brand").change(function() {
+
+              fetch("<?= base_url('search_by_brand/'); ?>" + this.value, {
+                      method: "GET",
+                  })
+                  .then((response) => response.text())
+                  .then((data) => {
+                      document.getElementById("search_by_body").innerHTML = data;
+                  })
+          })
+      })
+
+
+      // Cek Form Upload  Bukti Transaksi
+      $("#image_payment").change(function () {
+          var inputFile = document.getElementById('file');
+          var pathFile = inputFile.value;
+          var ekstensiOk = /(\.jpg|\.jpeg|\.png)$/i;
+          if(!ekstensiOk.exec(pathFile)){
+            alert('Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png');
+            inputFile.value = '';
+            return false;
+          }else{
+              // Preview gambar
+              if (inputFile.files && inputFile.files[0]) {
+                  var reader = new FileReader();
+                  reader.onload = function(e) {
+                      document.getElementById('preview_image_payment').innerHTML = '<img src="'+e.target.result+'" style="height:200px"/>';
+                  };
+                  reader.readAsDataURL(inputFile.files[0]);
+              }
+          }
+      })
+
+    // Cek Form File Member Upload Foto Profile
+    $("#file").change(function () {
+      var ukuran = 0;
+      var inputFile = document.getElementById('file');
+      var pathFile = inputFile.value;
+      var ekstensiOk = /(\.jpg|\.jpeg|\.png)$/i;
+      
+      if(!ekstensiOk.exec(pathFile)){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png!',
+        })
+        inputFile.value = '';
+        return false;
+      }else if(this.files[0].size > 2000000) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'File Terlalu besar, tidak boleh lebih dari 2MB',
+        })
+        inputFile.value = '';
+        return false;
+      }else{
+        Swal.fire(
+          'Good job!',
+          '',
+          'success'
+        )
+          // Preview gambar
+          if (inputFile.files && inputFile.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function(e) {
+                  document.getElementById('preview').innerHTML = '<img src="'+e.target.result+'" style="height:200px"/>';
+              };
+              reader.readAsDataURL(inputFile.files[0]);
+          }
+      }
+    })
+
+ 
+
+    $("#phone").change(function () {
+    let phoneInput = document.getElementById('phone')
+    let phone = phoneInput.value;
+        if(phone[0] == 0) 
+        {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Awali nomor telepon dengan 62 bukan 0 !',
+          })
+          phoneInput.value = '';
+          return false;
+        }else if(parseInt(phone[0]) != 6 || parseInt(phone[1]) != 2 || parseInt(phone[2]) != 8)
+        {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nomor Telepon yang anda masukkan tidak valid !, harus 628*** ',
+          })
+          phoneInput.value = '';
+          return false;
+        }else{
+          Swal.fire(
+            'Good job!',
+            '',
+            'success'
+          )
+        }
+    })
+
+
+
+      
    
     </script>
   </body>

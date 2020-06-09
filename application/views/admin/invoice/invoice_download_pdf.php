@@ -15,7 +15,6 @@
 
 <body>
 
-
     <table class="table">
         <thead>
             <tr>
@@ -23,83 +22,31 @@
             </tr>
             <tr>
                 <td scope="col" colspan="2">
-                    <h6 class="font-weight-bold m-0">Penerima : </h6>
+                    <h6 class="font-weight-bold m-0">Pemilik Toko : </h6>
                     <small class="m-0 d-block"><?= $get_admin->fullname; ?></small>
-                    <small class="m-0 d-block"><?= $get_admin->phone; ?></small>
+                    <small class="m-0 d-block"><a href="https://wa.me/<?= $get_admin->phone; ?>"><?= $get_admin->phone; ?></a></small>
                     <small class="m-0 d-block"><?= $get_admin->email; ?></small>
-                    <small class="m-0 d-block"><?= $get_admin->address; ?></small>
+                    <small class="m-0 d-block text-lowercase"><?= $get_admin->address; ?></small>
                 </td>
                 <td></td>
                 <td scope="col" colspan="2">
-                    <h6 class="m-0 font-weight-bolder">Pengirim : </h6>
+                    <h6 class="m-0 font-weight-bolder">Tagihan kepada : </h6>
                     <?php $total = 0; ?>
                     <?php foreach ($detail_auth_order as $auth) :?>
-                    <small class="m-0 d-block"><?= $auth->auth_fullname; ?></small>
-                    <small class="m-0 d-block"><?= $auth->auth_phone; ?></small>
-                    <small class="m-0 d-block"><?= $auth->auth_email; ?></small>
-                    <small class="m-0 d-block"><?= $auth->auth_address; ?></small>
+                        <small class="m-0 d-block"><?= $auth->auth_fullname; ?></small>
+                        <small class="m-0 d-block"><a href="https://wa.me/<?= $auth->auth_phone; ?>"><?= $auth->auth_phone; ?></a></small>
+                        <small class="m-0 d-block"><?= $auth->auth_email; ?></small>
+                        <small class="m-0 d-block"><?= $auth->auth_address; ?></small>
                     <?php endforeach; ?>
                     <hr>
 
-                    <h6 class="m-0 font-weight-bolder">Detail Pembeli : </h6>
-                    <?php $total = 0; ?>
-                    <?php $invoice_id = 0;  ?>
-                    <?php foreach ($detail_invoice as $invoice) :?>
-                    <?php $invoice_id = $invoice->id; ?>
-
-                    <small class="m-0 d-block"><?= $invoice->fullname; ?></small>
-                    <small class="m-0 d-block"><?= $invoice->address; ?></small>
-                    <small class="m-0 d-block"><?= $invoice->phone; ?></small>
-
-                    <?php if( $invoice->status >= 1) : ?>
-                        <?php if($invoice->image_payment != null) : ?>
-                        <small class="text-white badge badge-success font-weight-bold">Lunas</small>
-                        <?php endif; ?>
-                    <?php elseif($invoice->status == 0) : ?>
-                        <small class="text-white badge badge-danger font-weight-bold">Belum bayar</small>
-                    <?php endif; ?>
-
-                    <small class="m-0 d-block"><?= date("D, d M Y H:i:s",  $invoice->date_buyying ); ?></small>
-                    <small class="m-0 d-block"><?= date("D, d M Y H:i:s",  $invoice->dateline_buyying ); ?></small>
-                    <?php endforeach; ?>
+                  
                 </td>
             </tr>
         </thead>
-        <?php $total = 0; ?>
-        <?php foreach ($detail_invoice_order as $order) :?>
-        <?php 
-            $subtotal = $order->grand_price * $order->grand_qty; 
-            $total += $subtotal;   
-        ?>
-        <tbody>
-            <tr>
-                <th><small class="font-weight-bold">ID Order</small></th>
-                <th><small class="font-weight-bold">Product</small></th>
-                <th><small class="font-weight-bold">Jumlah Barang</small></th>
-                <th><small class="font-weight-bold">Harga Satuan</small></th>
-                <th><small class="font-weight-bold">Sub-Total</small></th>
-            </tr>
-            <tr>
-                <th scope="row"><small class="font-weight-bold"><?= $order->id_product_order; ?></small></th>
-                <td> <small class="font-weight-bold"><?= $order->name; ?></small> </td>
-                <td><small class="font-weight-bold"><?= $order->grand_qty; ?></small></td>
-                <td> <small class="font-weight-bold">Rp<?= number_format($order->grand_price,0,",","."); ?></small> </td>
-                <td><small class="font-weight-bold">Rp<?= number_format($total,0,",",".");; ?></small></td>
-            </tr>
-        </tbody>
-        <?php endforeach; ?>
-        <tbody>
-            <tr class="bg-info text-white font-weight-bolder">
-                <td colspan="4">
-                    Grand Total
-                </td>
-                <td>
-                    Rp<?= number_format($total, 0, ",","."); ?>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <!-- /.container-fluid -->
+
+        
+      
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -115,36 +62,3 @@
 </html>
 
 
-
-<?php $total = 0; ?>
-<?php foreach ($detail_invoice_order as $order) :?>
-<?php 
-                                    $subtotal = $order->grand_price * $order->grand_qty; 
-                                    $total += $subtotal;   
-                                ?>
-<tbody>
-    <tr>
-        <th scope="row"><?= $order->id_product_order; ?></th>
-        <td><?= $order->name; ?></td>
-        <td><?= $order->grand_qty; ?></td>
-        <td>Rp<?= number_format($order->grand_price,0,",","."); ?></td>
-        <td>Rp<?= number_format($total,0,",",".");; ?></td>
-    </tr>
-</tbody>
-<?php endforeach; ?>
-<tbody>
-    <tr class="bg-info text-white font-weight-bolder">
-        <td colspan="4">
-            Grand Total
-        </td>
-        <td>
-            Rp<?= number_format($total, 0, ",","."); ?>
-        </td>
-    </tr>
-</tbody>
-</table>
-<!-- <a href="<?= base_url(); ?>invoice_admin"  class="btn btn-secondary">Kembali</a>
-                        <a href="<?= base_url(); ?>invoice_download_pdf/<?= $invoice_id; ?>"  class="btn btn-secondary float-right"> <i class="fa fa-download"></i> Download</a> -->
-</>
-</div>
-</div>

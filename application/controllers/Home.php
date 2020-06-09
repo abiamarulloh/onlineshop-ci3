@@ -9,6 +9,8 @@ class Home extends CI_Controller {
 		$data['title'] = "Home";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
+		
+
 		// Online Shop
 		$this->db->limit(4); 
 		$this->db->order_by('id', 'DESC');
@@ -25,6 +27,7 @@ class Home extends CI_Controller {
 		$this->db->limit(8); 
 		$this->db->order_by('id', 'DESC');
 		$data['list_brand'] = $this->db->get("brand")->result();
+		
 
 		$this->load->view('templates/user/header', $data);
 		$this->load->view('templates/user/navbar', $data);

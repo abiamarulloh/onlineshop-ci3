@@ -1,121 +1,81 @@
-<!-- Begin Page Content -->
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-primary">ID INVOICE  <small class="badge badge-light"><?= $id_invoice; ?></small></button>
+                </div>
                 <div class="card-body">
-                    <h3>Detail Invoice <small class="btn btn-success">No Invoice : <?= $id_invoice; ?></small></h3>
-                    <hr>
-                    <div class="table-responsive-md table-responsive-sm">
+                    <div class="row">
+                        <!-- Pemilik Toko -->
+                        <div class="col-md-6">
+                            <!-- Web Name -->
+                            <h6> 
+                                <i class="fas fa-fw fa-building"></i> <?= $admin->web_name; ?>
+                            </h6>
+                            <!-- CEO -->
+                            <h6 class="m-0"> 
+                                <i class="fas fa-fw fa-user"></i> <?= $admin->ceo; ?>
+                            </h6>
 
-                     <!-- Detail AKUN Pemesan -->
-                     <table class="table table-striped table-borderless mb-5">
-                        <thead>
-                            <tr class="text-uppercase">
-                            <th scope="col">Foto</th>
-                            <th scope="col">Nama Pemilik Akun</th>
-                            <th scope="col">No Telepon</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Tanggal Bergabung</th>
-                            </tr>
-                        </thead>
-                        <?php $total = 0; ?>
-                        <?php foreach ($detail_auth_order as $auth) :?>
-                            <tbody>
-                                <tr>
-                                    <th><img src="<?= base_url(); ?>assets/user/images/profile/<?= $auth->auth_image; ?>" alt="" class="w-25 img-fluid img-thumbnail" /></th>
-                                    <th scope="row"><?= $auth->auth_fullname; ?></th>
-                                    <td><?= $auth->auth_phone; ?></td>
-                                    <td><?= $auth->auth_email; ?></td>
-                                    <td><?=  date("d M Y" , $auth->auth_created_date); ?></td>
-                                </tr>
-                            </tbody>
-                        <?php endforeach; ?>
-                    </table>
+                            <p class="m-0"> 
+                                <!-- Phone -->
+                                <a href="https://wa.me/<?= $admin->phone; ?>" class="d-block">
+                                    <i class="fab fa-fw fa-whatsapp"></i>  <?= $admin->phone; ?>
+                                </a>
 
+                                <!-- Email -->
+                                <a href="mailto:<?= $admin->email; ?>" class="d-block">
+                                    <i class="fas fa-fw fa-envelope-open"></i>  <?= $admin->email; ?>
+                                </a>
 
-                    <!-- Detail Pemesan -->
-                    <table class="table table-striped table-borderless mb-5">
-                        <thead>
-                            <tr class="text-uppercase">
-                            <th scope="col">Nama Pemesan</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col">No Telepon</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Tanggal Pemesanan</th>
-                            <th scope="col">Tanggal Batas Pembayaran</th>
-                            </tr>
-                        </thead>
-                        <?php $total = 0; ?>
-                        <?php $invoice_id = 0;  ?>
-                        <?php foreach ($detail_invoice as $invoice) :?>
-                        <?php $invoice_id = $invoice->id; ?>
-                            <tbody>
-                                <tr>
-                                    <th scope="row"><?= $invoice->fullname; ?></th>
-                                    <td><?= $invoice->address; ?></td>
-                                    <td><?= $invoice->phone; ?></td>
-                                    <td> 
-                                    <?php if( $invoice->status == 0) : ?>
-                                            <small class="text-white badge badge-warning font-weight-bold">belum dibayar</small>
-                                    <?php elseif( $invoice->status == 1) : ?>
-                                            <small class="text-white badge badge-primary font-weight-bold">Sedang diproses</small>
-                                    <?php elseif( $invoice->status == 2) : ?>
-                                            <small class="text-white badge badge-success font-weight-bold">Sedang dikirim</small>
-                                    <?php endif; ?>
-                                    </td>
+                                <!-- Address -->
+                                <small class="text-lowercase">
+                                    <i class="fas fa-fw fa-map"></i> 
+                                    <?= $admin->address ?>
+                                </small>
 
-                                    <td><?= date("D, d M Y H:i:s",  $invoice->date_buyying ); ?></td>
-                                    <td><?= date("D, d M Y H:i:s", $invoice->dateline_buyying); ?></td>
-                                </tr>
-                            </tbody>
-                        <?php endforeach; ?>
-                    </table>
+                            </p>    
+                            <hr>
+                            <?php foreach ($bank_payment as $bank) :?>
+                                <h6> <i class="fas fa-fw fa-money-check-alt"></i> <?= $bank->bank_name . " <br> " . $bank->on_behalf_of_the . " - " . $bank->account_number; ?></h6>
+                            <?php endforeach; ?>
+                        
+                        </div>
 
-                    <!-- Detail Pesanan -->
-                    <table class="table table-striped table-borderless ">
-                        <thead>
-                            <tr class="text-uppercase">
-                            <th scope="col">ID barang</th>
-                            <th scope="col">Nama Produk</th>
-                            <th scope="col">Jumlah Pesanan</th>
-                            <th scope="col">Harga Satuan</th>
-                            <th scope="col">Sub-total</th>
-                            </tr>
-                        </thead>
-                        <?php $total = 0; ?>
-                        <?php foreach ($detail_invoice_order as $order) :?>
-                            <?php 
-                                $subtotal = $order->grand_price * $order->grand_qty; 
-                                $total += $subtotal;   
-                            ?>
-                            <tbody>
-                                <tr>
-                                    <th scope="row"><?= $order->id_product_order; ?></th>
-                                    <td><?= $order->name; ?></td>
-                                    <td><?= $order->grand_qty; ?></td>
-                                    <td>Rp<?= number_format($order->grand_price,0,",","."); ?></td>
-                                    <td>Rp<?= number_format($total,0,",",".");; ?></td>
-                                </tr>
-                            </tbody>
-                        <?php endforeach; ?>
-                        <tbody>
-                            <tr class="bg-info text-white font-weight-bolder">
-                                <td colspan="4">
-                                    Grand Total
-                                </td>
-                                <td>
-                                    Rp<?= number_format($total, 0, ",","."); ?>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <a href="<?= base_url(); ?>invoice_admin"  class="btn btn-secondary">Kembali</a>
-                    <a href="<?= base_url(); ?>invoice_download_pdf/<?= $invoice_id; ?>"  class="btn btn-secondary float-right"> <i class="fa fa-download"></i> Download</a>
+                        
+
+                        <!-- Pemilik Toko -->
+                        <div class="col-md-6 my-4">
+                            <hr class="d-sm d-md-none">
+                            <!-- Fullname -->
+                            <h6 class="m-0"> 
+                                <i class="fas fa-fw fa-user"></i> <?= $list_invoice_by_id->fullname; ?>
+                            </h6>
+
+                            <p class="m-0"> 
+                                <!-- Phone -->
+                                <a href="https://wa.me/<?= $list_invoice_by_id->phone; ?>" class="d-block">
+                                    <i class="fab fa-fw fa-whatsapp"></i>  <?= $list_invoice_by_id->phone; ?>
+                                </a>
+
+                                <!-- Email -->
+                                <a href="mailto:<?= $list_invoice_by_id->email; ?>" class="d-block">
+                                    <i class="fas fa-fw fa-envelope-open"></i>  <?= $list_invoice_by_id->email; ?>
+                                </a>
+
+                                <!-- Address -->
+                                <small class="text-lowercase">
+                                    <i class="fas fa-fw fa-map"></i> 
+                                    <?= $list_invoice_by_id->address ?>
+                                </small>
+
+                            </p>    
+                       
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- /.container-fluid -->

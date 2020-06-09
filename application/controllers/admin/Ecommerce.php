@@ -15,11 +15,12 @@ class Ecommerce extends CI_Controller {
 	{
 		// View Category
 		$data['list_category'] = $this->Ecommerce_model->get_category();
+		$data['list_brand'] = $this->Ecommerce_model->get_brand();
 		
 		//konfigurasi pagination
 		$config['base_url'] =  site_url('ecommerce_admin');
 		$config['total_rows'] = $this->db->count_all('product'); //total row
-		$config['per_page'] = 3;  //show record per halaman
+		$config['per_page'] = 50;  //show record per halaman
 		$config['first_link']       = 'First';
         $config['last_link']        = 'Last';
         $config['next_link']        = 'Next';
@@ -48,9 +49,11 @@ class Ecommerce extends CI_Controller {
 			$keyword = $this->input->post('keyword');
 			$this->db->like('product.name', $keyword);
 			$this->db->or_like('product_category.name', $keyword);
-			$this->db->select('*, product.name as name');
+			$this->db->or_like('brand.name', $keyword);
+			$this->db->select('*, product.image as product_image ,product.name as product_name, product.id as product_id, product_category.name as category_name, brand.name as brand_name, brand.id as brand_id');
 			$this->db->from('product');
 			$this->db->join('product_category', 'product_category.id = product.category_id');
+			$this->db->join('brand', 'brand.id = product.brand_id');
 			$data['list_product'] = $this->db->get()->result();
 		}
 		
@@ -73,6 +76,7 @@ class Ecommerce extends CI_Controller {
 
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
+
 		$this->form_validation->set_rules('name', '', 'required',[
 			"required" => 'Nama Product harus dilengkapi !'
 		]);
@@ -86,17 +90,32 @@ class Ecommerce extends CI_Controller {
 			"integer" => "Harga harus berupa angka, example : 100000"
 		]);
 
-		$this->form_validation->set_rules('qty', '', 'required',[
-			"required" => 'Jumlah Product harus dilengkapi !'
+		$this->form_validation->set_rules('qty', '', 'required|integer',[
+			"required" => 'Jumlah Product harus dilengkapi !',
+			"integer" => "Jumlah Product harus bernilai angka !"
 		]);
 
+		$this->form_validation->set_rules('weight', '', 'required|integer',[
+			"required" => 'Berat Product harus dilengkapi !',
+			"integer" => "Berat Product harus bernilai angka !",
+		]);
+
+		$this->form_validation->set_rules('category_id','','is_natural_no_zero', [
+			"is_natural_no_zero" => "Category Harus dipilih"
+		]);
+
+		$this->form_validation->set_rules('brand_id','','is_natural_no_zero', [
+			"is_natural_no_zero" => "Brand Harus dipilih"
+		]);
+			
 
 		if ($this->form_validation->run() == FALSE)
 		{
 			$data['title'] = "Add product Ecommerce";
 			// View Category
 			$data['list_category'] = $this->Ecommerce_model->get_category();
-	
+			$data['list_brand'] = $this->Ecommerce_model->get_brand();
+			
 			$this->load->view('templates/admin/header', $data);
 			$this->load->view('templates/admin/sidebar', $data);
 			$this->load->view('templates/admin/topbar', $data);
@@ -107,14 +126,16 @@ class Ecommerce extends CI_Controller {
 			$description 		=$this->input->post('description', true) ;
 			$price 				= htmlspecialchars($this->input->post('price', true) );
 			$qty 				= htmlspecialchars($this->input->post('qty', true) );
+			$weight 			= htmlspecialchars($this->input->post('weight', true) );
 			$user_id	 		= $data['user']->id;
 			$category_id	 	= htmlspecialchars($this->input->post('category_id', true) );
+			$brand_id	 		= htmlspecialchars($this->input->post('brand_id', true) );
 			$created_date 		= time();
 
 			// Cek Jika ada gambar yang di upload
 			$upload_image = $_FILES['image']['name'];
 
-			if($upload_image){
+			if(isset($upload_image)){
 				$config['upload_path'] = "./assets/admin/img/ecommerce";
 				$config['allowed_types'] = "jpg|jpeg|png";
 				$config['max_size'] = "2048" ;
@@ -127,14 +148,19 @@ class Ecommerce extends CI_Controller {
 					echo $this->upload->display_errors();
 				}
 
+			}else{
+				$image_no_available = "No-Image-Available.png";
+				$this->db->set("image", $image_no_available );
 			}
 			
 			$this->db->set("name", $name );
 			$this->db->set("description", $description );
 			$this->db->set("price", $price );
 			$this->db->set("qty", $qty );
+			$this->db->set("weight", $weight );
 			$this->db->set("user_id", $user_id );
 			$this->db->set("category_id", $category_id );
+			$this->db->set("brand_id", $brand_id );
 			$this->db->set("created_date", $created_date );
 		
 			$this->db->insert('product');
@@ -151,9 +177,6 @@ class Ecommerce extends CI_Controller {
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
 		$data['list_product_by_id'] = $this->Ecommerce_model->get_product_by_id($id)->row();
-
-		// View Category
-		$data['list_category'] = $this->Ecommerce_model->get_category();
 		
 		$this->form_validation->set_rules('name', '', 'required',[
 			"required" => 'Nama Product harus dilengkapi !'
@@ -172,9 +195,21 @@ class Ecommerce extends CI_Controller {
 			"required" => 'Jumlah Product harus dilengkapi !'
 		]);
 
+		$this->form_validation->set_rules('category_id','','is_natural_no_zero', [
+			"is_natural_no_zero" => "Category Harus dipilih"
+		]);
+
+		$this->form_validation->set_rules('brand_id','','is_natural_no_zero', [
+			"is_natural_no_zero" => "Brand Harus dipilih"
+		]);
+			
+
 
 		if ($this->form_validation->run() == FALSE)
 		{
+			
+			$data['list_category'] = $this->Ecommerce_model->get_category();
+			$data['list_brand'] = $this->Ecommerce_model->get_brand();
 			$data['title'] = "Edit product Ecommerce";
 			$this->load->view('templates/admin/header', $data);
 			$this->load->view('templates/admin/sidebar', $data);
@@ -189,12 +224,14 @@ class Ecommerce extends CI_Controller {
 			$qty 				= htmlspecialchars($this->input->post('qty', true) );
 			$user_id	 		= $data['user']->id;
 			$category_id	 	= htmlspecialchars($this->input->post('category_id', true) );
+			$brand_id	 		= htmlspecialchars($this->input->post('brand_id', true) );
+
 			$updated_date 		= time();
 
 			// Cek Jika ada gambar yang di upload
 			$upload_image = $_FILES['image']['name'];
 
-			if($upload_image){
+			if(isset($upload_image)){
 				$config['upload_path'] = "./assets/admin/img/ecommerce";
 				$config['allowed_types'] = "jpg|jpeg|png";
 				$config['max_size'] = "2048" ;
@@ -207,13 +244,17 @@ class Ecommerce extends CI_Controller {
 					if($foto_lama != "default.png"){
 						unlink(FCPATH . "assets/admin/img/ecommerce/" . $foto_lama);
 					}
-
+					
 					$image_new = $this->upload->data("file_name");
 					$this->db->set("image", $image_new );
+
 				}else {
 					echo $this->upload->display_errors();
 				}
 
+			}else{
+				$image_no_available = "No-Image-Available.png";
+				$this->db->set("image", $image_no_available );
 			}
 			
 			$this->db->set("name", $name );
@@ -221,7 +262,22 @@ class Ecommerce extends CI_Controller {
 			$this->db->set("price", $price );
 			$this->db->set("qty", $qty );
 			$this->db->set("user_id", $user_id );
-			$this->db->set("category_id", $category_id );
+
+			if($category_id != 0) {
+				$this->db->set("category_id", $category_id );
+
+				if($brand_id != 0) {
+					$this->db->set("brand_id", $brand_id );
+				}else{
+					$this->session->set_flashdata('product', '<div class="alert alert-success" role="alert"> Pilih Brand </div>');
+					redirect('ecommerce_admin');
+				}
+
+			}else{
+				$this->session->set_flashdata('product', '<div class="alert alert-success" role="alert"> Pilih Kategori </div>');
+				redirect('ecommerce_admin');
+			}
+
 			$this->db->set("updated_date", $updated_date );
 			$this->db->where("product.id", $id);
 			$this->db->update('product');

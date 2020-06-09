@@ -23,7 +23,7 @@ class About extends CI_Controller {
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => "GET",
 		CURLOPT_HTTPHEADER => array(
-			"key: f7a871e6101e1700265f71ae65328cd3"
+			"key: 0575c15d25c683c7b81b8133971a25a8"
 		),
 		));
 
@@ -116,8 +116,13 @@ class About extends CI_Controller {
 			$this->db->set("address", $address );
 			$this->db->set("phone", $phone );
 			$this->db->set("email", $email );
-			$this->db->set("province", $province );
-			$this->db->set("city", $city );
+			if($province != 0) {
+				$this->db->set("province", $province );
+			}
+			
+			if($city != 0) {
+				$this->db->set("city", $city );
+			}
 			$this->db->set("created_date", $created_date );
 			
 			$this->db->update('about', ['id' => 1]);
@@ -146,7 +151,7 @@ class About extends CI_Controller {
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => "GET",
 			CURLOPT_HTTPHEADER => array(
-			"key: f7a871e6101e1700265f71ae65328cd3"
+			"key: 0575c15d25c683c7b81b8133971a25a8"
 			),
 		));
 
@@ -164,7 +169,7 @@ class About extends CI_Controller {
 			if($city['rajaongkir']['status']['code'] == "200") {
 
 				foreach($city['rajaongkir']['results'] as $city) {
-					echo "<option value='". $city['city_id'] ."' >" . $city['city_name'] . "</option>";
+					echo "<option value='". $city['city_id'] ."' >" .  $city['type'] . " "  . $city['city_name'] . "</option>";
 				}
 
 			}

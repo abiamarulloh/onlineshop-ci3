@@ -65,8 +65,8 @@ footer{
     display:none;
 }
 
-.online_shop,.stock,.blog,.brands,.auth,.card-produk{
-    margin-top:80px!important
+.online_shop,.stock,.blog,.brands,.auth,.card-produk,.about,.restorasi{
+    margin-top:100px!important
 }
 
 .btn-auth{
@@ -155,15 +155,15 @@ footer{
     position:absolute;
     top:0;
     bottom:0;
-    background-color:#0da7a7;
     left:0;
     right:0;
-    transform:translateY(1000px);
+    opacity:0;
 }
 
 .overflow-wrap:hover .overflow-text {
-    transition:.5s ease;
-    transform : translateY(30px);
+    transition:1s ease;
+    opacity: 1;
+    background-color: #0ae0ddf1!important;
 }
 
 
@@ -187,7 +187,7 @@ footer{
 }
 
 .overflow-wrap-brand:hover .overflow-text-brand {
-    transition:1s ease;
+    transition:1s ease-in-out;
     opacity: 1;
 }
 
@@ -198,4 +198,4 @@ footer{
 }
 
 
-/* CheckOut Step */
+

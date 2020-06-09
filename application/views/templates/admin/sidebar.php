@@ -43,8 +43,8 @@
         <i class="far fa-folder-open"></i> Product</a>
       <a class="collapse-item" href="<?=base_url('ecommerce_category') ?>">
         <i class="fas fa-align-center"></i>  Shop Categories</a>
-      <a class="collapse-item" href="<?=base_url('ecommerce_discount_codes') ?>"> 
-        <i class="fas fa-percent"></i> Discount Codes</a>
+      <!-- <a class="collapse-item" href="<?=base_url('ecommerce_discount_codes') ?>"> 
+        <i class="fas fa-percent"></i> Discount Codes</a> -->
     </div>
   </div>
 </li>

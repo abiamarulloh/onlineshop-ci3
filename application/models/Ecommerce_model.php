@@ -20,13 +20,15 @@ class Ecommerce_model extends CI_Model {
 	}
 
 	public function get_product_admin($limit, $start){
+		$this->db->select('*, product.image as product_image ,product.name as product_name, product.id as product_id');
 		return $this->db->get('product',$limit, $start)->result();
 	}
 
 	public function get_product_by_id($id){
-		$this->db->select('*, product.name as name, product.id as product_id, product_category.name as category_name');
+		$this->db->select('*, product.image as product_image ,product.name as product_name, product.id as product_id, product_category.name as category_name, brand.name as brand_name, brand.id as brand_id');
 		$this->db->from('product');
 		$this->db->join('product_category', 'product_category.id = product.category_id');
+		$this->db->join('brand', 'brand.id = product.brand_id');
 		$this->db->where('product.id', $id);
 		return $this->db->get();
 	}
@@ -49,6 +51,12 @@ class Ecommerce_model extends CI_Model {
 			return array();
 		}
 		
+	}
+
+
+	// Get Brand
+	public function get_brand(){
+		return $this->db->get("brand")->result();
 	}
 
 	

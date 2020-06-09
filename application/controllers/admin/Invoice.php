@@ -6,16 +6,17 @@ class Invoice extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Invoice_model');
-		is_logged_in_admin();
-		is_logged_in();
+
 	}
 	
 	// List Product
 	public function index()
 	{
+		is_logged_in_admin();
+		is_logged_in();
 		$data['title'] = "Invoice";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
-
+		
 		$data['list_invoice'] = $this->Invoice_model->get_invoice();
 
 		$this->load->view('templates/admin/header', $data);
@@ -27,21 +28,31 @@ class Invoice extends CI_Controller {
 
 	// Update status
 	public function update_invoice_status($id) {
+		is_logged_in_admin();
+		is_logged_in();
 		$this->Invoice_model->update_invoice($id);
 		redirect('invoice_admin');
 	}
 
 	// Detail Invoice
 	public function detail_invoice($id){
-		
+		is_logged_in_admin();
+		is_logged_in();
 		$data['title'] = "Invoice Detail";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
-
+		
+		// ID Invoice
 		$data['id_invoice'] = $id;
+		
+		// Tampilkan Data Invoice berdasarkan ID invoice
+		$data['list_invoice_by_id'] = $this->Invoice_model->get_invoice_by_id($id);
+		
+		// Tampilkan Data admin 
+		$data['admin'] = $this->db->get("about")->row();
 
-		$data['detail_invoice_order'] = $this->Invoice_model->get_invoice_order_by_id($id);
-		$data['detail_auth_order'] = $this->Invoice_model->get_auth_order_by_id($id);
-		$data['detail_invoice'] = $this->Invoice_model->get_invoice_by_id($id);
+
+		// Tampilkan Data Bank Payment
+		$data['bank_payment'] = $this->db->get("bank_payment")->result();
 
 		$this->load->view('templates/admin/header', $data);
 		$this->load->view('templates/admin/sidebar', $data);
@@ -50,23 +61,16 @@ class Invoice extends CI_Controller {
 		$this->load->view('templates/admin/footer', $data);
 	}
 
-	public function invoice_download_pdf($id){
-	
-		$data['id_invoice'] = $id;
+	// public function invoice_download_pdf($id){
 
-		$data['detail_invoice_order'] = $this->Invoice_model->get_invoice_order_by_id($id);
-		$data['detail_auth_order'] = $this->Invoice_model->get_auth_order_by_id($id);
-		$data['detail_invoice'] = $this->Invoice_model->get_invoice_by_id($id);
+	// 	$data['id_invoice'] = $id;
 
-		// Get Admin Wagiman Supply
-		$data['get_admin'] = $this->db->get_where('auth', ['role_id' => 1])->row();
-
-		$this->load->library('pdf');
-		$data['title'] = "Download Invoice";
-		$this->pdf->setPaper('A4', 'potrait');
-		$this->pdf->filename = "Invoice-". $id ;
-		$this->pdf->load_view('admin/invoice/invoice_download_pdf', $data);;
-	}
+	// 	$data['title'] = "Download Invoice";
+	// 	$this->load->library('Pdf');
+	// 	$this->pdf->setPaper('A4', 'potrait');
+	// 	$this->pdf->filename = "Invoice-". $id ;
+	// 	$this->pdf->load_view('admin/invoice/invoice_download_pdf', $data);
+	// }
 
 
 }

@@ -82,6 +82,10 @@ class Blog extends CI_Controller {
 			"required" => 'Isi harus dilengkapi !'
 		]);
 
+		$this->form_validation->set_rules('category_id', '', 'is_natural_no_zero',[
+			"is_natural_no_zero" => 'Kategori harus dipilih !'
+		]);
+
 
 		if ($this->form_validation->run() == FALSE)
 		{

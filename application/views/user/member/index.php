@@ -22,7 +22,7 @@
                             <input type="text" name="id" hidden readonly value="<?= $user->id; ?>">
                             <div class="form-group text-center my-5">
                                 <img src="<?= base_url("assets/user/images/profile/") . $user->image; ?>"
-                                    class="rounded text-center mx-auto img-fluid img-thumbnail custome_imageA"
+                                    class="rounded text-center mx-auto img-fluid img-thumbnail custome_image"
                                     style="width:150px;">
                                 <small class="text-center d-block text-muted">Bergabung pada <br>
                                     <?= date("d M Y", $user->created_date); ?></small>
@@ -31,18 +31,20 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+
+                        <div class="col-md-8">
+                            <div id="preview"></div>
                             <div class="form-group">
                                 <label for="file">Gambar</label>
-                                <input type="file" id="file" name="image">
-                                <small class="text-primary">* Ganti Profile</small>
+                                <input type="file" id="file" class="form-control" name="image">
+                                <small class="text-primary">* Ganti Profile dengan format .jpg , .png , .jpeg</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="fullname">Nama Lengkap</label>
-                                <input type="text"
+                                <input type="text" 
                                     class="form-control  <?php if(form_error('fullname')) {echo "is-invalid";} ?>"
-                                    id="fullname" style="font-size:14px;" name="fullname"
+                                    id="fullname" placeholder="Lengkapi Nama lengkap" style="font-size:14px;" name="fullname"
                                     value="<?= $user->fullname ?>">
                                 <?php if(form_error('fullname')) : ?>
                                 <div class="invalid-feedback">
@@ -57,7 +59,7 @@
                                 <input type="text"
                                     class="form-control  <?php if(form_error('phone')) {echo "is-invalid";} ?>"
                                     id="phone" name="phone" style="font-size:14px;" value="<?= $user->phone ?>"
-                                    placeholder="Example : 62121355215674">
+                                    placeholder="Example : 628">
                                 <?php if(form_error('phone')) : ?>
                                 <div class="invalid-feedback">
                                     <?= form_error("phone"); ?>
@@ -66,11 +68,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="address">Alamat Lengkp</label>
-                                <input type="text"
-                                    class="form-control  <?php if(form_error('address')) {echo "is-invalid";} ?>"
-                                    id="address" style="font-size:14px;" name="address"
-                                    value="<?= $user->address ?>">
+                                <label for="address">Alamat Lengkap</label>
+                                <textarea class="form-control  <?php if(form_error('address')) {echo "is-invalid";} ?>" name="address" id="address" cols="30" rows="5" placeholder="Lengkapi Alamat Lengkap" style="font-size:14px;"><?= $user->address ?></textarea>
                                 <?php if(form_error('address')) : ?>
                                 <div class="invalid-feedback">
                                     <?= form_error("address"); ?>
@@ -92,13 +91,10 @@
                                 <?php endif; ?>
                             </div>
 
-
-
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-block btn-sm">Update Profile</button>
-                            </div>
+                            <button type="submit" class="btn btn-success btn-block btn-sm">Update Profile</button>
 
                         </div>
+
                     </div>
 
                 </form>
@@ -108,15 +104,14 @@
 </div>
 
 
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Data Invoice Transaksi</h1>
     <?= $this->session->flashdata("invoice"); ?>
-
     <!-- DataTales Example -->
-    <div class="card shadow mb-4">
+    <div class="card  mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Invoice Transaksi Member Wagiman Supply</h6>
         </div>
@@ -127,7 +122,6 @@
                         <tr>
                             <th>ID Invoice</th>
                             <th>Status</th>
-                            <th>Nama Pemesan</th>
                             <th>Tanggal Pemesanan</th>
                             <th>Batas Pembayaran</th>
                             <th>Aksi</th>
@@ -137,7 +131,6 @@
                         <tr>
                             <th>ID Invoice</th>
                             <th>Status</th>
-                            <th>Nama Pemesan</th>
                             <th>Tanggal Pemesanan</th>
                             <th>Batas Pembayaran</th>
                             <th>Aksi</th>
@@ -167,9 +160,8 @@
 
                             </td>
                          
-                            <td><?= $invoice->invoice_fullname; ?></td>
-                            <td><?= date("D, d M Y H:i:s",  $invoice->invoice_date_buyying ); ?></td>
-                            <td><?= date("D, d M Y H:i:s", $invoice->invoice_dateline_buyying); ?></td>
+                            <td><?= date("D, d M Y H:i:s",  $invoice->date_buyying ); ?></td>
+                            <td><?= date("D, d M Y H:i:s", $invoice->dateline_buyying); ?></td>
                             <td>
                                 <!-- 
                                         0 =  belum dibayar
@@ -180,13 +172,13 @@
                            
                                 <!-- Jika sudah Mengupload gambar sebelumnya maka tampilkan update foto -->
                                 <?php if($invoice->status == 0) : ?>
-                                    <button type="button" class="btn btn-sm btn-primary " data-toggle="modal" data-id="<?= $invoice->invoice_id; ?>" data-target="#updateUploadImagePayment"> <i class="fas fa-cloud-upload-alt"></i></button>
+                                    <button type="button" class="btn btn-sm btn-primary m-1 " data-toggle="modal" data-id="<?= $invoice->invoice_id; ?>" data-target="#updateUploadImagePayment"> <i class="fas fa-cloud-upload-alt"></i></button>
                                 <?php endif; ?>
                                 <a href="<?= base_url(); ?>invoice_detail/<?= $invoice->invoice_id; ?>"
-                                    class="btn btn-sm btn-info"><i class="fas fa-info"></i></a>
+                                    class="btn btn-sm btn-info m-1"><i class="fas fa-info"></i></a>
 
-                                <a href="<?= base_url(); ?>invoice_download/<?= $invoice->invoice_id; ?>"
-                                    class="btn btn-sm btn-success"><i class="fas fa-download"></i></a>
+                                <a href="<?= base_url(); ?>invoice_download_pdf/<?= $invoice->invoice_id; ?>"
+                                    class="btn btn-sm btn-success m-1"><i class="fas fa-download"></i></a>
 
                             </td>
                         </tr>
@@ -216,6 +208,7 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div id="preview_image_payment"></div>
                 <div class="fetched-data">
                   <!-- Menampilkan data gambar jika sudah upload -->
                 </div>
