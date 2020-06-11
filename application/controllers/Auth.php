@@ -11,6 +11,9 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
+		
 		if($this->session->has_userdata('email') == true){
 			if($this->session->userdata('role_id') == 1 ){
 				redirect('dashboard');
@@ -94,6 +97,10 @@ class Auth extends CI_Controller {
   
 	public function register()
 	{
+
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
+
 		if($this->session->has_userdata('email') == true){
 			if($this->session->userdata('role_id') == 1 ){
 				redirect('dashboard');

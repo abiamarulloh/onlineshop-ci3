@@ -111,6 +111,8 @@
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Options:</h6>
       <a class="collapse-item" href="<?= base_url("invoice_admin") ?>"><i class="far fa-folder-open"></i> Invoice</a>
+
+      <a class="collapse-item" href="<?= base_url("invoice_bank_payment") ?>"><i class="fas fa-money-check-alt"></i> Bank Payment</a>
     </div>
   </div>
 </li>

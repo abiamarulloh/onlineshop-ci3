@@ -28,6 +28,8 @@ class Home extends CI_Controller {
 		$this->db->order_by('id', 'DESC');
 		$data['list_brand'] = $this->db->get("brand")->result();
 		
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 
 		$this->load->view('templates/user/header', $data);
 		$this->load->view('templates/user/navbar', $data);

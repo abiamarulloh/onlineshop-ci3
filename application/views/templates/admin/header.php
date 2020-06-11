@@ -25,7 +25,9 @@
   <link href="<?= base_url(); ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
   <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-  
+
+  <!-- Sweet Alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 
 <body id="page-top">

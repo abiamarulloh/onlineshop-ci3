@@ -8,18 +8,16 @@
       </div>
       <div class="col-md-6 d-flex align-items-center info-footer">
         <div>
-          <p><i class="fa fa-phone"></i> +</p>
-          <p><i class="fa fa-envelope"></i>  </p>
-          <p class="text-lowercase">
-          <i class="fa fa-map-pin"></i>
-          </p>
+          <p><i class="fa fa-phone"></i> +<?= $about->phone; ?></p>
+          <p><i class="fa fa-envelope"></i> <?= $about->email; ?> </p>
+          <p class="text-lowercase"><i class="fa fa-map-pin"></i> <?= $about->address; ?> </p>
         </div>
       </div>
     </div>
 
     <div class="row mt-3">
       <div class="col-md-6 ">
-         © 2020 • All rights reserved • Love from Tangerang <i class="fa fa-heart"></i>
+         © <?= $about->web_name; ?>  2020 • All rights reserved <br> Love from Tangerang <i class="fa fa-heart"></i>
       </div>
       <div class="col-md-6 social-media-footer d-flex justify-content-end">
         <div>

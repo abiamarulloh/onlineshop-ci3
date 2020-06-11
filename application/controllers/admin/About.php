@@ -55,8 +55,9 @@ class About extends CI_Controller {
 			"required" => "Alamat Lengkap harus dilengkapi !"
 		]);
 
-		$this->form_validation->set_rules("phone", "", "required",[
-			"required" => "No Phone harus dilengkapi !"
+		$this->form_validation->set_rules("phone", "", "required|integer",[
+			"required" => "No Phone harus dilengkapi !",
+			"integer" => "No Phone harus berupa angka saja"
 		]);
 
 		$this->form_validation->set_rules("email", "", "required",[
@@ -126,7 +127,7 @@ class About extends CI_Controller {
 			$this->db->set("created_date", $created_date );
 			
 			$this->db->update('about', ['id' => 1]);
-			$this->session->set_flashdata('about', '<div class="alert alert-success" role="alert"> Yey, About berhasil di update</div>');
+			alert("about", "Selamat About Berhasil diupdate");
 			redirect('about_admin');
 
 		}

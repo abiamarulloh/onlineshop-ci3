@@ -9,6 +9,9 @@ class Ecommerce extends CI_Controller {
 
 	public function index()
 	{
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
+
 		$data['title'] = "Online Shop";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
@@ -85,6 +88,9 @@ class Ecommerce extends CI_Controller {
 
 	public function cart(){
 		is_logged_in();
+
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 
 		
 		$data['title'] = "Cart ";
@@ -441,6 +447,9 @@ class Ecommerce extends CI_Controller {
 	public function checkout_success_buy(){
 		is_logged_in();
 
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
+
 		// Destroy Checkout Success
 		$this->cart->destroy();
 
@@ -457,6 +466,8 @@ class Ecommerce extends CI_Controller {
 
 	// Ecommerce Preview 
 	public function ecommerce_preview($id){
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 	
 		if(empty($this->Ecommerce_model->get_product_by_id($id))){
 			$data['title'] = "Not Found";

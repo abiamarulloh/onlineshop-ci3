@@ -6,6 +6,9 @@ class About extends CI_Controller {
 
 	public function index()
 	{
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
+
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(

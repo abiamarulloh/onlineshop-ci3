@@ -13,6 +13,9 @@ class Member extends CI_Controller {
 	public function index()
 	{	
 
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
+
 
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 

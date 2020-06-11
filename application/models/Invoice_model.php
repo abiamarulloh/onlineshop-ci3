@@ -7,7 +7,7 @@ class Invoice_model extends CI_Model {
 		$this->db->select('*, invoice.id as invoice_id');
 		$this->db->from('invoice');
 		$this->db->join('auth', 'auth.id = invoice.auth_id');
-		$this->db->group_by('auth.id');
+		$this->db->group_by('invoice.id');
 		return $this->db->get()->result();
 	}
 
@@ -21,6 +21,16 @@ class Invoice_model extends CI_Model {
 		return $this->db->update('invoice', $data);
 	}
 
+	public function update_invoice_down($id) {
+		// ambil data invoice
+		$get_invoice = $this->db->get_where('invoice', ['id' => $id])->row();
+
+		// Update data invoice
+		$this->db->set("status", $get_invoice->status-1);
+		$this->db->where('id', $id);
+		return $this->db->update('invoice', $data);
+	}
+
 
 	public function get_invoice_by_id($id){
 		$this->db->select('*');
@@ -30,6 +40,19 @@ class Invoice_model extends CI_Model {
 		$this->db->where(['invoice.id' => $id]);
 		$this->db->group_by('auth.id');
 		return $this->db->get()->row();
+	}
+
+
+	public function orders_by_invoice($id){
+		$this->db->select('*, order.id as id_order, product.image as product_image, brand.name as brand_name, product.name as product_name, product_category.name as category_name');
+		$this->db->from('order');
+		$this->db->join('invoice', 'invoice.id = order.invoice_id');
+		$this->db->join('product', 'product.id = order.product_id');
+		$this->db->join('brand', 'brand.id = product.brand_id');
+		$this->db->join('product_category', 'product_category.id = product.category_id');
+
+		$this->db->where('invoice.id', $id);
+		return $this->db->get()->result();
 	}
 
 

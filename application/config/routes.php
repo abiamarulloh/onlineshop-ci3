@@ -120,7 +120,12 @@ $route['invoice_admin'] = 'admin/invoice/index';
 $route['invoice_status/(:num)'] = 'admin/invoice/update_invoice_status/$1';
 $route['invoice_detail/(:num)'] = 'admin/invoice/detail_invoice/$1';
 $route['invoice_download_pdf/(:num)'] = 'admin/invoice/invoice_download_pdf/$1';
+$route['invoice_bank_payment'] = 'admin/invoice/bank_payment';
+$route['invoice_bank_payment_delete/(:num)'] = 'admin/invoice/bank_payment_delete/$1';
+$route['invoice_give_resi'] = 'admin/invoice/invoice_give_resi';
+$route['invoice_status_down/(:num)'] = 'admin/invoice/invoice_status_down/$1';
 
 
 // about admin
 $route['about_admin'] = 'admin/about/index';
+

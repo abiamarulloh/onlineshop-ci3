@@ -42,6 +42,7 @@
     </div>
 </div>
 
+
 <!-- Bootstrap core JavaScript-->
 <script src="<?= base_url(); ?>assets/admin/vendor/jquery/jquery.min.js"></script>
 <script src="<?= base_url(); ?>assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -68,6 +69,8 @@
 
 
 <script>
+
+
 // Preview before uploading image
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -135,6 +138,68 @@ $(document).ready(function() {
             url: $(this).find('img').attr('data-zoom')
         });
 });
+
+
+
+$(document).ready(function () {
+    $("#phone").change(function () {
+        let phoneInput = document.getElementById('phone')
+        let phone = phoneInput.value;
+            if(phone[0] == 0) 
+            {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Awali nomor telepon dengan 62 bukan 0 !',
+            })
+            phoneInput.value = '';
+            return false;
+            }else if(parseInt(phone[0]) != 6 || parseInt(phone[1]) != 2 || parseInt(phone[2]) != 8)
+            {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Nomor Telepon yang anda masukkan tidak valid !, harus 628*** ',
+            })
+            phoneInput.value = '';
+            return false;
+            }else{
+            Swal.fire(
+                'Good job!',
+                '',
+                'success'
+            )
+            }
+        })
+
+
+        // Input Resi
+        $('#name_resi').on('change', function (e) {
+            let id = $("#resi").data('id');
+            let name_resi = $("#name_resi").val();
+            $.ajax({
+                type : 'post',
+                url : '<?= base_url(); ?>invoice_give_resi',
+                data : {'id' : id, 'name_resi' : name_resi },
+                success : function(data){
+                    // var resi = JSON.parse(data);
+                    // console.log(data);
+                    
+                }
+            })
+          
+
+        })
+
+
+
+
+
+})
+
+
+
+
 </script>
 
 </body>
