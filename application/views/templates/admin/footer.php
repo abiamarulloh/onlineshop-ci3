@@ -69,8 +69,6 @@
 
 
 <script>
-
-
 // Preview before uploading image
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -141,12 +139,11 @@ $(document).ready(function() {
 
 
 
-$(document).ready(function () {
-    $("#phone").change(function () {
+$(document).ready(function() {
+    $("#phone").change(function() {
         let phoneInput = document.getElementById('phone')
         let phone = phoneInput.value;
-            if(phone[0] == 0) 
-            {
+        if (phone[0] == 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -154,8 +151,7 @@ $(document).ready(function () {
             })
             phoneInput.value = '';
             return false;
-            }else if(parseInt(phone[0]) != 6 || parseInt(phone[1]) != 2 || parseInt(phone[2]) != 8)
-            {
+        } else if (parseInt(phone[0]) != 6 || parseInt(phone[1]) != 2 || parseInt(phone[2]) != 8) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -163,43 +159,88 @@ $(document).ready(function () {
             })
             phoneInput.value = '';
             return false;
-            }else{
+        } else {
             Swal.fire(
                 'Good job!',
                 '',
                 'success'
             )
+        }
+    })
+
+
+    // Input Resi
+    $('#name_resi').on('change', function(e) {
+        let id = $("#resi").data('id');
+        let name_resi = $("#name_resi").val();
+        $.ajax({
+            type: 'post',
+            url: '<?= base_url(); ?>invoice_give_resi',
+            data: {
+                'id': id,
+                'name_resi': name_resi
+            },
+            success: function(data) {
+                // var resi = JSON.parse(data);
+                // console.log(data);
+
             }
         })
 
 
-        // Input Resi
-        $('#name_resi').on('change', function (e) {
-            let id = $("#resi").data('id');
-            let name_resi = $("#name_resi").val();
-            $.ajax({
-                type : 'post',
-                url : '<?= base_url(); ?>invoice_give_resi',
-                data : {'id' : id, 'name_resi' : name_resi },
-                success : function(data){
-                    // var resi = JSON.parse(data);
-                    // console.log(data);
-                    
-                }
-            })
-          
+    })
 
-        })
+
+
+
+
+    // Cek Form File Member Upload Foto Profile
+    $("#file").change(function() {
+        var ukuran = 0;
+        var inputFile = document.getElementById('file');
+        var pathFile = inputFile.value;
+        var ekstensiOk = /(\.jpg|\.jpeg|\.png)$/i;
+
+        if (!ekstensiOk.exec(pathFile)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png!',
+            })
+            inputFile.value = '';
+            return false;
+        } else if (this.files[0].size > 2000000) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'File Terlalu besar, tidak boleh lebih dari 2MB',
+            })
+            inputFile.value = '';
+            return false;
+        } else {
+            Swal.fire(
+                'Good job!',
+                '',
+                'success'
+            )
+            // Preview gambar
+            if (inputFile.files && inputFile.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview').innerHTML = '<img src="' + e.target.result +
+                        '" style="height:200px"/>';
+                };
+                reader.readAsDataURL(inputFile.files[0]);
+            }
+        }
+    })
+
 
 
 
 
 
 })
-
-
-
-
 </script>
 
 </body>

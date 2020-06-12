@@ -79,8 +79,8 @@
   <div id="restorasi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Options:</h6>
-      <a class="collapse-item" href="buttons.html"><i class="far fa-plus-square"></i> Publish  Restorasi</a>
-      <a class="collapse-item" href="cards.html"><i class="far fa-folder-open"></i> Restorasi</a>
+      <a class="collapse-item" href="<?= base_url("restorasi_publish_post") ?>"><i class="far fa-plus-square"></i> Publish  Restorasi</a>
+      <a class="collapse-item" href="<?= base_url("restorasi_admin") ?>"><i class="far fa-folder-open"></i> Restorasi</a>
     </div>
   </div>
 </li>

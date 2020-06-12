@@ -38,12 +38,12 @@ $route['ecommerce_checkout_form_finnaly_city_receiver'] = 'user/ecommerce/checko
 $route['ecommerce_success_buyying'] = 'user/ecommerce/checkout_success_buy';
 
 
-// User Stock
-$route['stock'] = 'user/stock/index';
 
 
-// User Online Shop
+
+// User Restorasi Vespa
 $route['restorasi.vespa'] = 'user/restorasi_vespa/index';
+$route['detail_restorasi/(:num)'] = 'user/restorasi_vespa/detail_restorasi/$1';
 
 // User Blog
 $route['blog'] = 'user/blog/index';
@@ -98,6 +98,14 @@ $route['blog_category'] = 'admin/blog/category';
 $route['blog_preview'] = 'admin/blog/preview_blog';
 $route['blog_edit/(:num)'] = 'admin/blog/blog_edit/$1';
 $route['blog_delete/(:num)'] = 'admin/blog/blog_delete/$1';
+
+
+// Admin Restorasi
+$route['restorasi_publish_post'] = 'admin/restorasi_vespa/publish_restorasi';
+$route['restorasi_admin'] = 'admin/restorasi_vespa/index';
+$route['edit_restorasi/(:num)'] = 'admin/restorasi_vespa/edit_restorasi/$1';
+$route['delete_restorasi/(:num)'] = 'admin/restorasi_vespa/delete_restorasi/$1';
+
 
 
 // Admin Stock

@@ -6,55 +6,25 @@
         </div>
     </div>
     <div class="row">
+        <?php foreach($restorasi_vespa as $restorasi) : ?>
         <div class="col-md-10 mx-auto my-5">
             <div class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                    <img src="<?= base_url() ?>assets/admin/img/restorasi/paket_1.jpg" class="card-img" alt="...">
+                    <img src="<?= base_url() ?>assets/admin/img/restorasi/<?= $restorasi->image; ?>" class="card-img" alt="...">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">Paket 1</h5>
-                            <p class="card-text">This is a wider card with supporting text </p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <h5 class="card-title text-dark font-weight-bold"><?= $restorasi->name_restorasi; ?></h5>
+                            <a href="<?= base_url("detail_restorasi/") . $restorasi->id; ;?>" class="btn btn-info"> <i class="fas fa-info"></i> Detail Jasa Restorasi</a>
+                            <a href="https://wa.me/<?= $about->phone; ?>" class="btn btn-success"> <i class="fab fa-whatsapp"></i> Hubungi Penjual Jasa</a>
+                            <p class="card-text"><small class="text-muted">Terakhir diupdate <?= date("l ,d M Y", $restorasi->created_date); ?></small></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <?php endforeach;?>
 
-        <div class="col-md-10 mx-auto my-5">
-            <div class="card mb-3">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                    <img src="<?= base_url() ?>assets/admin/img/restorasi/paket_2.jpg" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Paket 2</h5>
-                            <p class="card-text">This is a wider card with supporting text </p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-10 mx-auto my-5">
-            <div class="card mb-3">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                    <img src="<?= base_url() ?>assets/admin/img/restorasi/paket_3.jpg" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Paket 3</h5>
-                            <p class="card-text">This is a wider card with supporting text </p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>

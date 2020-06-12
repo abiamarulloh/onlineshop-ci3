@@ -61,8 +61,8 @@
                                         <?php foreach ($list_category as $category) : ?>
                                             <?php if($blog->category_id == $category->id) :?>
                                                 <i class="fa fa-user-tag"></i>
-                                                <a href="<?= base_url(); ?>similar_category/<?= $category->id; ?>">
-                                                <?= $category->name; ?>
+                                                <span <?= $category->id; ?>">
+                                                <?= $category->name; ?> </span>
                                             <?php endif; ?>
                                         </a>
                                         <?php endforeach; ?>
