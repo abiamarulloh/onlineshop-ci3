@@ -96,7 +96,6 @@ class Invoice_model extends CI_Model {
 		$this->db->from('order');
 		$this->db->join('invoice', 'invoice.id = order.invoice_id');
 		$this->db->join('auth', 'auth.id = order.auth_id');
-
 		$this->db->where(['auth.id' => $id_auth]);
 		$this->db->group_by('invoice.id');
 		return $this->db->get()->result();

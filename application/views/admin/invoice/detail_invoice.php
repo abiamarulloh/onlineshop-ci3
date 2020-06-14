@@ -7,6 +7,8 @@
                             class="badge badge-light"><?= $id_invoice; ?></small></button>
                     <a href="<?= base_url(); ?>invoice_download_pdf/<?= $id_invoice; ?>" download
                         class="btn btn-outline-info"><i class="fas fa-download"></i>Unduh</a>
+                    <a href="<?= base_url(); ?>invoice_admin" 
+                        class="btn btn-primary"> Kembali  <i class="fas fa-angle-double-right"></i></a>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -172,8 +174,8 @@
                                                         </p>
                                                         <?php foreach($costs->cost as $cost) : ?>
 
-                                                        <p> <?php $total_ongkir += $cost->value; ?> 
-                                                        Rp<?= number_format( $cost->value,0,",","."); ?></p>
+                                                        <p> <?php $total_ongkir += $cost->value; ?>
+                                                            Rp<?= number_format( $cost->value,0,",","."); ?></p>
 
                                                         <?php endforeach; ?>
 

@@ -10,7 +10,8 @@
             <div>
                 <h6 class="d-inline m-0 font-weight-bold text-primary">Data Restorasi Member Wagiman Supply</h6>
 
-                <a href="<?= base_url("restorasi_publish_post"); ?>" class="btn btn-primary btn-sm float-right">Tambah paket
+                <a href="<?= base_url("restorasi_publish_post"); ?>" class="btn btn-primary btn-sm float-right">Tambah
+                    paket
                     restorasi</a>
             </div>
         </div>
@@ -48,6 +49,8 @@
                                     class="btn btn-sm btn-primary"><i class="fas fa-info"></i> Detail</a>
                                 <a href="<?= base_url("edit_restorasi/") . $restorasi->id; ?>"
                                     class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                <a href="<?= base_url("restorasi_image_multiple/")  . $restorasi->id; ?>"
+                                    class="btn btn-sm btn-info"> <i class="fas fa-image"></i> Thumbnails</a>
                                 <a href="<?= base_url("delete_restorasi/")  . $restorasi->id; ?>"
                                     class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i> Hapus</a>
                             </td>

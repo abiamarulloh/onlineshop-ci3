@@ -117,12 +117,24 @@
   </div>
 </li>
 
-<!-- Nav Item - About -->
-<li class="nav-item  text-uppercase">
-  <a class="nav-link" href="<?=base_url('about_admin') ?>">
-    <i class="fas fa-fw fa-info"></i>
-    <span>About</span></a>
+
+
+<!-- Nav Item - Pages Collapse Brands -->
+<li class="nav-item text-uppercase">
+  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#setting" aria-expanded="true" aria-controls="setting">
+    <i class="fas fa-fw fa-cog"></i>
+    <span>Setting</span>
+  </a>
+  <div id="setting" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div class="bg-white py-2 collapse-inner rounded">
+      <h6 class="collapse-header">Options:</h6>
+      <a class="collapse-item" href="<?=base_url('about_admin') ?>"><i class="fas fa-fw fa-info"></i>  About</a> 
+      <a class="collapse-item" href="<?=base_url('menu_setting') ?>"><i class="fas fa-fw fa-bars"></i>  Menu</a> 
+      <a class="collapse-item" href="<?=base_url('carausel_setting') ?>"><i class="fas fa-fw fa-image"></i> Carausel</a> 
+    </div>
+  </div>
 </li>
+
 
 
 

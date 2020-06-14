@@ -18,7 +18,7 @@
 
                 <div class="form-group">
                     <label for="name">Nama Product</label>
-                    <input type="text" class="form-control  <?php if(form_error('name')) {echo "is-invalid";} ?>" id="name"  name="name" value="<?= $list_product_by_id->name; ?>">
+                    <input type="text" class="form-control  <?php if(form_error('name')) {echo "is-invalid";} ?>" id="name"  name="name" value="<?= $list_product_by_id->product_name; ?>">
                     <?php if(form_error('name')) : ?>
                         <div class="invalid-feedback">
                             <?= form_error("name"); ?>

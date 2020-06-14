@@ -138,7 +138,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="province_sender">Dikirim dari provinsi ? </label>
-                            <?php foreach ($provinsi->rajaongkir->results as $prov) : ?>
+                            <?php foreach ($provinsi as $prov) : ?>
                                 <?php if($prov->province_id == $sender->province ) : ?>
                                 <input type="text" readonly id="province_sender" class="form-control" name="province_sender"
                                     value="<?= $prov->province; ?>">
@@ -150,7 +150,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="city_sender_">Dikirim dari Kota ? </label>
-                            <?php foreach ($city->rajaongkir->results as $city_api) : ?>
+                            <?php foreach ($city as $city_api) : ?>
                                 <?php if($city_api->city_id == $sender->city ) : ?>
                                     <input type="text" readonly id="city_sender_" class="form-control" name="city_sender" value="<?= $city_api->type . " " . $city_api->city_name; ?>">
 
@@ -166,7 +166,7 @@
                             <select class="form-control <?php if(form_error('province_receiver')) {echo "is-invalid";} ?>" id="province_receiver" name="province_receiver">
                                 <option value="0">Pilih Provinsi</option>
 
-                                <?php foreach ($provinsi->rajaongkir->results as $prov) : ?>
+                                <?php foreach ($provinsi as $prov) : ?>
                                 <option value="<?= $prov->province_id; ?>" <?= set_select('province_receiver', $prov->province_id); ?>>
                                     <?= $prov->province; ?>
                                 </option>

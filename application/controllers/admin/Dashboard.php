@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller {
 		
 		
 		
-		// $data['restorasi'] = $this->db->get("restorasi")->num_rows();
+		$data['restorasi'] = $this->db->get("restorasi")->num_rows();
 		$data['title'] = "Dashboard";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		$this->load->view('templates/admin/header', $data);

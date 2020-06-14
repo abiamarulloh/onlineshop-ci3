@@ -96,7 +96,7 @@ class Member extends CI_Controller {
 		
 			$this->db->where('id', $id);
 			$this->db->update('auth');
-			$this->session->set_flashdata('member', '<div class="alert alert-success" role="alert"> Yey, Profile ' . $fullname . ' telah diupdate. </div>');
+			alert("member", "Yey, Profile " . $fullname . " telah berhasil diupdate.");
 			redirect('member');
 		}	
 	}
@@ -125,14 +125,18 @@ class Member extends CI_Controller {
 					$image_new = $this->upload->data("file_name");
 					$this->db->set("image_payment", $image_new );
 				}else {
-					echo $this->upload->display_errors();
+					alert("reject_image_payment", "Upload gambar berekstensi : .jpg , .png atau .jpeg, ", 'error');
+					redirect("member");
 				}
 
+			}else {
+				alert("reject_image_payment", "Pilih gambar terlebih dulu", 'error');
+				redirect("member");
 			}
 			
 			$this->db->where('id' , $invoice_id);
 			$this->db->update("invoice");
-			$this->session->set_flashdata('invoice', '<div class="alert alert-success" role="alert"> Yey, Gambar Bukti Pembayaran pada invoice '. $invoice_id .' Berhasil ditambahkan. </div>');
+			alert("invoice", "Yey, Gambar Bukti Pembayaran pada invoice ". $invoice_id ." Berhasil ditambahkan.");
 			redirect('member');
 	
 	}
@@ -145,6 +149,74 @@ class Member extends CI_Controller {
 			$invoice = $this->db->get_where("invoice", ['id' => $id])->row();
 			echo json_encode($invoice);
 		}	
+	}
+
+
+
+	// Detail Invoice
+	public function detail_invoice_member($id){
+
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
+		$data['title'] = "Invoice Detail";
+		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+		
+		// ID Invoice
+		$data['id_invoice'] = $id;
+		
+		// Tampilkan Data Invoice berdasarkan ID invoice
+		$data['list_invoice_by_id'] = $this->Invoice_model->get_invoice_by_id($id);
+		
+		// Tampilkan Data admin 
+		$data['admin'] = $this->db->get("about")->row();
+
+
+		// Tampilkan Data Bank Payment
+		$data['bank_payment'] = $this->db->get("bank_payment")->result();
+
+		// Tampilkan orders
+		$data['orders_by_invoice'] = $this->Invoice_model->orders_by_invoice($id);
+
+
+		// Tampilkan Invoice Untuk dicek RajaOngkir
+		$invoice = $this->db->get_where("invoice", ['id' => $id])->row();
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => "https://api.rajaongkir.com/basic/cost",
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => "",
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "POST",
+		CURLOPT_POSTFIELDS => "origin=". $invoice->city_sender ."&destination=" . $invoice->city_receiver . "&weight=". $invoice->weight ."&courier=" . $invoice->ekspedisi,
+		CURLOPT_HTTPHEADER => array(
+			"content-type: application/x-www-form-urlencoded",
+			"key: 0575c15d25c683c7b81b8133971a25a8"
+		),
+		));
+	
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+	
+		curl_close($curl);
+	
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			$data['invoice_rajaongkir'] =  json_decode($response);
+		}
+
+		// Data Invoice Cek Sub EKspedisi
+		$data['invoice_sub_ekspedisi'] = $this->db->get_where('invoice', ['id' => $id])->row();
+	
+
+		$this->load->view('templates/user/header', $data);
+		$this->load->view('templates/user/navbar', $data);
+		$this->load->view('user/member/detail_invoice', $data);
+		$this->load->view('templates/user/footer', $data);
 	}
 
 	

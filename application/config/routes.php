@@ -45,6 +45,7 @@ $route['ecommerce_success_buyying'] = 'user/ecommerce/checkout_success_buy';
 $route['restorasi.vespa'] = 'user/restorasi_vespa/index';
 $route['detail_restorasi/(:num)'] = 'user/restorasi_vespa/detail_restorasi/$1';
 
+
 // User Blog
 $route['blog'] = 'user/blog/index';
 $route['blog/(:num)'] = 'user/blog/index';
@@ -67,6 +68,7 @@ $route['about'] = 'user/about/index';
 $route['member'] = 'user/member/index';
 $route['update_image_payment/(:num)'] = 'user/member/update_image_payment/$1';
 $route['getIdByAjaxImagePayment'] = 'user/member/update_image_payment_id/';
+$route['detail_invoice_member/(:num)'] = 'user/member/detail_invoice_member/$1';
 
 
 
@@ -88,6 +90,10 @@ $route['ecommerce_product_preview'] = 'admin/ecommerce/product_preview';
 $route['ecommerce_product_edit/(:num)'] = 'admin/ecommerce/product_edit/$1';
 $route['ecommerce_product_delete/(:num)'] = 'admin/ecommerce/product_delete/$1';
 
+//Ecommmerce Upload dan delete thumbnails 
+$route['ecommerce_product_image_multiple/(:num)'] = 'admin/ecommerce/ecommerce_product_image_multiple/$1';
+$route['ecommerce_product_image_multiple_delete/(:num)'] = 'admin/ecommerce/ecommerce_product_image_multiple_delete/$1';
+
 
 
 // Admin Blog
@@ -106,12 +112,11 @@ $route['restorasi_admin'] = 'admin/restorasi_vespa/index';
 $route['edit_restorasi/(:num)'] = 'admin/restorasi_vespa/edit_restorasi/$1';
 $route['delete_restorasi/(:num)'] = 'admin/restorasi_vespa/delete_restorasi/$1';
 
+//Restorasi Upload dan delete thumbnails 
+$route['restorasi_image_multiple/(:num)'] = 'admin/restorasi_vespa/restorasi_image_multiple/$1';
+$route['restorasi_image_multiple_delete/(:num)'] = 'admin/restorasi_vespa/restorasi_image_multiple_delete/$1';
 
 
-// Admin Stock
-// $route['stock_admin'] = 'admin/stock/index';
-// $route['stock_publish_post'] = 'admin/stock/add';
-// $route['stock_category'] = 'admin/stock/category';
 
 
 // Admin Brands
@@ -135,5 +140,13 @@ $route['invoice_status_down/(:num)'] = 'admin/invoice/invoice_status_down/$1';
 
 
 // about admin
-$route['about_admin'] = 'admin/about/index';
+$route['about_admin'] = 'admin/setting/index';
+$route['about_post_admin/(:num)'] = 'admin/setting/about_post_admin/$1';
 
+$route['menu_setting'] = 'admin/setting/menu_setting';
+$route['menu_setting_add'] = 'admin/setting/menu_setting_add';
+$route['menu_setting_edit/(:num)'] = 'admin/setting/menu_setting_edit/$1';
+
+
+
+$route['carausel_setting'] = 'admin/setting/carausel_setting';

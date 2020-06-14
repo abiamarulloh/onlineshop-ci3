@@ -48,8 +48,8 @@
         <?php else : ?>
             <div class="col-md-6 mx-auto text-center">
                 <img src="<?= base_url(); ?>assets/user/images/checkout_empty.jpg" class="img-fluid w-50 ">  
-                <h6>Oops, Product tidak ditemukan</h6>
-                <a href="<?= base_url(); ?>brand_preview/<?= $brand_id->id; ?>" class="btn btn-outline-success   ">Belanja lagi</a>
+                <h6>Oops, Product di brand tidak ditemukan</h6>
+                <a href="<?= base_url(); ?>brand_preview/<?= $brand_id->id; ?>" class="btn btn-outline-success">Kembali</a>
             </div>
         <?php endif; ?>
     </div>

@@ -24,8 +24,11 @@
                         </div>
                     <?php endif; ?>
                 </div>
-              
-                <button type="submit" class="btn btn-primary">Publish Brand</button>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="<?= base_url("brand_admin"); ?>" class="btn btn-outline-primary"> <i class="fas fa-fw fa-angle-double-left"></i> Kembali</a>
+                    <button type="submit" class="btn btn-primary"> <i class="fas fa-edit"></i> Publish Brand</button>
+                </div>
             </form>
         </div>
     </div>

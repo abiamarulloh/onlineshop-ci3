@@ -112,151 +112,108 @@ class Ecommerce extends CI_Controller {
 	public function checkout_ecommerce(){
 		is_logged_in();
 
+		if($this->cart->contents()) {
 
 
-		// Data Provinsi 
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => "https://api.rajaongkir.com/basic/province",
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => "",
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 30,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => "GET",
-		CURLOPT_HTTPHEADER => array(
-			"key: 0575c15d25c683c7b81b8133971a25a8"
-		),
-		));
-
-		$province = curl_exec($curl);
-		$err = curl_error($curl);
-
-		curl_close($curl);
-
-		if ($err) {
-			echo "cURL Error #:" . $err;
-		} else {
-			$data['provinsi'] = json_decode($province);
-		}
-
-
-		// Data City 
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => "https://api.rajaongkir.com/basic/city",
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => "",
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 30,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => "GET",
-		CURLOPT_HTTPHEADER => array(
-			"key: 0575c15d25c683c7b81b8133971a25a8"
-		),
-		));
-
-		$city = curl_exec($curl);
-		$err = curl_error($curl);
-
-		curl_close($curl);
-
-		if ($err) {
-			echo "cURL Error #:" . $err;
-		} else {
-			$data['city'] = json_decode($city);
-		}
-
-
-
-		// Query About Sender 
-		$data['sender'] = $this->db->get('about')->row();
-
-
-		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
-
-
-		$this->form_validation->set_rules('fullname', '', 'required',[
-			"required" => 'Nama lengkap harus dilengkapi !'
-		]);
-
-		$this->form_validation->set_rules('address', '', 'required',[
-			"required" => 'Alamat Tujuan harus dilengkapi !'
-		]);
-
-		$this->form_validation->set_rules('phone', '', 'required',[
-			"required" => 'No Telepon harus dilengkapi !'
-		]);
-
-		$this->form_validation->set_rules('province_receiver', '', 'is_natural_no_zero',[
-			"is_natural_no_zero" => 'Provinsi tujuan harus dilengkapi !'
-		]);
-
-		$this->form_validation->set_rules('city_receiver', '', 'is_natural_no_zero',[
-			"is_natural_no_zero" => 'Kota tujuan harus dilengkapi !'
-		]);
-
-		$this->form_validation->set_rules('ekspedisi', '', 'alpha',[
-			"alpha" => 'Jenis Pengiriman  harus dilengkapi !'
-		]);
-
-		$this->form_validation->set_rules('sub_ekspedisi', '', 'alpha',[
-			"alpha" => 'Jenis Service Pengiriman  harus dilengkapi !'
-		]);
-
-
-
-
-		if ($this->form_validation->run() == FALSE)
-		{
-			$data['title'] = "Checkout ";
-			$this->load->view('user/ecommerce/checkout', $data);
-		}else{
-			$user = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
-
-			date_default_timezone_get("Asia/Jakarta");
-			$invoice = [
-				'auth_id' 			=> htmlspecialchars($this->input->post('auth_id', true)),
-				
-				// Sender
-				'province_sender' 	=> htmlspecialchars($this->input->post('province_sender', true)),
-				'city_sender' 	=> htmlspecialchars($this->input->post('city_sender', true)),
-
-				// Receiver
-				'province_receiver' 	=> htmlspecialchars($this->input->post('province_receiver', true)),
-				'city_receiver' 	=> htmlspecialchars($this->input->post('city_receiver', true)),
-
-				'weight' 	=> htmlspecialchars($this->input->post('weight', true)),
-
-				'ekspedisi' 	=> htmlspecialchars($this->input->post('ekspedisi', true)),
-
-				'sub_ekspedisi' 	=> htmlspecialchars($this->input->post('sub_ekspedisi', true)),
-				
-				'image_payment'		=> "No-Image-Available.png",
-				'date_buyying' 		=> time(),
-				'dateline_buyying' 	=> time()+60*60*24*2
-			];
-
-			$this->db->insert('invoice', $invoice);
-			$id_invoice = $this->db->insert_id();
-
-			foreach ($this->cart->contents() as $item) {
-				$data = array(
-					'invoice_id' 	=> $id_invoice,
-					'product_id' 	=> $item['id'],
-					'auth_id' 		=> $user->id,
-					'name'  		=> $item['name'],
-					'grand_qty' 	=> $item['qty'],
-					'grand_price' 	=> $item['price'],
-					'created_date'	=> time()
-				);
-
-				$this->db->insert('order', $data);
-				
+			// Data Provinsi 
+			$data['provinsi'] = $this->db->get("province")->result();
+			
+			// Data City 
+			$data['city'] = $this->db->get("city")->result();
+			
+	
+			// Query About Sender 
+			$data['sender'] = $this->db->get('about')->row();
+	
+	
+			$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+	
+	
+			$this->form_validation->set_rules('fullname', '', 'required',[
+				"required" => 'Nama lengkap harus dilengkapi !'
+			]);
+	
+			$this->form_validation->set_rules('address', '', 'required',[
+				"required" => 'Alamat Tujuan harus dilengkapi !'
+			]);
+	
+			$this->form_validation->set_rules('phone', '', 'required',[
+				"required" => 'No Telepon harus dilengkapi !'
+			]);
+	
+			$this->form_validation->set_rules('province_receiver', '', 'is_natural_no_zero',[
+				"is_natural_no_zero" => 'Provinsi tujuan harus dilengkapi !'
+			]);
+	
+			$this->form_validation->set_rules('city_receiver', '', 'is_natural_no_zero',[
+				"is_natural_no_zero" => 'Kota tujuan harus dilengkapi !'
+			]);
+	
+			$this->form_validation->set_rules('ekspedisi', '', 'alpha',[
+				"alpha" => 'Jenis Pengiriman  harus dilengkapi !'
+			]);
+	
+			$this->form_validation->set_rules('sub_ekspedisi', '', 'alpha',[
+				"alpha" => 'Jenis Service Pengiriman  harus dilengkapi !'
+			]);
+	
+	
+			if ($this->form_validation->run() == FALSE)
+			{
+				$data['title'] = "Checkout ";
+				$this->load->view('user/ecommerce/checkout', $data);
+			}else{
+				$user = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+	
+				date_default_timezone_get("Asia/Jakarta");
+				$invoice = [
+					'auth_id' 			=> htmlspecialchars($this->input->post('auth_id', true)),
+					
+					// Sender
+					'province_sender' 	=> htmlspecialchars($this->input->post('province_sender', true)),
+					'city_sender' 	=> htmlspecialchars($this->input->post('city_sender', true)),
+	
+					// Receiver
+					'province_receiver' 	=> htmlspecialchars($this->input->post('province_receiver', true)),
+					'city_receiver' 	=> htmlspecialchars($this->input->post('city_receiver', true)),
+	
+					'weight' 	=> htmlspecialchars($this->input->post('weight', true)),
+	
+					'ekspedisi' 	=> htmlspecialchars($this->input->post('ekspedisi', true)),
+	
+					'sub_ekspedisi' 	=> htmlspecialchars($this->input->post('sub_ekspedisi', true)),
+					
+					'image_payment'		=> "No-Image-Available.png",
+					'date_buyying' 		=> time(),
+					'dateline_buyying' 	=> time()+60*60*24*2
+				];
+	
+				$this->db->insert('invoice', $invoice);
+				$id_invoice = $this->db->insert_id();
+	
+				foreach ($this->cart->contents() as $item) {
+					$data = array(
+						'invoice_id' 	=> $id_invoice,
+						'product_id' 	=> $item['id'],
+						'auth_id' 		=> $user->id,
+						'name'  		=> $item['name'],
+						'grand_qty' 	=> $item['qty'],
+						'grand_price' 	=> $item['price'],
+						'created_date'	=> time()
+					);
+	
+					$this->db->insert('order', $data);
+					
+				}
+				alert("success_checkout", "Segera bayarkan pesananmu lalu upload bukti pembayarannya pada inputan data invoice agar pesananmu segera diproses.");
+				redirect('ecommerce_success_buyying');
 			}
-			redirect('ecommerce_success_buyying');
+
+		}else{
+				alert("block", "Tambahkan minimal satu product untuk melakukan CheckOut", 'error');
+				redirect('ecommerce');
 		}
+
 
 	}
 
@@ -381,46 +338,14 @@ class Ecommerce extends CI_Controller {
 
 
 
-
+	// Kota Tujuan
 	public function checkout_ecommerce_city($provinsi_id){
-
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => "https://api.rajaongkir.com/basic/city?&province=".$provinsi_id,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => "",
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 30,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => "GET",
-			CURLOPT_HTTPHEADER => array(
-			"key: 0575c15d25c683c7b81b8133971a25a8"
-			),
-		));
-
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-
-		curl_close($curl);
-
-		if ($err) {
-			echo "cURL Error #:" . $err;
-		} else {
-			$city = json_decode($response, true);
-
-			if($city['rajaongkir']['status']['code'] == "200") {
-
-					echo "<option value='0'>Pilih Kota</option>";
-				foreach($city['rajaongkir']['results'] as $city) {
-					echo "<option value='". $city['city_id'] ."'  '". set_select('city_receiver', $city['city_id']) ."' >" . $city['type'] . " " .$city['city_name'] . "</option>";
-				}
-
-			}
-
-
+		// Data City  By ID Province
+		$city = $this->db->get_where("city", ['province_id' => $provinsi_id])->result_array();
+		echo "<option value='0'>Pilih Kota</option>";
+		foreach($city as $ct) {
+			echo "<option value='". $ct['city_id'] ."'  '". set_select('city_receiver', $ct['city_id']) ."' >" . $ct['type'] . " " .$ct['city_name'] . "</option>";
 		}
-
 
 	}
 
@@ -442,39 +367,40 @@ class Ecommerce extends CI_Controller {
 
 
 
-
-
 	public function checkout_success_buy(){
 		is_logged_in();
 
-		// query data wagiman di footer
-		$data['about'] = $this->db->get("about")->row();
+			// query data wagiman di footer
+			$data['about'] = $this->db->get("about")->row();
 
-		// Destroy Checkout Success
-		$this->cart->destroy();
+			// Destroy Checkout Success
+			$this->cart->destroy();
 
-		$data['title'] = "Success ChekOut ";
-		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
-		$this->load->view('templates/user/header', $data);
-		$this->load->view('templates/user/navbar', $data);
-		$this->load->view('user/ecommerce/checkout_success', $data);
-		$this->load->view('templates/user/footer', $data);
+			$data['title'] = "Success ChekOut ";
+			$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+			$this->load->view('templates/user/header', $data);
+			$this->load->view('templates/user/navbar', $data);
+			$this->load->view('user/ecommerce/checkout_success', $data);
+			$this->load->view('templates/user/footer', $data);
+		
 	}
-
 
 
 
 	// Ecommerce Preview 
 	public function ecommerce_preview($id){
+		// Query data product
+		$this->db->limit(10);
+		$data['list_product'] = $this->db->get("product")->result();
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
-	
+		$data['image_thumbnails'] = $this->db->get_where("image_product", ['product_id' => $id])->result();
 		if(empty($this->Ecommerce_model->get_product_by_id($id))){
 			$data['title'] = "Not Found";
 			$this->load->view('errors/notfound', $data);
 		}else {
 			$data['title'] = "Detail Product";
-			$data['list_product_by_id'] = $this->Ecommerce_model->get_product_by_id($id)->result();
+			$data['list_product_by_id'] = $this->Ecommerce_model->get_product_by_id($id)->row();
 			$this->load->view('templates/user/header', $data);
 			$this->load->view('templates/user/navbar', $data);
 			$this->load->view('user/ecommerce/ecommerce_preview', $data);
@@ -558,8 +484,6 @@ class Ecommerce extends CI_Controller {
 
 	}
 
-
-	
 	
 
 }

@@ -53,7 +53,7 @@ class Brand extends CI_Controller {
 
 		$data['pagination'] = $this->pagination->create_links();
 
-		$data['title'] = "Brand";
+		$data['title'] = "Brands";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		$this->load->view('templates/user/header', $data);
 		$this->load->view('templates/user/navbar', $data);
@@ -112,7 +112,7 @@ class Brand extends CI_Controller {
 		}
 
 
-		$data['title'] = "List Product berdasarkan brand";
+		$data['title'] = "List Product berdasarkan brands";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		$this->load->view('templates/user/header', $data);
 		$this->load->view('templates/user/navbar', $data);

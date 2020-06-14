@@ -14,6 +14,7 @@
                 <table class="table table-striped table-borderless" id="dataTable" width="100%" cellspacing="0" style="font-size:14px">
                     <thead>
                     <tr>
+                        <th>ID Invoice</th>
                         <th>Resi</th>
                         <th>Bukti Pembayaran</th>
                         <th>Status</th>
@@ -24,6 +25,7 @@
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>ID Invoice</th>
                             <th>Resi</th>
                             <th>Bukti Pembayaran</th>
                             <th>Status</th>
@@ -35,6 +37,9 @@
                     <tbody>
                             <?php foreach ($list_invoice as $invoice):?>
                             <tr>
+                                <td>
+                                    <?= $invoice->invoice_id; ?>
+                                </td>
                                 <td>
                                     <?php if($invoice->status == 1)  : ?>
                                         <?php if($invoice->resi  ) : ?>
@@ -58,7 +63,7 @@
                                         Belum ada bukti    
                                     <?php else : ?>
                                         <a  href="<?= base_url(); ?>assets/user/images/payment/<?= $invoice->image_payment; ?>" rel="lightbox" title="Bukti Transaksi"> 
-                                            <img src="<?= base_url(); ?>assets/user/images/payment/<?= $invoice->image_payment; ?>" style="max-width:200px;">
+                                            <img src="<?= base_url(); ?>assets/user/images/payment/<?= $invoice->image_payment; ?>" style="max-width:100px;">
                                         </a>
                                     <?php endif; ?>
                                 </td>

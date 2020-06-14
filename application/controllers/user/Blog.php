@@ -70,6 +70,14 @@ class Blog extends CI_Controller {
 	// Preview Blog
 	public function blog_preview($id)
 	{	
+
+		// Query data product
+		$this->db->limit(10);
+		$data['list_blog'] = $this->db->get("blog")->result();
+
+		// View Category
+		$data['list_category'] = $this->Blog_model->get_category();
+
 		// query data wagiman di Footer
 		$data['about'] = $this->db->get("about")->row();
 

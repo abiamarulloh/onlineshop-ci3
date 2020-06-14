@@ -1,6 +1,6 @@
-<div class="container restorasi my-5">
+<div class="container restorasi ">
     <div class="row">
-        <div class="col-md-12 mt-5 text-center">
+        <div class="col-md-12 text-center">
             <h2 class="lora"><span class="text-tosca">Wagiman Supply</span> <b>  Restorasi Vespa</b> </h2> 
             <p class="lead">Manjakan Vespa mu dengan paket restorasi vespa di wagiman supply</p>
         </div>
@@ -11,7 +11,7 @@
             <div class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                    <img src="<?= base_url() ?>assets/admin/img/restorasi/<?= $restorasi->image; ?>" class="card-img" alt="...">
+                        <img src="<?= base_url() ?>assets/admin/img/restorasi/<?= $restorasi->image; ?>" class="card-img" alt="<?= $restorasi->image; ?>">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

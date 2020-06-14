@@ -49,12 +49,12 @@
                     <p class="text-muted">Total Harga <span class="float-right text-dark font-weight-bolder">Rp<?=  number_format($this->cart->total(),0,",","."); ?></span></p>
 
                     <?php $cart = $this->cart->total_items();  ?>
-                    <a href="<?= base_url(); ?>ecommerce_checkout" class="btn btn-success btn-block btn-lg cart" data-toggle="tooltip" data-placement="left" title="Pergi ke halaman pembayaran untuk proses selanjutnya">Pembayaran (<?= $cart; ?>)</a>
+                    <a href="<?= base_url(); ?>ecommerce_checkout" class="btn btn-success btn-block btn-lg cart">Pembayaran (<?= $cart; ?>)</a>
                     <hr> <br>
 
-                    <a href="<?= base_url(); ?>ecommerce" class="btn btn-block btn-sm btn-info cart" data-toggle="tooltip" data-placement="left" title="Lanjutkan belanja untuk menambahkan product lagi ke keranjang">Lanjutkan belanja</a>
+                    <a href="<?= base_url(); ?>ecommerce" class="btn btn-block btn-sm btn-info cart">Lanjutkan belanja</a>
                    
-                    <a href="<?= base_url(); ?>ecommerce_delete_product_checkout" class="btn btn-block btn-sm btn-danger cart" data-toggle="tooltip" data-placement="left" title="Hapus Semua Product yang tersimpan dalam keranjang">Hapus Semua Product</a>
+                    <a href="<?= base_url(); ?>ecommerce_delete_product_checkout" class="btn btn-block btn-sm btn-danger cart">Hapus Semua Product</a>
 
                 </div>
             </div>
@@ -63,7 +63,7 @@
         <?php  else : ?>
             <div class="text-center">
                 <img src="<?= base_url(); ?>assets/user/images/checkout_empty.jpg" class="img-fluid w-50"> 
-                <a href="<?= base_url(); ?>ecommerce" class="btn  btn-sm btn-info cart" data-toggle="tooltip" data-placement="left" title="Belanja dan tambahkan ke keranjang terlebih dulu sebelum memeriksa halaman cart">Belanja Sekarang yuk</a>
+                <a href="<?= base_url(); ?>ecommerce" class="btn  btn-sm btn-info cart">Belanja Sekarang yuk <i class="fas fa-angle-double-right"></i> </a>
             </div>
         <?php endif;  ?>
 

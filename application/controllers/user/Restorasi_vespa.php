@@ -26,6 +26,9 @@ class Restorasi_vespa extends CI_Controller {
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 		
+		// Query data berdasarkan ID Restorasi
+		$data['image_restorasi_thumbnails'] = $this->db->get_where("image_restorasi", ['restorasi_id' => $id])->result();
+
 		// Query  tabel Restorasi berdasarkan ID
 		$data['restorasi_vespa'] = $this->db->get_where("restorasi", ['id' => $id])->row();
 	

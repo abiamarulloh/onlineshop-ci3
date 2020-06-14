@@ -123,7 +123,7 @@ class Ecommerce extends CI_Controller {
 			$this->load->view('templates/admin/footer', $data);
 		}else{
 			$name 				= htmlspecialchars($this->input->post('name', true) );
-			$description 		=$this->input->post('description', true) ;
+			$description 		= $this->input->post('description', true) ;
 			$price 				= htmlspecialchars($this->input->post('price', true) );
 			$qty 				= htmlspecialchars($this->input->post('qty', true) );
 			$weight 			= htmlspecialchars($this->input->post('weight', true) );
@@ -370,5 +370,97 @@ class Ecommerce extends CI_Controller {
 		$this->session->set_flashdata('product', '<div class="alert alert-danger" role="alert"> Product ' . $query->name . ' berhasil dihapus ! </div>');
 		redirect('ecommerce_admin');
 	}
+
+
+	// Upload Image Thumbnails
+	public function ecommerce_product_image_multiple($id){
+		$data['id'] = $id;
+
+		$data['image_thumbnails'] = $this->db->get_where("image_product", ["product_id" => $id])->result();
+
+		$this->form_validation->set_rules('id', "", "required",[
+			"required" => "Id tidak boleh kosong"
+		]);
+
+		if($this->form_validation->run() == FALSE) {
+			$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+			$data['title'] = "Tambah Gambar Thumbnails product Ecommerce";
+			$this->load->view('templates/admin/header', $data);
+			$this->load->view('templates/admin/sidebar', $data);
+			$this->load->view('templates/admin/topbar', $data);
+			$this->load->view('admin/ecommerce/ecommerce_product_image_multiple', $data);
+			$this->load->view('templates/admin/footer', $data);
+
+		}else{
+			
+			// Hitung Jumlah File/Gambar yang dipilih
+			$jumlahData = count($_FILES['gambar']['name']);
+
+			// Lakukan Perulangan dengan maksimal ulang Jumlah File yang dipilih
+			$uploadData = [];
+			for ($i=0; $i < $jumlahData ; $i++):
+
+				// Inisialisasi Nama,Tipe,Dll.
+				$_FILES['file']['name']     = $_FILES['gambar']['name'][$i];
+				$_FILES['file']['type']     = $_FILES['gambar']['type'][$i];
+				$_FILES['file']['tmp_name'] = $_FILES['gambar']['tmp_name'][$i];
+				$_FILES['file']['size']     = $_FILES['gambar']['size'][$i];
+
+				// Konfigurasi Upload
+				$config['upload_path']          = './assets/admin/img/ecommerce/ecommerce_thumbnails';
+				$config['allowed_types']        = 'jpg|png|jpeg';
+				$config['max_size'] = "2048" ;
+
+				// Memanggil Library Upload dan Setting Konfigurasi
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+
+				if($this->upload->do_upload('file')){ // Jika Berhasil Upload
+
+					$fileData = $this->upload->data(); // Lakukan Upload Data
+
+					// Membuat Variable untuk dimasukkan ke Database
+					$uploadData[$i]['image_name'] = $fileData['file_name']; 
+					$uploadData[$i]['product_id'] = $id;
+				}
+
+			endfor; // Penutup For
+
+			if($uploadData !== null){ // Jika Berhasil Upload
+
+				// Insert ke Database 
+
+				$insert = $this->Ecommerce_model->upload($uploadData);
+				
+
+				if($insert){ // Jika Berhasil Insert
+					alert("product_image_thumnails", "Upload thumbnail berhasil");
+					redirect("ecommerce_product_image_multiple/" . $id);	
+				}else{ // Jika Tidak Berhasil Insert
+					alert("product_image_thumnails", "Upload thumbnail gagal, masukkan file berekstensi, .jpg ,.png ,.jpeg", 'error');
+					redirect("ecommerce_product_image_multiple/" . $id);
+				}
+
+			}
+	
+
+		
+
+		 }
+	}
+
+
+	public function ecommerce_product_image_multiple_delete($id){
+		$Query_delete_foto = $this->db->get_where("image_product", ['id' => $id])->row_array();
+		$delete_foto = $Query_delete_foto['image_name'];
+		unlink(FCPATH . "./assets/admin/img/ecommerce/ecommerce_thumbnails" . $delete_foto);
+
+		$query = $this->db->get_where('image_product', ['id' => $id])->row();
+		$this->db->delete("image_product", ['id' => $id]);
+		alert("product_image_thumnails", "Gambar berhasil dihapus");
+		redirect('ecommerce_product_image_multiple/' . $query->product_id);
+	}
+
+
 
 }

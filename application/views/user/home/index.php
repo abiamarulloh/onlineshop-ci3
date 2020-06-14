@@ -1,6 +1,5 @@
 <!-- Jumbotron -->
-
-<div class="jumbotron jumbotron-hero jumbotron-fluid  d-flex align-items-center ">
+<!-- <div class="jumbotron jumbotron-hero jumbotron-fluid  d-flex align-items-center ">
     <div class="container">
         <div class="row py-5">
             <div class="col-md-6 d-flex align-items-center text-white">
@@ -16,6 +15,33 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<div id="carouselExampleIndicators" class="carousel my-5 slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="<?= base_url("assets/user/images/carausel/ecommerce.jpg"); ?>" class="d-block  w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="<?= base_url("assets/user/images/carausel/blog.jpg"); ?>" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="<?= base_url("assets/user/images/carausel/restorasi.jpg"); ?>" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
 
 
@@ -46,7 +72,8 @@
                             class="btn btn-primary btn-block btn-sm" style="font-size:12px"> <i
                                 class="fas fa-shopping-bag"></i> Tambah ke keranjang</a>
                         <a href="<?= base_url(); ?>ecommerce_preview/<?= $product->id; ?>"
-                            class="btn btn-info btn-sm btn-block" style="font-size:12px"><i class="fas fa-book-open"></i>
+                            class="btn btn-info btn-sm btn-block" style="font-size:12px"><i
+                                class="fas fa-book-open"></i>
                             Detail</a>
                     </div>
                 </div>
@@ -111,10 +138,8 @@
                                         <?php foreach ($list_blog_category as $category) : ?>
                                         <?php if($blog->category_id == $category->id) :?>
                                         <i class="fa fa-user-tag"></i>
-                                        <a href="<?= base_url(); ?>similar_category/<?= $category->id; ?>">
-                                            <?= $category->name; ?>
-                                            <?php endif; ?>
-                                        </a>
+                                        <?= $category->name; ?>
+                                        <?php endif; ?>
                                         <?php endforeach; ?>
                                     </small>
 
@@ -181,4 +206,3 @@
         </div>
     </div>
 </div>
-

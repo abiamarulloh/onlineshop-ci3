@@ -1,7 +1,11 @@
+<!-- Block Alert Anonymous -->
+<?= $this->session->flashdata("block"); ?>
+
+
 <!-- Wagiman Supply ONLINE SHOP -->
-<div class="container online_shop my-5">
+<div class="container online_shop mb-5">
     <div class="row">
-        <div class="col-md-12 mt-5 text-center">
+        <div class="col-md-12  text-center">
             <h2 class="lora"><span class="text-tosca">Wagiman Supply</span> <b> Online Shop</b> </h2>
             <p class="lead">Produk kebutuhanmu sekarang sudah tersedia di Online Shop Wagiman Supply</p>
         </div>

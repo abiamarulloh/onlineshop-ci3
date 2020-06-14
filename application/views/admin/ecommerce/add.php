@@ -11,7 +11,7 @@
             <?php echo form_open_multipart(); ?>
                 <div class="form-group">
                     <label for="file">Gambar</label>
-                    <input type="file" class="form-control" id="file" name="image">
+                    <input type="file"  class="form-control" id="file" name="image">
                     <small class="text-primary">* Pilih Gambar Product Terlebih dahulu</small>
                 </div>
 
@@ -101,7 +101,10 @@
                     <?php endif; ?>
                 </div>
       
-                <button type="submit" class="btn btn-primary">Publish Product</button>
+                <div class="d-flex justify-content-between">
+                    <a href="<?= base_url("ecommerce_admin"); ?>" class="btn btn-outline-primary"><i class="fas fa-angle-double-left"></i> kembali</a>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Publish Product</button>
+                </div>
             </form>
         </div>
     </div>

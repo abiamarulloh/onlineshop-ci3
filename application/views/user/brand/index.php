@@ -1,14 +1,14 @@
 
-<div class="container my-5 brands">
+<div class="container  brands">
     <div class="row">
-        <div class="col-md-12 mt-5 text-center">
-            <h2 class="lora"><span class="text-tosca">Wagiman Supply</span> <b> Brand</b> </h2> 
-            <p class="lead">Perusahaan yang bekerja sama dengan Wagiman Supply</p>
+        <div class="col-md-12  text-center">
+            <h2 class="display-4"><span class="text-tosca">Brands</span><b></b> </h2> 
+          
         </div>
     </div>
 </div>
 
-<div class="container">
+<div class="container mb-5">
     <div class="row">
         <div class="col-md-12 col-sm-12">
             <form  method="get"  action="">

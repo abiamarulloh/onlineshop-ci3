@@ -1,12 +1,22 @@
-<div class="container my-5 blog">
+<div class="container blog">
     <div class="row">
-        <div class="col-md-12 justify-content-center d-flex">
-            <form class="form-inline" method="post" action="">
-                <div class="form-group mx-sm-3 mb-2">
-                    <label for="search" class="sr-only">Cari</label>
-                    <input type="text" name="keyword" class="form-control" id="search" placeholder="Search Post">
+        <div class="col-md-12 text-center">
+            <h2 class="lora"><span class="text-tosca">Wagiman Supply</span> <b> Blog</b> </h2> 
+            <p class="lead">Artikel yang ditulis oleh wagimansupply.com</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <form  method="post"  action="">
+                <div class="input-group my-3">
+                    <input type="text" class="form-control" placeholder="search your favorite Blog" name="keyword">
+                    <div class="input-group-append">
+                        <button class="btn btn-tosca" type="submit" ><i class="fa fa-search"></i></button>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary mb-2"> <i class="fa fa-search"></i> Search</button>
             </form>
         </div>
     </div>

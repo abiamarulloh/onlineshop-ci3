@@ -1,8 +1,11 @@
-<div class="jumbotron jumbotron-fluid" style="background:#dfe6e9">
+<?= $this->session->flashdata("reject_image_payment"); ?>
+
+<div class="jumbotron jumbotron-fluid bg-tosca">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 d-flex align-items-center my-5" style="border-right:3px solid #b2bec3">
-                <div>
+            <div class="col-md-4 d-flex align-items-center my-5" style="border-right:3px solid white"> 
+                <div class="text-white font-weight-bold">
+                    <img src="<?= base_url(); ?>assets/user/images/hello.png" alt="" class="img-fluid" width="200px">
                     <h3>Hello, <?= $user->fullname; ?></h3>
 
                     <?php if($user->phone == null) : ?>
@@ -17,14 +20,14 @@
                 <form action="" method="post" enctype="multipart/form-data">
                 <?= $this->session->flashdata("member"); ?>
                     <div class="form-row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 ">
 
                             <input type="text" name="id" hidden readonly value="<?= $user->id; ?>">
                             <div class="form-group text-center my-5">
                                 <img src="<?= base_url("assets/user/images/profile/") . $user->image; ?>"
                                     class="rounded text-center mx-auto img-fluid img-thumbnail custome_image"
                                     style="width:150px;">
-                                <small class="text-center d-block text-muted">Bergabung pada <br>
+                                <small class="text-center d-block text-white">Bergabung pada <br>
                                     <?= date("d M Y", $user->created_date); ?></small>
                                 <a href="<?= base_url(); ?>logout" class="btn btn-secondary  btn-sm">Keluar</a>
 
@@ -32,10 +35,10 @@
                         </div>
 
 
-                        <div class="col-md-8">
+                        <div class="col-md-8 text-white font-weight-bold">
                             <div id="preview"></div>
                             <div class="form-group">
-                                <label for="file">Gambar</label>
+                                <label for="file" >Gambar</label>
                                 <input type="file" id="file" class="form-control" name="image">
                                 <small class="text-primary">* Ganti Profile dengan format .jpg , .png , .jpeg</small>
                             </div>
@@ -91,7 +94,7 @@
                                 <?php endif; ?>
                             </div>
 
-                            <button type="submit" class="btn btn-success btn-block btn-sm">Update Profile</button>
+                            <button type="submit" class="btn btn-success btn-block btn-sm"><i class="fas fa-fw fa-user-edit"></i> Update Profile</button>
 
                         </div>
 
@@ -108,7 +111,7 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Data Invoice Transaksi</h1>
+    <h1 class="h3 mb-2 text-dark font-weight-bold"> <i class="fas fa-fw fa-envelope"></i> Data Invoice Transaksi</h1>
     <?= $this->session->flashdata("invoice"); ?>
     <!-- DataTales Example -->
     <div class="card  mb-4">
@@ -121,6 +124,7 @@
                     <thead>
                         <tr>
                             <th>ID Invoice</th>
+                            <th>RESI</th>
                             <th>Status</th>
                             <th>Tanggal Pemesanan</th>
                             <th>Batas Pembayaran</th>
@@ -130,6 +134,7 @@
                     <tfoot>
                         <tr>
                             <th>ID Invoice</th>
+                            <th>RESI</th>
                             <th>Status</th>
                             <th>Tanggal Pemesanan</th>
                             <th>Batas Pembayaran</th>
@@ -140,6 +145,9 @@
                         <?php foreach ($list_invoice_by_auth as $invoice):?>
                         <tr>
                             <td><?= $invoice->invoice_id; ?></td>
+
+                            <td><?= $invoice->resi; ?></td>
+                            
                             <td>
 
                             <?php  if( $invoice->status == 0 ) : ?>
@@ -174,11 +182,10 @@
                                 <?php if($invoice->status == 0) : ?>
                                     <button type="button" class="btn btn-sm btn-primary m-1 " data-toggle="modal" data-id="<?= $invoice->invoice_id; ?>" data-target="#updateUploadImagePayment"> <i class="fas fa-cloud-upload-alt"></i></button>
                                 <?php endif; ?>
-                                <a href="<?= base_url(); ?>invoice_detail/<?= $invoice->invoice_id; ?>"
+                                <a href="<?= base_url(); ?>detail_invoice_member/<?= $invoice->invoice_id; ?>"
                                     class="btn btn-sm btn-info m-1"><i class="fas fa-info"></i></a>
 
-                                <a href="<?= base_url(); ?>invoice_download_pdf/<?= $invoice->invoice_id; ?>"
-                                    class="btn btn-sm btn-success m-1"><i class="fas fa-download"></i></a>
+                                <a href="<?= base_url(); ?>invoice_download_pdf/<?= $invoice->invoice_id; ?>" download class="btn btn-sm btn-success m-1"><i class="fas fa-download"></i></a>
 
                             </td>
                         </tr>
@@ -202,7 +209,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Transaksi Pembayaran</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Upload Bukti Transaksi Pembayaran
+                <small class="text-primary">Gambar harus berekstensi .jpg , .jpeg , .png</small>
+                </h5>
+                
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

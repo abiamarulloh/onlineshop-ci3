@@ -237,7 +237,37 @@ $(document).ready(function() {
 
 
 
+    // Validasi Form
+    $("#button-menu").click(function() {
+        let title = $("#title")
+        let url = $("#url")
+        let icon = $("#icon")
+        if (!title.val()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Lengkapi Nama Menu dulu !',
+            })
+            return false;
+        } else if (!url.val()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Lengkapi URL dulu !',
+            })
+            return false;
+        } else if (!icon.val()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Lengkapi Icon dulu !',
+            })
+            return false;
+        }
+    })
 
+
+    
 
 
 })
