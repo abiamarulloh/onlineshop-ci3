@@ -12,6 +12,8 @@ class Member extends CI_Controller {
 
 	public function index()
 	{	
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
 
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
@@ -155,7 +157,8 @@ class Member extends CI_Controller {
 
 	// Detail Invoice
 	public function detail_invoice_member($id){
-
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 		$data['title'] = "Invoice Detail";

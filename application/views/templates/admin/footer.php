@@ -5,7 +5,11 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; <?= $about->web_name; ?> 2020  
+                <?php if(date("Y", $about->created_date) > 2020) : ?>
+                    - <?= date("Y", time()); ?>
+                <?php endif; ?>
+            </span>
         </div>
     </div>
 </footer>
@@ -237,7 +241,7 @@ $(document).ready(function() {
 
 
 
-    // Validasi Form
+    // Validasi Form menu
     $("#button-menu").click(function() {
         let title = $("#title")
         let url = $("#url")
@@ -267,7 +271,82 @@ $(document).ready(function() {
     })
 
 
-    
+     // Validasi Form Sosmed
+     $("#button-sosmed").click(function() {
+        let title = $("#title")
+        let url = $("#url")
+        let icon = $("#icon")
+        if (!title.val()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Lengkapi Nama sosmed dulu !',
+            })
+            return false;
+        } else if (!url.val()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Lengkapi URL dulu !',
+            })
+            return false;
+        } else if (!icon.val()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Lengkapi Icon dulu !',
+            })
+            return false;
+        }
+    })
+
+
+    // Carausel Setting
+    $("#carausel-button").click(function() {
+        let select = $("#menu_id");
+        let file = $("#file");
+
+        if (!file.val()) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Masukkan gambar dulu !',
+            })
+            return false;
+        } else if (select.val() == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Pilih Menu dulu !',
+            })
+            return false;
+        }
+    })
+
+
+    // Checked Change Update
+    $(".carausel_check_active").click(function() {
+        let status = $(this).data("status");
+        let carausel_id = $(this).data("id");
+        $.ajax({
+            url: "<?= base_url("change_active"); ?>",
+            type: "POST",
+            data: {
+                status: status,
+                carausel_id: carausel_id
+            },
+            success: function(data) {
+                Swal.fire(
+                    'Good job!',
+                    '',
+                    'success'
+                )
+                // document.location.href = "<?= base_url("on_change_active"); ?>" 
+            }
+        })
+    })
+
+
 
 
 })

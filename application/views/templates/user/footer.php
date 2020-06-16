@@ -10,18 +10,35 @@
                     <p><i class="fa fa-phone"></i> +<?= $about->phone; ?></p>
                     <p><i class="fa fa-envelope"></i> <?= $about->email; ?> </p>
                     <p class="text-lowercase"><i class="fa fa-map-pin"></i> <?= $about->address; ?> </p>
+                    <p hidden>
+                    <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/703735/t/6"></script>
+                    </p>
                 </div>
             </div>
         </div>
 
         <div class="row mt-3">
-            <div class="col-md-12">
-                © <?= $about->web_name; ?> 2020 • All rights reserved Love from Tangerang <i class="fa fa-heart"></i>
+            <div class="col-md-6 mb-5">
+                © <?= $about->web_name; ?> 2020 
+                <?php if(date("Y", $about->created_date) > 2020) : ?>
+                    - <?= date("Y", time()); ?> .
+                <?php endif; ?>
+                 All rights reserved - Love from Tangerang <i class="fa fa-heart"></i>
+            </div>
+            <div class="col-md-6">
+                <?php foreach($social_media as $social) : ?>
+                    <a href="<?= $social->url; ?>" class="text-white d-inline ml-2" target="_blank">
+                        <?= $social->icon . " " . $social->title; ?>
+                    </a>
+                <?php endforeach; ?>
             </div>
 
         </div>
     </div>
 </footer>
+
+
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -80,18 +97,14 @@ $(document).ready(function() {
     });
 
 
-});
 
 // Owl Carausel ( slider )
-$(document).ready(function() {
     $(".owl-carousel").owlCarousel();
-});
 
 
 
-$(document).ready(function() {
     $('#dataTable').DataTable();
-});
+
 
 
 
@@ -104,7 +117,7 @@ lightbox.option({
 })
 
 
-$(document).ready(function() {
+
 
     $('#updateUploadImagePayment').on('show.bs.modal', function(e) {
         var id = $(e.relatedTarget).data('id');
@@ -115,7 +128,7 @@ $(document).ready(function() {
             data: 'id=' + id,
             success: function(data) {
                 var invoice = JSON.parse(data);
-                console.log(invoice);
+                // console.log(invoice);
 
                 $('.fetched-data').html(
                     `
@@ -140,11 +153,8 @@ $(document).ready(function() {
 
 
 
-});
-
-
 // Search By Category
-$(document).ready(function() {
+
     $("#search_by_category").change(function() {
 
         fetch("<?= base_url('search_by_category/'); ?>" + this.value, {
@@ -155,10 +165,10 @@ $(document).ready(function() {
                 document.getElementById("search_by_body").innerHTML = data;
             })
     })
-})
+
 
 // Seach By Brand
-$(document).ready(function() {
+
     $("#search_by_brand").change(function() {
 
         fetch("<?= base_url('search_by_brand/'); ?>" + this.value, {
@@ -170,9 +180,6 @@ $(document).ready(function() {
             })
     })
 
-
-
-})
 
 
 
@@ -244,6 +251,13 @@ $("#phone").change(function() {
             'success'
         )
     }
+
+})
+
+
+
+
+
 
 })
 

@@ -52,6 +52,8 @@
                         
                         <button type="submit" class="btn btn-auth btn-sm btn-block mb-2">Submit</button>
                         <a href="<?= base_url("login"); ?>"><small class="text-muted ">Sudah punya akun ? Masuk</small></a>
+                        <br>
+                        <a href="<?= base_url("forgotpassword"); ?>"><small class="text-muted ">Lupa Password ? </small></a>
                     </form> 
                 </div>
             </div>

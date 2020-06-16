@@ -13,6 +13,8 @@ class Brand extends CI_Controller {
 
 	public function index()
 	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
 		
@@ -66,6 +68,8 @@ class Brand extends CI_Controller {
 	// Add brand
 	public function add()
 	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
 		
@@ -122,6 +126,8 @@ class Brand extends CI_Controller {
 	// Edit brand
 	public function brand_edit($id)
 	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
 		
@@ -181,7 +187,10 @@ class Brand extends CI_Controller {
 	}
 
 
-	public function brand_delete($id){
+	public function brand_delete($id)
+	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$Query_delete_foto = $this->db->get_where("brand", ['id' => $id])->row_array();
 		$delete_foto = $Query_delete_foto['image'];
 		unlink(FCPATH . "./assets/admin/img/brand/" . $delete_foto);

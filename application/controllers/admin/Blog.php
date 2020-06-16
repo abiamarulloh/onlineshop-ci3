@@ -13,6 +13,8 @@ class Blog extends CI_Controller {
 
 	public function index()
 	{
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
 		// View Category
@@ -71,6 +73,9 @@ class Blog extends CI_Controller {
 	// Add Blog
 	public function add()
 	{
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
+		
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
 		
@@ -142,6 +147,8 @@ class Blog extends CI_Controller {
 	// Add Blog
 	public function blog_edit($id)
 	{
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		
@@ -214,6 +221,8 @@ class Blog extends CI_Controller {
 	// Add category
 	public function category()
 	{
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
 		$this->form_validation->set_rules('category', '', 'required',[
@@ -248,6 +257,8 @@ class Blog extends CI_Controller {
 	// Delete Category
 	public function delete_category($id)
 	{	
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		
 		$query = $this->db->get_where('blog_category', ['id' => $id])->row();
@@ -258,6 +269,8 @@ class Blog extends CI_Controller {
 
 
 	public function blog_delete($id){
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$Query_delete_foto = $this->db->get_where("blog", ['id' => $id])->row_array();
 		$delete_foto = $Query_delete_foto['image'];
 		unlink(FCPATH . "./assets/admin/img/blog/" . $delete_foto);

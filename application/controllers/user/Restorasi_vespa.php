@@ -6,6 +6,9 @@ class Restorasi_vespa extends CI_Controller {
 
 	public function index()
 	{
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
+		
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 
@@ -22,6 +25,9 @@ class Restorasi_vespa extends CI_Controller {
 
 	public function detail_restorasi($id)
 	{
+
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
 
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();

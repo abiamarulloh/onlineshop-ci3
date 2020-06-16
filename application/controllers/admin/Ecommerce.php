@@ -13,6 +13,8 @@ class Ecommerce extends CI_Controller {
 	// List Product
 	public function index()
 	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		// View Category
 		$data['list_category'] = $this->Ecommerce_model->get_category();
 		$data['list_brand'] = $this->Ecommerce_model->get_brand();
@@ -73,6 +75,8 @@ class Ecommerce extends CI_Controller {
 	// Add Product
 	public function product_add()
 	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
@@ -173,6 +177,8 @@ class Ecommerce extends CI_Controller {
 	// Add Product
 	public function product_edit($id)
 	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
@@ -291,6 +297,8 @@ class Ecommerce extends CI_Controller {
 	//  category Product
 	public function category()
 	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 
 		$this->form_validation->set_rules('category', '', 'required',[
 			"required" => 'Category harus dilengkapi !'
@@ -323,6 +331,8 @@ class Ecommerce extends CI_Controller {
 	//  Orders
 	public function orders()
 	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$data['title'] = "Orders List Ecommerce";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		$this->load->view('templates/admin/header', $data);
@@ -336,6 +346,8 @@ class Ecommerce extends CI_Controller {
 	// Add Discount Codes
 	public function discount_codes()
 	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$data['title'] = "Discount Ecommerce";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		$this->load->view('templates/admin/header', $data);
@@ -349,6 +361,8 @@ class Ecommerce extends CI_Controller {
 	// Delete Category
 	public function delete_category($id)
 	{	
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		
 		$query = $this->db->get_where('product_category', ['id' => $id])->row();
@@ -363,6 +377,8 @@ class Ecommerce extends CI_Controller {
 	// Delete Category
 	public function product_delete($id)
 	{	
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 		
 		$query = $this->db->get_where('product', ['id' => $id])->row();
@@ -373,7 +389,10 @@ class Ecommerce extends CI_Controller {
 
 
 	// Upload Image Thumbnails
-	public function ecommerce_product_image_multiple($id){
+	public function ecommerce_product_image_multiple($id)
+	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$data['id'] = $id;
 
 		$data['image_thumbnails'] = $this->db->get_where("image_product", ["product_id" => $id])->result();
@@ -450,7 +469,10 @@ class Ecommerce extends CI_Controller {
 	}
 
 
-	public function ecommerce_product_image_multiple_delete($id){
+	public function ecommerce_product_image_multiple_delete($id)
+	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$Query_delete_foto = $this->db->get_where("image_product", ['id' => $id])->row_array();
 		$delete_foto = $Query_delete_foto['image_name'];
 		unlink(FCPATH . "./assets/admin/img/ecommerce/ecommerce_thumbnails" . $delete_foto);

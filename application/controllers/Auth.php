@@ -11,6 +11,8 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 		
@@ -97,10 +99,6 @@ class Auth extends CI_Controller {
   
 	public function register()
 	{
-
-		// query data wagiman di footer
-		$data['about'] = $this->db->get("about")->row();
-
 		if($this->session->has_userdata('email') == true){
 			if($this->session->userdata('role_id') == 1 ){
 				redirect('dashboard');
@@ -108,6 +106,14 @@ class Auth extends CI_Controller {
 				redirect('member');
 			}
 		}
+
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
+
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
+
+		
 
 		$data['title'] = "Register";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
@@ -177,9 +183,9 @@ class Auth extends CI_Controller {
 		// Konfigurasi email
 		$config = [
 			'protocol'  	=> 'smtp',
-			'smtp_host' 	=> 'ssl://mail.abiamarulloh.my.id',
-			'smtp_user' 	=> 'honhon@abiamarulloh.my.id',  // Email gmail
-			'smtp_pass'   	=> 'QwePoiMz12345@',  // Password gmail
+			'smtp_host' 	=> 'ssl://mail.wagimansupply.com',
+			'smtp_user' 	=> 'hello@wagimansupply.com',  // Email gmail
+			'smtp_pass'   	=> 'n5W32JYkTBSm4MM',  // Password gmail
 			'smtp_port'   	=> 465,
 			'mailtype'  	=> 'html',
 			'charset'   	=> 'utf-8',
@@ -190,7 +196,7 @@ class Auth extends CI_Controller {
 		$this->email->initialize($config);
 
 		// Email dan nama pengirim
-		$this->email->from('honhon@abiamarulloh.my.id', 'abi.com');
+		$this->email->from('hello@wagimansupply.com', 'wagimansupply.com');
 
 		// Email penerima
 		$this->email->to($this->input->post('email', true)); // Ganti dengan email tujuan
@@ -206,7 +212,7 @@ class Auth extends CI_Controller {
 			$message = "
 			<html>
 			<head>
-				<title>Send Email</title>
+				<title>Token Aktivasi Akun Wagiman Supply</title>
 			</head>
 			<body>
 				<h1>Hai, " . $this->input->post('fullname')  .  "</h1>
@@ -215,6 +221,28 @@ class Auth extends CI_Controller {
 				
 				<a href='" . base_url() . 'auth/verify?email=' . $this->input->post('email',true) . '&token=' . urlencode($token) . "'>Aktivasi Akun</a> 
 	
+			</body>
+			</html>
+			";
+			$this->email->message($message);
+		}elseif($type = "forgot"){
+			// Subject email
+			$this->email->subject('Token verifikasi lupa password Akun Wagiman Supply');
+		
+			// Isi email
+
+			$message = "
+			<html>
+			<head>
+				<title>Token verifikasi lupa password Akun Wagiman Supply</title>
+			</head>
+			<body>
+				<h1>Hai, " . $this->input->post('email')  .  "</h1>
+				<p>Silahkan Klik untuk melakukan verifikasi akun Wagiman Supply mu. 
+				</p>	
+				
+				<a href='" . base_url() . 'auth/resetpassword?email=' . $this->input->post('email',true) . '&token=' . urlencode($token) . "'>Reset Password</a> 
+
 			</body>
 			</html>
 			";
@@ -299,6 +327,64 @@ class Auth extends CI_Controller {
 
 	}
 
+	// Forgot Password
+	public function forgotpassword(){
+		
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
+		$this->form_validation->set_rules('email', '', 'required|valid_email', [
+			'required' => "Email harus dilengkapi!" ,
+			'valid_email' => "Email yang anda masukkan tidak valid!"
+		]);
+		if($this->form_validation->run() == FALSE) {
+			// query data wagiman di footer
+			$data['about'] = $this->db->get("about")->row();
+			$data['title'] = "Lupa Password";
+			$this->load->view('templates/user/header', $data);
+			$this->load->view('templates/user/navbar', $data);
+			$this->load->view('auth/forgotpassword', $data);
+			$this->load->view('templates/user/footer', $data);
+		}else{
+
+			$email = $this->input->post('email');
+			$user = $this->db->get_where('auth', ['email' => $email, 'is_actived' => 1])->row_array();
+
+			if($user){
+				// Siapkan Token Aktivasi
+				$token = base64_encode(random_bytes(32));
+
+				$auth_token = [
+					'email' 		=> $this->input->post('email',true),
+					'token' 		=> $token,
+					'created_date' 	=> time()
+				];
+
+				$this->db->insert('auth_token',$auth_token);
+
+				$this->_sendMail($token , 'forgot');
+
+
+				$this->session->set_flashdata("auth", '<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong>Tolong, Check email mu untuk mereset password</strong>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>');
+				redirect('forgotpassword');
+			}else{
+				$this->session->set_flashdata("auth", '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<strong>Email Belum terdaftar atau belum teraktifasi</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>');
+				redirect('forgotpassword');
+			}
+
+
+		}
+	}
+
 
 
 	public function logout(){
@@ -312,4 +398,89 @@ class Auth extends CI_Controller {
 		</div>');
 		redirect('login');
 	}
+
+
+	public function resetpassword()
+	{
+		$email = $this->input->get('email');
+		$token = $this->input->get('token');
+
+		$auth = $this->db->get_where('auth', ['email'=> $email])->row_array();
+		if($auth){
+			// Token
+			$auth_token = $this->db->get_where('auth_token', ['token' => $token])->row_array();
+			if($auth_token){
+				$this->session->set_userdata("reset_email", $email );
+				$this->changePassword();
+			}else{
+				$this->session->set_flashdata("auth", '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<strong>Gagal !, Token salah.</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>');
+				redirect('forgotpassword');
+			}
+
+		}else{
+			$this->session->set_flashdata("auth", '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<strong>Gagal !, email salah.</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>');
+			redirect('forgotpassword');
+		}
+
+	}
+
+
+	public function changePassword(){
+		if(!$this->session->userdata("reset_email")) {
+			redirect('auth');
+		}
+
+	
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
+
+		$this->form_validation->set_rules('password1', '', 'required|min_length[6]', [
+			'required' => "Password harus dilengkapi !",
+			'min_length' => "Password tidak boleh kurang dari 6 karakter"
+		]);
+		$this->form_validation->set_rules('password2', '', 'required|matches[password1]', [
+			'required' => "Konfirmasi Password harus dilengkapi !",
+			'matches' => "Password Tidak Sama !"
+		]);
+		if($this->form_validation->run() == false){
+			// query data wagiman di footer
+			$data['about'] = $this->db->get("about")->row();
+			$data['title'] = "Ganti Password";
+			$this->load->view('templates/user/header', $data);
+			$this->load->view('templates/user/navbar', $data);
+			$this->load->view('auth/changePassword', $data);
+			$this->load->view('templates/user/footer', $data);
+		}else{
+			$password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+			$email = $this->session->userdata('reset_email');
+
+			$this->db->set("password", $password);
+			$this->db->where("email" , $email);
+			$this->db->update("auth");
+
+			$this->db->delete("auth_token", ['email' => $email]);
+			$this->session->unset_userdata("reset_email");
+			$this->session->set_flashdata("auth", '<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Password berhasil diupdate, silahkan login !</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>');
+			redirect('auth');
+		}
+	}
+
+
+
+	
 }

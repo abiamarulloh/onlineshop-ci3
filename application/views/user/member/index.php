@@ -48,7 +48,7 @@
                                 <input type="text" 
                                     class="form-control  <?php if(form_error('fullname')) {echo "is-invalid";} ?>"
                                     id="fullname" placeholder="Lengkapi Nama lengkap" style="font-size:14px;" name="fullname"
-                                    value="<?= $user->fullname ?>">
+                                    value="<?= $user->fullname ?>" autocomplete="off">
                                 <?php if(form_error('fullname')) : ?>
                                 <div class="invalid-feedback">
                                     <?= form_error("fullname"); ?>
@@ -59,10 +59,7 @@
 
                             <div class="form-group">
                                 <label for="phone">Nomor HP</label>
-                                <input type="text"
-                                    class="form-control  <?php if(form_error('phone')) {echo "is-invalid";} ?>"
-                                    id="phone" name="phone" style="font-size:14px;" value="<?= $user->phone ?>"
-                                    placeholder="Example : 628">
+                                <input type="text" class="form-control  <?php if(form_error('phone')) {echo "is-invalid";} ?>" id="phone" name="phone" style="font-size:14px;" value="<?= $user->phone ?>" placeholder="Example : 628" autocomplete="off">
                                 <?php if(form_error('phone')) : ?>
                                 <div class="invalid-feedback">
                                     <?= form_error("phone"); ?>
@@ -72,7 +69,7 @@
 
                             <div class="form-group">
                                 <label for="address">Alamat Lengkap</label>
-                                <textarea class="form-control  <?php if(form_error('address')) {echo "is-invalid";} ?>" name="address" id="address" cols="30" rows="5" placeholder="Lengkapi Alamat Lengkap" style="font-size:14px;"><?= $user->address ?></textarea>
+                                <textarea class="form-control  <?php if(form_error('address')) {echo "is-invalid";} ?>" name="address" id="address" cols="30" rows="5" placeholder="Lengkapi Alamat Lengkap" style="font-size:14px;" autocomplete="off"><?= $user->address ?></textarea>
                                 <?php if(form_error('address')) : ?>
                                 <div class="invalid-feedback">
                                     <?= form_error("address"); ?>
@@ -86,7 +83,7 @@
                                 <input type="password"
                                     class="form-control  <?php if(form_error('password')) {echo "is-invalid";} ?>"
                                     id="password" name="password" style="font-size:14px;"
-                                    placeholder="password (leave blank if no change)">
+                                    placeholder="password (leave blank if no change)" autocomplete="off">
                                 <?php if(form_error('password')) : ?>
                                 <div class="invalid-feedback">
                                     <?= form_error("password"); ?>

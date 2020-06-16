@@ -1,4 +1,4 @@
-<?= $this->session->flashdata('menu'); ?>
+<?= $this->session->flashdata('carausel'); ?>
 
 <div class="container">
     <div class="row my-2">
@@ -7,6 +7,9 @@
                 <h2>Carausel Setting</h2>
                 <button type="button" data-toggle="modal" data-target="#addMenu" class="btn btn-primary"><i
                         class="fas fa-plus"></i> tambah carausel</button>
+
+                <!-- Pilih Menu aktif -->
+                <a href="<?= base_url("on_change_active");?>" class="btn btn-outline-success">Pilih Menu aktif</a>
             </div>
         </div>
     </div>
@@ -34,13 +37,15 @@
                                 </tr>
                             </tfoot>
                             <tbody>
+                                <?php $no = 1; ?>
                                 <?php foreach ($carausel as $c) : ?>
                                 <tr>
-                                    <td><?= $c->id; ?></td>
+                                    <td><?= $no++; ?></td>
                                     <td><?= $c->image; ?></td>
-                                    <td><?= $c->menu_id; ?></td>
+                                    <td><?= $c->menu_name; ?></td>
                                     <td>
-                                       <a href="<?= base_url("carausel_setting_delete/") . $c->id ; ?>" class="btn btn-danger"> <i class="fas fa-trash"></i> Hapus</a>
+                                        <a href="<?= base_url("carausel_setting_delete/") . $c->id ; ?>"
+                                            class="btn btn-danger" onclick="return confirm('yakin ingin menghapus carausel ini ?')"> <i class="fas fa-trash"></i> Hapus</a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -68,26 +73,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" class="form-menu" action="<?= base_url("menu_setting_add"); ?>">
+                <form method="post" class="form-menu" action="<?= base_url("carausel_setting_add"); ?>" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="title">Nama Menu</label>
-                        <input type="text" class="form-control" name="title" id="title">
+                        <label for="file">Gambar Banner / Poster </label>
+                        <input type="file" class="form-control" name="image" id="file">
                     </div>
 
                     <div class="form-group">
-                        <label for="url">URL</label>
-                        <input type="text" class="form-control" name="url" id="url">
+                        <label for="menu_id">Pilih Menu Tujuan</label>
+                        <select class="form-control" name="menu_id" id="menu_id">
+                            <option value="0" id="option-null">Pilih Menu</option>
+                            <?php foreach ($menu as $m) :?>
+                            <option value="<?= $m->id; ?>"><?= $m->title; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
+                    <button class="btn btn-primary" id="carausel-button"><i class="fa fa-save"></i> Simpan</button>
 
-                    <div class="form-group">
-                        <label for="icon">Icon</label>
-                        <input type="text" class="form-control" name="icon" id="icon">
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <button type="submit" id="button-menu" class="btn btn-primary">Submit</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
                 </form>
             </div>
 

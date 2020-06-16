@@ -10,6 +10,8 @@ class Blog extends CI_Controller {
 
 	public function index()
 	{	
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
 
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
@@ -70,6 +72,8 @@ class Blog extends CI_Controller {
 	// Preview Blog
 	public function blog_preview($id)
 	{	
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
 
 		// Query data product
 		$this->db->limit(10);

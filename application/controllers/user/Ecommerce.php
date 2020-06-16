@@ -12,6 +12,9 @@ class Ecommerce extends CI_Controller {
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
+
 		$data['title'] = "Online Shop";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
@@ -92,6 +95,8 @@ class Ecommerce extends CI_Controller {
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
 		
 		$data['title'] = "Cart ";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
@@ -113,7 +118,8 @@ class Ecommerce extends CI_Controller {
 		is_logged_in();
 
 		if($this->cart->contents()) {
-
+					// Social Media
+			$data['social_media'] = $this->db->get("social_media")->result();
 
 			// Data Provinsi 
 			$data['provinsi'] = $this->db->get("province")->result();
@@ -351,7 +357,8 @@ class Ecommerce extends CI_Controller {
 
 
 	// Jika Kota tujuan belum di pilih maka Ekspedisi belum tampil
-	public function checkout_form_finnaly_city_receiver(){
+	public function checkout_form_finnaly_city_receiver()
+	{
 		$ekspedisi = [
 			"jne" => "JNE",
 			"tiki" => "TIKI",
@@ -367,9 +374,12 @@ class Ecommerce extends CI_Controller {
 
 
 
-	public function checkout_success_buy(){
+	public function checkout_success_buy()
+	{
 		is_logged_in();
 
+			// Social Media
+			$data['social_media'] = $this->db->get("social_media")->result();
 			// query data wagiman di footer
 			$data['about'] = $this->db->get("about")->row();
 
@@ -388,7 +398,10 @@ class Ecommerce extends CI_Controller {
 
 
 	// Ecommerce Preview 
-	public function ecommerce_preview($id){
+	public function ecommerce_preview($id)
+	{
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
 		// Query data product
 		$this->db->limit(10);
 		$data['list_product'] = $this->db->get("product")->result();

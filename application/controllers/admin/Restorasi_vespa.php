@@ -12,6 +12,8 @@ class Restorasi_vespa extends CI_Controller {
 
 	public function index()
 	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		// Query  tabel Restorasi
 		$data['restorasi_vespa'] = $this->db->get("restorasi")->result();
 		$data['title'] = "Restorasi";
@@ -25,6 +27,8 @@ class Restorasi_vespa extends CI_Controller {
 
 	public function publish_restorasi()
 	{	
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$this->form_validation->set_rules('name_restorasi', '', 'required',[
 			"required" => 'Nama Restorasi harus dilengkapi !'
 		]);
@@ -82,6 +86,8 @@ class Restorasi_vespa extends CI_Controller {
 
 	public function edit_restorasi($id)
 	{	
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 
 		// Query  tabel Restorasi berdasarkan ID
 		$data['restorasi_vespa'] = $this->db->get_where("restorasi", ['id' => $id])->row();
@@ -149,7 +155,10 @@ class Restorasi_vespa extends CI_Controller {
 
 	
 
-	public function delete_restorasi($id){
+	public function delete_restorasi($id)
+	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$Query_delete_foto = $this->db->get_where("restorasi", ['id' => $id])->row_array();
 		$delete_foto = $Query_delete_foto['image'];
 		unlink(FCPATH . "./assets/admin/img/restorasi/" . $delete_foto);
@@ -163,7 +172,10 @@ class Restorasi_vespa extends CI_Controller {
 
 
 		// Upload Image Thumbnails
-		public function restorasi_image_multiple($id){
+		public function restorasi_image_multiple($id)
+		{
+					// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 			$data['id'] = $id;
 	
 			$data['image_thumbnails'] = $this->db->get_where("image_restorasi", ["restorasi_id" => $id])->result();
@@ -240,7 +252,10 @@ class Restorasi_vespa extends CI_Controller {
 		}
 	
 	
-		public function restorasi_image_multiple_delete($id){
+		public function restorasi_image_multiple_delete($id)
+		{
+					// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 			$Query_delete_foto = $this->db->get_where("image_restorasi", ['id' => $id])->row_array();
 			$delete_foto = $Query_delete_foto['image_name'];
 			unlink(FCPATH . "./assets/admin/img/restorasi/restorasi_thumbnails" . $delete_foto);

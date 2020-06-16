@@ -8,6 +8,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'auth/index';
 $route['register'] = 'auth/register';
+$route['forgotpassword'] = 'auth/forgotpassword';
+$route['changePassword'] = 'auth/changePassword';
 $route['logout'] = 'auth/logout';
 
 // User Home
@@ -143,10 +145,20 @@ $route['invoice_status_down/(:num)'] = 'admin/invoice/invoice_status_down/$1';
 $route['about_admin'] = 'admin/setting/index';
 $route['about_post_admin/(:num)'] = 'admin/setting/about_post_admin/$1';
 
+// Menu Setting
 $route['menu_setting'] = 'admin/setting/menu_setting';
 $route['menu_setting_add'] = 'admin/setting/menu_setting_add';
 $route['menu_setting_edit/(:num)'] = 'admin/setting/menu_setting_edit/$1';
 
 
-
+// Carausel Setting
 $route['carausel_setting'] = 'admin/setting/carausel_setting';
+$route['carausel_setting_add'] = 'admin/setting/carausel_setting_add';
+$route['carausel_setting_delete/(:num)'] = 'admin/setting/carausel_setting_delete/$1';
+$route['on_change_active'] = 'admin/setting/on_change_active';
+$route['change_active'] = 'admin/setting/change_active';
+
+// Social Media Setting
+$route['sosmed_setting'] = 'admin/setting/sosmed_setting';
+$route['sosmed_setting_add'] = 'admin/setting/sosmed_setting_add';
+$route['sosmed_setting_delete/(:num)'] = 'admin/setting/sosmed_setting_delete/$1';

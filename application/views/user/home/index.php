@@ -17,6 +17,8 @@
     </div>
 </div> -->
 
+
+
 <div id="carouselExampleIndicators" class="carousel my-5 slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -24,15 +26,13 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="<?= base_url("assets/user/images/carausel/ecommerce.jpg"); ?>" class="d-block  w-100" alt="...">
+        <?php foreach ($carausel as $c) :?>
+        <div class="carousel-item <?php if($c->status == 1 ) {echo "active";} ?>">
+           <a href="<?= base_url($c->url) ; ?>">
+            <img src="<?= base_url("assets/user/images/carausel/") . $c->image ; ?>" class="d-block  w-100" alt="...">
+           </a>
         </div>
-        <div class="carousel-item">
-            <img src="<?= base_url("assets/user/images/carausel/blog.jpg"); ?>" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="<?= base_url("assets/user/images/carausel/restorasi.jpg"); ?>" class="d-block w-100" alt="...">
-        </div>
+        <?php endforeach; ?>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

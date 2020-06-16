@@ -52,6 +52,9 @@
 
     <link rel="stylesheet" href="<?= base_url(); ?>assets/user/css/owl/owl.carousel.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>assets/user/css/owl/owl.theme.default.min.css">
+
+    <script data-ad-client="ca-pub-4900160850892949" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
     
     <title><?= $title; ?></title>
   </head>

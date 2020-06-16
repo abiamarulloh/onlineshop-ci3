@@ -4,8 +4,8 @@
             <div class="card">
                 <div class="card-body shadow-lg">
                     <div class="text-center">
-                        <h2>Masuk</h2>
-                        <small class="text-muted">Masuk untuk membeli barang</small>
+                        <h2>Lupa Password</h2>
+                        <small class="text-muted">Kami akan mengirimkan email verifikasi ke akun email yang anda masukkan !</small>
                     </div>
                     <hr>
                     <?= $this->session->flashdata('auth'); ?>
@@ -19,21 +19,12 @@
                                 </div>
                             <?php endif; ?>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control <?php if( form_error('password') )   { echo "is-invalid";}  ?>" id="password" placeholder="Password" name="password">
-                            <?php if(form_error('password')) : ?>
-                                <div class="invalid-feedback">
-                                    <?= form_error('password') ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
                         <!-- <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" name="remember_me" value="1" id="rememberme">
                             <label class="form-check-label" for="rememberme">Ingat saya </label>
                         </div> -->
                         <button type="submit" class="btn btn-auth btn-sm btn-block mb-2">Submit</button>
-                        <a href="<?= base_url("register"); ?>"><small class="text-muted ">Belum punya akun ? Daftar !</small></a>
+                        <a href="<?= base_url("login"); ?>"><small class="text-muted ">Sudah punya akun ? Masuk</small></a>
                         <br>
                         <a href="<?= base_url("forgotpassword"); ?>"><small class="text-muted ">Lupa Password ? </small></a>
                         

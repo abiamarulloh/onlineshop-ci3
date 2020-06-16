@@ -12,6 +12,8 @@ class Invoice extends CI_Controller {
 	// List Product
 	public function index()
 	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		is_logged_in_admin();
 		is_logged_in();
 		$data['title'] = "Invoice";
@@ -27,7 +29,10 @@ class Invoice extends CI_Controller {
 	}
 
 	// Update status
-	public function update_invoice_status($id) {
+	public function update_invoice_status($id)
+	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		is_logged_in_admin();
 		is_logged_in();
 		$this->Invoice_model->update_invoice($id);
@@ -35,7 +40,10 @@ class Invoice extends CI_Controller {
 	}
 
 	// Detail Invoice
-	public function detail_invoice($id){
+	public function detail_invoice($id)
+	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		is_logged_in_admin();
 		is_logged_in();
 		$data['title'] = "Invoice Detail";
@@ -103,7 +111,10 @@ class Invoice extends CI_Controller {
 
 
 	// Download PDF
-	public function invoice_download_pdf($id){
+	public function invoice_download_pdf($id)
+	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		is_logged_in();
 		$data['title'] = "Invoice Download";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
@@ -170,7 +181,10 @@ class Invoice extends CI_Controller {
 
 
 	// Invoice Bank Payment
-	public function bank_payment(){
+	public function bank_payment()
+	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		is_logged_in_admin();
 		is_logged_in();
 		$data['title'] = "Bank Payment";
@@ -209,14 +223,20 @@ class Invoice extends CI_Controller {
 	}
 
 
-	public function bank_payment_delete($id){
+	public function bank_payment_delete($id)
+	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		$this->db->delete("bank_payment", ['id' => $id]);
 		alert("bank_payment", "Selamat Hapus data bank payment berhasil");
 		redirect("invoice_bank_payment");
 	}
 
 
-	public function invoice_give_resi(){
+	public function invoice_give_resi()
+	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		is_logged_in_admin();
 		is_logged_in();
 
@@ -230,7 +250,10 @@ class Invoice extends CI_Controller {
 	}
 
 
-	public function invoice_status_down($id){
+	public function invoice_status_down($id)
+	{
+				// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
 		is_logged_in_admin();
 		is_logged_in();
 		$this->Invoice_model->update_invoice_down($id);

@@ -4,27 +4,28 @@
             <div class="card">
                 <div class="card-body shadow-lg">
                     <div class="text-center">
-                        <h2>Masuk</h2>
-                        <small class="text-muted">Masuk untuk membeli barang</small>
+                        <h2>Ganti Password</h2>
+                        <h6><?= $this->session->userdata("reset_email"); ?></h6>
+                        <small class="text-muted">Ganti password dengan kombinasi angka serumit mungkin dan mudah diingat!</small>
                     </div>
                     <hr>
                     <?= $this->session->flashdata('auth'); ?>
-                    <form method="post" action="">
+                    <form method="post" action="<?= base_url("changePassword"); ?>">
                         <div class="form-group">
-                            <label for="email_address">Email Address</label>
-                            <input type="text" class="form-control <?php if( form_error('email') )   { echo "is-invalid";}  ?>" id="email_address" placeholder="Email Address" value="<?= set_value('email') ?>" name="email">
-                            <?php if(form_error('email')) : ?>
+                            <label for="password1">Password baru</label>
+                            <input type="password" class="form-control <?php if( form_error('password1') )   { echo "is-invalid";}  ?>" id="password1" placeholder="Masukkan password baru" name="password1">
+                            <?php if(form_error('password1')) : ?>
                                 <div class="invalid-feedback">
-                                    <?= form_error('email') ?>
+                                    <?= form_error('password1') ?>
                                 </div>
                             <?php endif; ?>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control <?php if( form_error('password') )   { echo "is-invalid";}  ?>" id="password" placeholder="Password" name="password">
-                            <?php if(form_error('password')) : ?>
+                            <label for="password2">Ulangi Password baru</label>
+                            <input type="password" class="form-control <?php if( form_error('password2') )   { echo "is-invalid";}  ?>" id="password2" placeholder="Masukkan Ulang password baru" name="password2">
+                            <?php if(form_error('password2')) : ?>
                                 <div class="invalid-feedback">
-                                    <?= form_error('password') ?>
+                                    <?= form_error('password2') ?>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -33,9 +34,6 @@
                             <label class="form-check-label" for="rememberme">Ingat saya </label>
                         </div> -->
                         <button type="submit" class="btn btn-auth btn-sm btn-block mb-2">Submit</button>
-                        <a href="<?= base_url("register"); ?>"><small class="text-muted ">Belum punya akun ? Daftar !</small></a>
-                        <br>
-                        <a href="<?= base_url("forgotpassword"); ?>"><small class="text-muted ">Lupa Password ? </small></a>
                         
                     </form> 
                 </div>

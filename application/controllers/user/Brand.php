@@ -10,10 +10,14 @@ class Brand extends CI_Controller {
 
 	public function index()
 	{
+			// Social Media
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
 
 		
 		//konfigurasi pagination
@@ -63,7 +67,10 @@ class Brand extends CI_Controller {
 
 
 	// Brand Preview
-	public function brand_preview($id){
+	public function brand_preview($id)
+	{
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
 
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();

@@ -8,6 +8,9 @@ class About extends CI_Controller {
 	{
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
+
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
 		
 		$data['provinsi'] = $this->db->get("province")->result();
 		$data['city'] = $this->db->get("city")->result();
