@@ -18,7 +18,7 @@ class Invoice_model extends CI_Model {
 		// Update data invoice
 		$this->db->set("status", $get_invoice->status+1);
 		$this->db->where('id', $id);
-		return $this->db->update('invoice', $data);
+		return $this->db->update('invoice');
 	}
 
 	public function update_invoice_down($id) {
@@ -28,7 +28,7 @@ class Invoice_model extends CI_Model {
 		// Update data invoice
 		$this->db->set("status", $get_invoice->status-1);
 		$this->db->where('id', $id);
-		return $this->db->update('invoice', $data);
+		return $this->db->update('invoice');
 	}
 
 

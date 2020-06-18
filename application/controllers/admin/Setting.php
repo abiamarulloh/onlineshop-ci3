@@ -137,8 +137,8 @@ public function index()
 
 
 	// Menu Setting
-public function menu_setting()
-{
+	public function menu_setting()
+	{
 				// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 		$data['menu'] = $this->db->get("menu_member")->result();
@@ -213,13 +213,10 @@ public function menu_setting()
 	//Carausel Setting
 	public function carausel_setting()
 	{
-				// query data wagiman di footer
+		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 		// Menampilkan Carausel di menu
-		$this->db->select("*, menu_member.title as menu_name");
-		$this->db->from('carausel');
-		$this->db->join("menu_member", "carausel.menu_id = menu_member.id");
-		$data['carausel'] = $this->db->get()->result(); 
+		$data['carausel'] = $this->db->get("carausel")->result(); 
 
 
 		$data['menu'] = $this->db->get("menu_member")->result();
@@ -232,35 +229,96 @@ public function menu_setting()
 		$this->load->view('templates/admin/footer', $data);
 	}
 
+
 	public function carausel_setting_add()
-	{
-				// query data wagiman di footer
-		$data['about'] = $this->db->get("about")->row();
-		$data['title'] = "Tambah Carausel";
-		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+	{	
+		
+		
 
-		$menu = htmlspecialchars($this->input->post('menu_id'));
+		$this->form_validation->set_rules('choose_id', '', 'is_natural_no_zero',[
+			"is_natural_no_zero" => "Pilih Data dulu"
+		]);
 
-		// Cek Jika ada gambar yang di upload
-		$upload_image = $_FILES['image']['name'];
-
-		if($upload_image){
-			$config['upload_path'] = "./assets/user/images/carausel/";
-			$config['allowed_types'] = "jpg|jpeg|png";
-			$config['max_size'] = "2048" ;
-			$this->load->library('upload', $config);
-			
-			if($this->upload->do_upload("image")){
-				$image = $this->upload->data("file_name");
-				$this->db->set("image", $image );
-			}
-
-		}
+		if($this->form_validation->run() == FALSE) 
+		{
+			// query data wagiman di footer
+			$data['about'] = $this->db->get("about")->row();
+			$data['title'] = "Tambah Carausel";
+			$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 	
-		$this->db->set("menu_id", $menu);
-		$this->db->insert("carausel");
-		alert("carausel", "Carausel baru berhasil ditambahkan");
-		redirect("carausel_setting");
+			$this->db->where_not_in("url", "home");
+			$this->db->where_not_in("url", "about");
+			$data["menu"] = $this->db->get("menu_member")->result();
+			
+			$this->load->view('templates/admin/header', $data);
+			$this->load->view('templates/admin/sidebar', $data);
+			$this->load->view('templates/admin/topbar', $data);
+			$this->load->view('admin/carausel_setting/carausel_setting_add', $data);
+			$this->load->view('templates/admin/footer', $data);
+		}
+		else
+		{
+			$menu_url = $this->input->post('menu_carausel_url');
+			$choose_id = $this->input->post('choose_id');
+
+			// Jika yang dipilih online shop 
+			if($menu_url == "ecommerce") 
+			{
+				$carausel = $this->db->get_where("carausel", ['choose_id' => $choose_id])->row();
+				if($carausel->choose_id == $choose_id && "ecommerce" ==  $menu_url){
+					alert("carausel", "Data sudah terpakai, silahkan pilih data yang lain !", 'error');
+					redirect("carausel_setting_add");
+				}
+			}
+			elseif($menu_url == "brand")
+			{
+				$carausel = $this->db->get_where("carausel", ['choose_id' => $choose_id])->row();
+				if($carausel->choose_id == $choose_id && "brand" ==  $menu_url){
+					alert("carausel", "Data sudah terpakai, silahkan pilih data yang lain !", 'error');
+					redirect("carausel_setting_add");
+				}
+			}
+			elseif($menu_url == "blog")
+			{
+				$carausel = $this->db->get_where("carausel", ['choose_id' => $choose_id])->row();
+				if($carausel->choose_id == $choose_id && "blog" ==  $menu_url){
+					alert("carausel", "Data sudah terpakai, silahkan pilih data yang lain !", 'error');
+					redirect("carausel_setting_add");
+				}
+			}
+			elseif($menu_url == "restorasi.vespa")
+			{
+				$carausel = $this->db->get_where("carausel", ['choose_id' => $choose_id])->row();
+				if($carausel->choose_id == $choose_id && "restorasi.vespa" == $menu_url){
+					alert("carausel", "Data sudah terpakai, silahkan pilih data yang lain !", 'error');
+					redirect("carausel_setting_add");
+				}
+			}
+		
+			// Cek Jika ada gambar yang di upload
+			$upload_image = $_FILES['image']['name'];
+	
+			if($upload_image){
+				$config['upload_path'] = "./assets/user/images/carausel/";
+				$config['allowed_types'] = "jpg|jpeg|png";
+				$config['max_size'] = "2048" ;
+				$this->load->library('upload', $config);
+				
+				if($this->upload->do_upload("image")){
+					$image = $this->upload->data("file_name");
+					$this->db->set("image", $image );
+				}
+			}else{
+				alert("carausel", "Masukkan gambar dulu !", 'error');
+				redirect("carausel_setting_add");
+			}
+		
+			$this->db->set("menu_url", $menu_url);
+			$this->db->set("choose_id", $choose_id);
+			$this->db->insert("carausel", $data);
+			alert("carausel", "Carausel baru berhasil ditambahkan");
+			redirect("carausel_setting");
+		}
 	
 	}
 
@@ -275,20 +333,31 @@ public function menu_setting()
 
 		$query = $this->db->get_where('carausel', ['id' => $id])->row();
 		$this->db->delete("carausel", ['id' => $id]);
-		alert("carausel", "Carausel berhasil dihapus", "error");
+		alert("carausel", "Carausel berhasil dihapus");
 		redirect("carausel_setting");
 	}
 
 
 	public function on_change_active()
 	{
-				// query data wagiman di footer
+		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
-		// Menampilkan Carausel di menu
-		$this->db->select("*, menu_member.title as menu_name, carausel.id as carausel_id");
-		$this->db->from('carausel');
-		$this->db->join("menu_member", "carausel.menu_id = menu_member.id");
-		$data['carausel'] = $this->db->get()->result(); 
+
+		// Menampilkan Carausel di menu product
+		$data['product'] = $this->db->get("product")->result(); 
+
+		// Menampilkan Carausel di menu Blog
+		$data['blog'] = $this->db->get("blog")->result(); 
+
+		// Menampilkan Carausel di menu Restorasi
+		$data['restorasi'] = $this->db->get("restorasi")->result(); 
+
+		// Menampilkan Carausel di menu Brand
+		$data['brand'] = $this->db->get("brand")->result(); 
+
+		// Query Carausel
+		$data['carausel'] = $this->db->get("carausel")->result(); 
+	
 
 		$data['title'] = "Aktif Carausel";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
@@ -308,7 +377,8 @@ public function menu_setting()
 
 		$status = htmlspecialchars($this->input->post('status'));
 		$carausel_id = htmlspecialchars($this->input->post('carausel_id'));
-		$carausel = $this->db->get_where("carausel", ['id' => $carausel_id])->row(); 
+		$carausel = $this->db->get_where("carausel", ['id' => $carausel_id])->row();
+		 
 		if( $carausel->status == 0){
 			$this->db->set("status",  $carausel->status + 1);
 		}elseif($carausel->status == 1){
@@ -324,7 +394,7 @@ public function menu_setting()
 	// Social Media
 	public function sosmed_setting()
 	{
-				// query data wagiman di footer
+		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 		// Menampilkan Carausel di menu
 		$data['sosmed'] = $this->db->get("social_media")->result();
@@ -339,7 +409,7 @@ public function menu_setting()
 
 	public function sosmed_setting_add()
 	{
-				// query data wagiman di footer
+		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 		$data['title'] = "Tambah Sosmed";
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
@@ -363,9 +433,55 @@ public function menu_setting()
 		$query = $this->db->get_where('social_media', ['id' => $id])->row();
 		$this->db->delete("social_media",['id' => $id]);
 		$this->session->set_flashdata('sosmed', '<div class="alert alert-danger" role="alert">  </div>');
-		alert("sosmed", "Sosmed " . $query->title . " berhasil dihapus !", 'error');
+		alert("sosmed", "Sosmed " . $query->title . " berhasil dihapus !");
 		redirect('sosmed_setting');
 	}
+
+
+
+
+
+	// Ajax Carausel menampilkan isi dari setiap menu yang diklik
+	public function menu_carausel_url(){
+			$menu_url = $this->input->post("menu_url");
+		
+			// Jika yang dipilih online shop 
+			if($menu_url == "ecommerce") 
+			{
+				$ecommerce = $this->db->get("product")->result();
+				echo "<option value='0'>------ Pilih Product --------</option>";
+				foreach($ecommerce as $eco ) {
+					echo "<option value='".$eco->id."'>". $eco->name ."</option>";
+				}
+			}
+			elseif($menu_url == "brand")
+			{
+				$brand = $this->db->get("brand")->result();
+				echo "<option value='0'> ---- Pilih Brand ------</option>";
+				foreach($brand as $br ) {
+					echo "<option value='". $br->id ."'>". $br->name ."</option>";
+				}
+			}
+			elseif($menu_url == "blog")
+			{
+				$blog = $this->db->get("blog")->result();
+				echo "<option value='0'>---- Pilih Blog -----</option>";
+				foreach($blog as $bl ) {
+					echo "<option value='". $bl->id ."'>". $bl->title ."</option>";
+				}
+			}
+			elseif($menu_url == "restorasi.vespa")
+			{
+				$restorasi = $this->db->get("restorasi")->result();
+				echo "<option value='0'>----- Pilih Restorasi ------</option>";
+				foreach($restorasi as $res ) {
+					echo "<option value='". $res->id ."'>". $res->name_restorasi ."</option>";
+				}
+			}
+	}
+
+
+
 
 
 }

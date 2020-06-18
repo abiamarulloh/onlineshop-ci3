@@ -1,6 +1,6 @@
 <?= $this->session->flashdata("reject_image_payment"); ?>
 
-<div class="jumbotron jumbotron-fluid bg-tosca">
+<div class="jumbotron jumbotron-fluid"  style="background-color:#00cec9;">
     <div class="container">
         <div class="row">
             <div class="col-md-4 d-flex align-items-center my-5" style="border-right:3px solid white"> 

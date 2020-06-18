@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label for="title">Judul</label>
-                    <input type="text" class="form-control  <?php if(form_error('title')) {echo "is-invalid";} ?>" id="title"  name="title" value="<?= set_value('title') ?>">
+                    <input type="text" class="form-control  <?php if(form_error('title')) {echo "is-invalid";} ?>" id="title" disabled="disabled" name="title" value="<?= set_value('title') ?>">
                     <?php if(form_error('title')) : ?>
                         <div class="invalid-feedback">
                             <?= form_error("title"); ?>

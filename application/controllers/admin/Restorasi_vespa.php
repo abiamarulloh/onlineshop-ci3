@@ -258,7 +258,7 @@ class Restorasi_vespa extends CI_Controller {
 		$data['about'] = $this->db->get("about")->row();
 			$Query_delete_foto = $this->db->get_where("image_restorasi", ['id' => $id])->row_array();
 			$delete_foto = $Query_delete_foto['image_name'];
-			unlink(FCPATH . "./assets/admin/img/restorasi/restorasi_thumbnails" . $delete_foto);
+			unlink(FCPATH . "./assets/admin/img/restorasi/restorasi_thumbnails/" . $delete_foto);
 	
 			$query = $this->db->get_where('image_restorasi', ['id' => $id])->row();
 			$this->db->delete("image_restorasi", ['id' => $id]);

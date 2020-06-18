@@ -8,7 +8,7 @@
 </div>
 
 <div class="container mb-5">
-    <div class="row ">
+    <div class="row">
         <div class="col-md-12">
             <div class="accordion" id="accordionExample">
                 <div class="card">
@@ -218,7 +218,7 @@
                 </div>
 
 
-                <div class="card">
+                <!-- <div class="card">
                     <div class="card-header" id="headingThree">
                         <h2 class="mb-0">
                             <button
@@ -238,7 +238,7 @@
                             <p class="lead"><a href="http://www.freepik.com">Designed by slidesgo / Freepik</a></p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 

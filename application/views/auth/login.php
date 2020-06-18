@@ -12,32 +12,53 @@
                     <form method="post" action="">
                         <div class="form-group">
                             <label for="email_address">Email Address</label>
-                            <input type="text" class="form-control <?php if( form_error('email') )   { echo "is-invalid";}  ?>" id="email_address" placeholder="Email Address" value="<?= set_value('email') ?>" name="email">
+                            <input type="text"
+                                class="form-control <?php if( form_error('email') )   { echo "is-invalid";}  ?>"
+                                id="email_address" placeholder="Email Address" value="<?= set_value('email') ?>"
+                                name="email">
                             <?php if(form_error('email')) : ?>
-                                <div class="invalid-feedback">
-                                    <?= form_error('email') ?>
-                                </div>
+                            <div class="invalid-feedback">
+                                <?= form_error('email') ?>
+                            </div>
                             <?php endif; ?>
                         </div>
+
+
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control <?php if( form_error('password') )   { echo "is-invalid";}  ?>" id="password" placeholder="Password" name="password">
-                            <?php if(form_error('password')) : ?>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text rounded-pill-left"><i
+                                            class="fas fa-unlock-alt"></i></span>
+                                </div>
+                                <input type="password"
+                                    class="form-control <?php if( form_error('password') )   { echo "is-invalid";}  ?>"
+                                    id="password" placeholder="Password" name="password">
+                                <?php if(form_error('password')) : ?>
                                 <div class="invalid-feedback">
                                     <?= form_error('password') ?>
                                 </div>
-                            <?php endif; ?>
+                                <?php endif; ?>
+                                <div class="input-group-append rounded-pill-right">
+                                    <button class="btn btn-outline-secondary rounded-pill-right" type="button"
+                                        onclick="showHide()" id="button-addon2">
+                                        <i class="fas fa-key"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <!-- <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" name="remember_me" value="1" id="rememberme">
                             <label class="form-check-label" for="rememberme">Ingat saya </label>
                         </div> -->
                         <button type="submit" class="btn btn-auth btn-sm btn-block mb-2">Submit</button>
-                        <a href="<?= base_url("register"); ?>"><small class="text-muted ">Belum punya akun ? Daftar !</small></a>
+                        <a href="<?= base_url("register"); ?>"><small class="text-muted ">Belum punya akun ? Daftar
+                                !</small></a>
                         <br>
-                        <a href="<?= base_url("forgotpassword"); ?>"><small class="text-muted ">Lupa Password ? </small></a>
-                        
-                    </form> 
+                        <a href="<?= base_url("forgotpassword"); ?>"><small class="text-muted ">Lupa Password ?
+                            </small></a>
+
+                    </form>
                 </div>
             </div>
         </div>

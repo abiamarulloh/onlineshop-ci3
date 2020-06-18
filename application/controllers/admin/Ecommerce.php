@@ -380,6 +380,12 @@ class Ecommerce extends CI_Controller {
 				// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+
+		$Query_delete_foto_product = $this->db->get_where("product", ['id' => $id])->row_array();
+		$Query_delete_foto_thumbnail = $this->db->get_where("product", ['id' => $id])->row_array();
+		$delete_foto = $Query_delete_foto['image_name'];
+		unlink(FCPATH . "./assets/admin/img/ecommerce/" . $Query_delete_foto_product);
+		unlink(FCPATH . "./assets/admin/img/ecommerce/ecommerce_thumbnails/" . $Query_delete_foto_thumbnail);
 		
 		$query = $this->db->get_where('product', ['id' => $id])->row();
 		$this->Ecommerce_model->delete_product($id);
@@ -445,12 +451,9 @@ class Ecommerce extends CI_Controller {
 
 			endfor; // Penutup For
 
-			if($uploadData !== null){ // Jika Berhasil Upload
-
+			if($uploadData != null){ // Jika Berhasil Upload
 				// Insert ke Database 
-
 				$insert = $this->Ecommerce_model->upload($uploadData);
-				
 
 				if($insert){ // Jika Berhasil Insert
 					alert("product_image_thumnails", "Upload thumbnail berhasil");
@@ -460,6 +463,9 @@ class Ecommerce extends CI_Controller {
 					redirect("ecommerce_product_image_multiple/" . $id);
 				}
 
+			}else{
+				alert("product_image_thumnails", "Masukkan gambar dulu", 'error');
+				redirect("ecommerce_product_image_multiple/" . $id);
 			}
 	
 
@@ -475,7 +481,7 @@ class Ecommerce extends CI_Controller {
 		$data['about'] = $this->db->get("about")->row();
 		$Query_delete_foto = $this->db->get_where("image_product", ['id' => $id])->row_array();
 		$delete_foto = $Query_delete_foto['image_name'];
-		unlink(FCPATH . "./assets/admin/img/ecommerce/ecommerce_thumbnails" . $delete_foto);
+		unlink(FCPATH . "./assets/admin/img/ecommerce/ecommerce_thumbnails/" . $delete_foto);
 
 		$query = $this->db->get_where('image_product', ['id' => $id])->row();
 		$this->db->delete("image_product", ['id' => $id]);

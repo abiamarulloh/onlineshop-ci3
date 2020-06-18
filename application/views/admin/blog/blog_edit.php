@@ -18,7 +18,7 @@
 
                 <div class="form-group">
                     <label for="title">Judul</label>
-                    <input type="text" class="form-control  <?php if(form_error('title')) {echo "is-invalid";} ?>" id="title"  name="title" value="<?= $list_blog_by_id->title ?>">
+                    <input type="text" class="form-control  <?php if(form_error('title')) {echo "is-invalid";} ?>" id="title" name="title" value="<?= $list_blog_by_id->title ?>">
                     <?php if(form_error('title')) : ?>
                         <div class="invalid-feedback">
                             <?= form_error("title"); ?>

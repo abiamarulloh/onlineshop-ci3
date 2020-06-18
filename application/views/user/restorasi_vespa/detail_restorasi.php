@@ -1,22 +1,21 @@
 <div class="container restorasi my-5">
     <div class="row">
         <div class="col-md-12 my-5">
-            <div class="card border-0">
+            <div class="card border-0 p-0">
                 <div class="card-header">
                     <div>
                         <h2 class="text-dark font-weight-bold"> <i class="fas fa-info"></i> Detail Restorasi </h2>
                         <div>
                             <a href="<?= base_url("restorasi.vespa"); ?>" class="btn btn-outline-primary "> <i
                                     class="fas fa-angle-double-left"></i> Kembali</a>
-                            <a href="https://wa.me/<?= $about->phone; ?>" class="btn btn-success my-1"> <i
-                                    class="fab fa-whatsapp"></i> Hubungi Penjual Jasa</a>
+                            <a href="https://wa.me/<?= $about->phone; ?>" class="btn btn-success my-1"> <i class="fab fa-whatsapp"></i> Hubungi Penjual Jasa</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="accordion" id="accordionExample">
                         <div class="card">
-                            <div class="card-header bg-tosca " id="headingOne">
+                            <div class="card-header"  style="background-color:#00cec9;" id="headingOne">
                                 <h2 class="mb-0">
                                     <button class="btn text-white text-decoration-none btn-link btn-block text-left"
                                         type="button" data-toggle="collapse" data-target="#name_restorasi"
@@ -37,7 +36,7 @@
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-header bg-tosca" id="headingOne">
+                            <div class="card-header"  style="background-color:#00cec9;" id="headingOne">
                                 <h2 class="mb-0">
                                     <button class="btn text-white btn-link text-decoration-none btn-block text-left"
                                         type="button" data-toggle="collapse" data-target="#image_restorasi"
@@ -85,7 +84,7 @@
 
 
                         <div class="card">
-                            <div class="card-header bg-tosca" id="headingTwo">
+                            <div class="card-header"  style="background-color:#00cec9;"  id="headingTwo">
                                 <h2 class="mb-0">
                                     <button
                                         class="btn text-white text-decoration-none btn-link btn-block text-left collapsed"
@@ -99,7 +98,7 @@
                             </div>
                             <div id="desc" class="collapse" aria-labelledby="headingTwo"
                                 data-parent="#accordionExample">
-                                <div class="card-body text-break">
+                                <div class="card-body text-break text-dark">
                                     <?= $restorasi_vespa->description; ?>
                                 </div>
                             </div>

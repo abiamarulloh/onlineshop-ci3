@@ -4,6 +4,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <meta name="description" content="Website Online Shop dan Blog Otomotif" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="wagiman supply, peralatan dan barang otomotif , alat-alat bengkel otomotif, wagiman vespa, vespa tangerang">
+    <meta name="copyright" content="Copyright © 2020 wagiman supply. All Rights Reserved . Love from Tangerang">
+    <meta name="language" content="indonesia"> 
+    
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -40,20 +48,20 @@
     <link href="<?= base_url(); ?>assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
 
 
-    <!-- CSS Custome -->
-    <link rel="stylesheet" href="<?= base_url("assets/user/css/style.css") ?>">
+    <link href="<?= base_url(); ?>assets/user/css/style.css" rel="stylesheet">
+   
 
      <!-- Lightbox -->
-    <link href="<?= base_url(); ?>assets/user/css/lightbox.min.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>assets/user/css/lightbox.min.css" rel="stylesheet">
 
    
-    <!-- Custom styles for this page -->
+    <!-- Custom styles for this pages -->
     <link href="<?= base_url(); ?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="<?= base_url(); ?>assets/user/css/owl/owl.carousel.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>assets/user/css/owl/owl.theme.default.min.css">
 
-    <script data-ad-client="ca-pub-4900160850892949" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
 
     
     <title><?= $title; ?></title>

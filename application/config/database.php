@@ -69,6 +69,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
+
+	'hostname' => 'localhost',
+	'username' => 'wagimans_andi',
+	'password' => '90JR8#9I;^Aq',
+	'database' => 'wagimans_shop',
 */
 $active_group = 'default';
 $query_builder = TRUE;

@@ -19,6 +19,10 @@ class Dashboard extends CI_Controller {
 		$data['product'] = $this->Dashboard_model->get_product();
 		$data['brands'] = $this->db->get("brand")->num_rows();
 		
+        // Query Hanya Member 
+        $this->db->where_not_in("role_id", 1);
+		$data['member'] = $this->db->get("auth")->num_rows();
+		
 		// Data invoice
 
 		$data['invoice_belum_terkonfirmasi'] = $this->db->get_where("invoice", ['status' => 0, 'image_payment' => "No-Image-Available.png"])->num_rows();

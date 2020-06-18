@@ -61,7 +61,7 @@ class Ecommerce_model extends CI_Model {
 
 	 public function upload($data = array()) {
         // Insert Ke Database dengan Banyak Data Sekaligus
-        return $this->db->insert_batch('image_product',$data);
+		return $this->db->insert_batch('image_product',$data);
 	}
 	
 

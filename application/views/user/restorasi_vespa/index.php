@@ -16,8 +16,8 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title text-dark font-weight-bold"><?= $restorasi->name_restorasi; ?></h5>
-                            <a href="<?= base_url("detail_restorasi/") . $restorasi->id; ;?>" class="btn btn-info"> <i class="fas fa-info"></i> Detail Jasa Restorasi</a>
-                            <a href="https://wa.me/<?= $about->phone; ?>" class="btn btn-success"> <i class="fab fa-whatsapp"></i> Hubungi Penjual Jasa</a>
+                            <a href="<?= base_url("detail_restorasi/") . $restorasi->id; ;?>" class="btn btn-info my-2"> <i class="fas fa-info"></i> Detail Jasa Restorasi</a>
+                            <a href="https://wa.me/<?= $about->phone; ?>" class="btn btn-success my-2"> <i class="fab fa-whatsapp"></i> Hubungi Penjual Jasa</a>
                             <p class="card-text"><small class="text-muted">Terakhir diupdate <?= date("l ,d M Y", $restorasi->created_date); ?></small></p>
                         </div>
                     </div>

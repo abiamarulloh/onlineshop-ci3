@@ -33,17 +33,21 @@ class Home extends CI_Controller {
 		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 
-
-		// Menampilkan Carausel di menu
-		$this->db->select("*");
-		$this->db->from('carausel');
-		$this->db->join("menu_member", "carausel.menu_id = menu_member.id");
-		$data['carausel'] = $this->db->get()->result();
-
 		
-	
-	
+		// Menampilkan Carausel di menu product
+		$data['product'] = $this->db->get("product")->result(); 
 
+		// Menampilkan Carausel di menu Blog
+		$data['blog'] = $this->db->get("blog")->result(); 
+
+		// Menampilkan Carausel di menu Restorasi
+		$data['restorasi'] = $this->db->get("restorasi")->result(); 
+
+		// Menampilkan Carausel di menu Brand
+		$data['brand'] = $this->db->get("brand")->result(); 
+
+		// Query Carausel
+		$data['carausel'] = $this->db->get("carausel")->result(); 
 
 		$this->load->view('templates/user/header', $data);
 		$this->load->view('templates/user/navbar', $data);

@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid my-5 bg-tosca">
+<div class="jumbotron jumbotron-fluid my-5" style="background-color:#00cec9;">
   <div class="container">
     <img src="<?= base_url() ?>assets/user/images/detail_product.jpg" class="img-fluid">
   </div>

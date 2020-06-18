@@ -13,48 +13,82 @@
                     <form method="post" action="">
                         <div class="form-group">
                             <label for="fullname">Nama Lengkap</label>
-                            <input type="text" class="form-control <?php if( form_error('fullname') )   { echo "is-invalid";}  ?>" id="fullname" placeholder="Nama Lengkap" name="fullname" value="<?= set_value('fullname') ?>">
+                            <input type="text"
+                                class="form-control <?php if( form_error('fullname') )   { echo "is-invalid";}  ?>"
+                                id="fullname" placeholder="Nama Lengkap" name="fullname"
+                                value="<?= set_value('fullname') ?>">
                             <?php if(form_error('fullname')) : ?>
-                                <div class="invalid-feedback">
-                                    <?= form_error('fullname') ?>
-                                </div>
+                            <div class="invalid-feedback">
+                                <?= form_error('fullname') ?>
+                            </div>
                             <?php endif; ?>
                         </div>
                         <div class="form-group">
                             <label for="email_address">Email Address</label>
-                            <input type="text" class="form-control <?php if( form_error('email') )   { echo "is-invalid";}  ?>" id="email_address" placeholder="Email Address" name="email" value="<?= set_value('email') ?>">
+                            <input type="text"
+                                class="form-control <?php if( form_error('email') )   { echo "is-invalid";}  ?>"
+                                id="email_address" placeholder="Email Address" name="email"
+                                value="<?= set_value('email') ?>">
                             <?php if(form_error('email')) : ?>
-                                <div class="invalid-feedback">
-                                    <?= form_error('email') ?>
-                                </div>
+                            <div class="invalid-feedback">
+                                <?= form_error('email') ?>
+                            </div>
                             <?php endif; ?>
                         </div>
+
+
                         <div class="form-group">
                             <label for="password1">Password</label>
-                            <input type="password" class="form-control <?php if( form_error('password1') )   { echo "is-invalid";}  ?>" id="password1" placeholder="Password" name="password1" value="<?= set_value('password1') ?>">
-                            <?php if(form_error('password1')) : ?>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text rounded-pill-left"><i
+                                            class="fas fa-unlock-alt"></i></span>
+                                </div>
+                                <input type="password"  class="form-control <?php if( form_error('password1') )   { echo "is-invalid";}  ?>"
+                                    id="password1" placeholder="Password" name="password1"
+                                    value="<?= set_value('password1') ?>">
+                                <?php if(form_error('password1')) : ?>
                                 <div class="invalid-feedback">
                                     <?= form_error('password1') ?>
                                 </div>
-                            <?php endif; ?>
+                                <?php endif; ?>
+                                <div class="input-group-append rounded-pill-right">
+                                    <button class="btn btn-outline-secondary rounded-pill-right" type="button" onclick="showHideRegisterPassword()" id="button-addon2">
+                                        <i class="fas fa-key"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="password2">Konfirmasi Password</label>
-                            <input type="password" class="form-control <?php if( form_error('password2') )   { echo "is-invalid";}  ?>" id="password2" placeholder="Konfirmasi Password" name="password2">
-                            <?php if(form_error('password2')) : ?>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text rounded-pill-left"><i
+                                            class="fas fa-unlock-alt"></i></span>
+                                </div>
+                                <input type="password" class="form-control <?php if( form_error('password2') )   { echo "is-invalid";}  ?>" id="password2" placeholder="Konfirmasi Password" name="password2">
+                                <?php if(form_error('password2')) : ?>
                                 <div class="invalid-feedback">
                                     <?= form_error('password2') ?>
                                 </div>
-                            <?php endif; ?>
+                                <?php endif; ?>
+                                <div class="input-group-append rounded-pill-right">
+                                    <button class="btn btn-outline-secondary rounded-pill-right" type="button" onclick="showHideRegisterPasswordConfirm()" id="button-addon2">
+                                        <i class="fas fa-key"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        
-                        
+
+
                         <button type="submit" class="btn btn-auth btn-sm btn-block mb-2">Submit</button>
-                        <a href="<?= base_url("login"); ?>"><small class="text-muted ">Sudah punya akun ? Masuk</small></a>
+                        <a href="<?= base_url("login"); ?>"><small class="text-muted ">Sudah punya akun ?
+                                Masuk</small></a>
                         <br>
-                        <a href="<?= base_url("forgotpassword"); ?>"><small class="text-muted ">Lupa Password ? </small></a>
-                    </form> 
+                        <a href="<?= base_url("forgotpassword"); ?>"><small class="text-muted ">Lupa Password ?
+                            </small></a>
+                    </form>
                 </div>
             </div>
         </div>

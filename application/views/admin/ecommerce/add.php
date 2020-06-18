@@ -18,7 +18,7 @@
             
                 <div class="form-group">
                     <label for="name">Nama Product</label>
-                    <input type="text" class="form-control  <?php if(form_error('name')) {echo "is-invalid";} ?>" id="name"  name="name" value="<?= set_value('name') ?>">
+                    <input type="text" class="form-control  <?php if(form_error('name')) {echo "is-invalid";} ?>" id="name"  disabled="disabled" name="name" value="<?= set_value('name') ?>">
                     <?php if(form_error('name')) : ?>
                         <div class="invalid-feedback">
                             <?= form_error("name"); ?>
@@ -103,7 +103,7 @@
       
                 <div class="d-flex justify-content-between">
                     <a href="<?= base_url("ecommerce_admin"); ?>" class="btn btn-outline-primary"><i class="fas fa-angle-double-left"></i> kembali</a>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Publish Product</button>
+                    <button type="submit"  class="btn btn-primary"><i class="fas fa-edit"></i> Publish Product</button>
                 </div>
             </form>
         </div>

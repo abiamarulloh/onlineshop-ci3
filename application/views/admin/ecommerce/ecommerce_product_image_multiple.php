@@ -46,3 +46,4 @@
         <p class="text-center font-weight-bold text-dark">Belum ada data gambar !</p>
         <?php endif; ?>
     </div>
+</div>

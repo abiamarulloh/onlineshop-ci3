@@ -27,11 +27,53 @@
     </ol>
     <div class="carousel-inner">
         <?php foreach ($carausel as $c) :?>
+
+        <!-- Jika Ecommerce -->
+        <?php foreach ($product as $pro) :?>
+        <?php if($c->choose_id == $pro->id && $c->menu_url == "ecommerce") : ?>
         <div class="carousel-item <?php if($c->status == 1 ) {echo "active";} ?>">
-           <a href="<?= base_url($c->url) ; ?>">
-            <img src="<?= base_url("assets/user/images/carausel/") . $c->image ; ?>" class="d-block  w-100" alt="...">
-           </a>
+            <a href="<?= base_url("ecommerce_preview/") . $c->choose_id; ?>">
+                <img src="<?= base_url("assets/user/images/carausel/") . $c->image ; ?>" class="d-block w-100" alt="<?= $c->image; ?>"  style="max-height:600px;">
+            </a>
         </div>
+        <?php endif; ?>
+        <?php endforeach; ?>
+
+        <!-- Jika Blog -->
+        <?php foreach ($blog as $bl) :?>
+        <?php if($c->choose_id == $bl->id && $c->menu_url == "blog") : ?>
+        <div class="carousel-item <?php if($c->status == 1 ) {echo "active";} ?>">
+            <a href="<?= base_url("blog_preview/") . $c->choose_id; ?>">
+                <img src="<?= base_url("assets/user/images/carausel/") . $c->image ; ?>" class="d-block  w-100" alt="<?= $c->image; ?>" style="max-height:600px;">
+            </a>
+        </div>
+        <?php endif; ?>
+        <?php endforeach; ?>
+
+        <!-- Brand -->
+        <?php foreach ($brand as $br) :?>
+        <?php if($c->choose_id == $br->id && $c->menu_url == "brand") : ?>
+        <div class="carousel-item <?php if($c->status == 1 ) {echo "active";} ?>">
+            <a href="<?= base_url("brand_preview/") . $c->choose_id; ?>">
+                <img src="<?= base_url("assets/user/images/carausel/") . $c->image ; ?>" class="d-block  w-100"  alt="<?= $c->image; ?>" style="max-height:600px;">
+            </a>
+        </div>
+        <?php endif; ?>
+        <?php endforeach; ?>
+
+
+        <!-- Restorasi -->
+        <?php foreach ($restorasi as $res) :?>
+        <?php if($c->choose_id == $res->id && $c->menu_url == "restorasi.vespa") : ?>
+        <div class="carousel-item <?php if($c->status == 1 ) {echo "active";} ?>">
+            <a href="<?= base_url("detail_restorasi/") . $c->choose_id; ?>">
+                <img src="<?= base_url("assets/user/images/carausel/") . $c->image ; ?>" class="d-block  w-100" alt="<?= $c->image; ?>" style="max-height:600px;">
+            </a>
+        </div>
+        <?php endif; ?>
+        <?php endforeach; ?>
+
+
         <?php endforeach; ?>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -206,3 +248,7 @@
         </div>
     </div>
 </div>
+
+<p hidden>
+    <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/703735/t/6"></script>
+</p>

@@ -21,7 +21,7 @@ class Brand extends CI_Controller {
 		//konfigurasi pagination
 		$config['base_url'] =  site_url('brand_admin');
 		$config['total_rows'] = $this->db->count_all('brand'); //total row
-		$config['per_page'] = 3;  //show record per halaman
+		$config['per_page'] = 6;  //show record per halaman
 		$config['first_link']       = 'First';
         $config['last_link']        = 'Last';
         $config['next_link']        = 'Next';

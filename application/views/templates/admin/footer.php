@@ -73,6 +73,9 @@
 
 
 <script>
+
+
+
 // Preview before uploading image
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -301,29 +304,6 @@ $(document).ready(function() {
     })
 
 
-    // Carausel Setting
-    $("#carausel-button").click(function() {
-        let select = $("#menu_id");
-        let file = $("#file");
-
-        if (!file.val()) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Masukkan gambar dulu !',
-            })
-            return false;
-        } else if (select.val() == 0) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Pilih Menu dulu !',
-            })
-            return false;
-        }
-    })
-
-
     // Checked Change Update
     $(".carausel_check_active").click(function() {
         let status = $(this).data("status");
@@ -346,10 +326,54 @@ $(document).ready(function() {
         })
     })
 
+    // Jika gambar kosong maka disabled input yang lain "ecommerce"
+   $("#file").change(function (){
+       let file = $("#file").val()
+        if( file ){
+            $("#name").removeAttr("disabled")
+        }else {
+            $("#name").attr("disabled", "disabled")
+        }
+   })
+
+       // Jika gambar kosong maka disabled input yang lain "Blog"
+    $("#file").change(function (){
+        let file = $("#file").val()
+        if( file ){
+            $("#title").removeAttr("disabled")
+        }else {
+            $("#title").attr("disabled", "disabled")
+        }
+    })
+
+
+
+    // Menampilkan data sesuai menu yang dipilih carausel dengan ajax
+    $("#menu_carausel_url").change(function() {
+        $.ajax({
+            type: 'post',
+            url: '<?= base_url(); ?>menu_carausel_url',
+            data: {
+                "menu_url": $(this).val()
+            },
+            success: function(data) {
+                $("#choose_id").html(data);
+                // console.log(data)
+            }
+        })
+       
+    })
+
+    
+  
+
 
 
 
 })
+
+    
+
 </script>
 
 </body>

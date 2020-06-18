@@ -158,7 +158,16 @@ $route['carausel_setting_delete/(:num)'] = 'admin/setting/carausel_setting_delet
 $route['on_change_active'] = 'admin/setting/on_change_active';
 $route['change_active'] = 'admin/setting/change_active';
 
+
+// Carausel ajax
+
+$route['menu_carausel_url'] = 'admin/setting/menu_carausel_url';
+
+
+
 // Social Media Setting
 $route['sosmed_setting'] = 'admin/setting/sosmed_setting';
 $route['sosmed_setting_add'] = 'admin/setting/sosmed_setting_add';
 $route['sosmed_setting_delete/(:num)'] = 'admin/setting/sosmed_setting_delete/$1';
+
+
