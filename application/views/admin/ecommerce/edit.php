@@ -29,7 +29,7 @@
 
                 <div class="form-group">
                     <label for="description">Deskripsi</label>
-                    <textarea name="description" id="body" class="form-control <?php if(form_error('description')) {echo "is-invalid";} ?>" ><?= $list_product_by_id->description; ?></textarea>
+                    <textarea name="description" id="body"  class="form-control <?php if(form_error('description')) {echo "is-invalid";} ?>" ><?= $list_product_by_id->description; ?></textarea>
                     <?php if(form_error('description')) : ?>
                         <div class="invalid-feedback">
                             <?= form_error("description"); ?>

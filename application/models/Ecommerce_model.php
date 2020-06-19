@@ -38,6 +38,10 @@ class Ecommerce_model extends CI_Model {
 		return $this->db->delete("product", ['id' => $id]);
 	}
 
+	public function delete_image_product($id){
+		return $this->db->delete("image_product", ['product_id' => $id]);
+	}
+
 
 	public function find($id){
 		$result = $this->db->where('id', $id)

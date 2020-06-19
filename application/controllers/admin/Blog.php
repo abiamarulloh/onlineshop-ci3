@@ -105,7 +105,7 @@ class Blog extends CI_Controller {
 			$this->load->view('templates/admin/footer', $data);
 		}else{
 			$title 				= htmlspecialchars($this->input->post('title', true) );
-			$body 				= $this->input->post('body');
+			$body 				= $_POST['body'];
 			$user_id	 		= $data['user']->id;
 			$category_id	 	= htmlspecialchars($this->input->post('category_id', true) );
 			$created_date 		= time();
@@ -175,7 +175,7 @@ class Blog extends CI_Controller {
 		}else{
 			$id_blog 			= htmlspecialchars($this->input->post('id', true) );
 			$title 				= htmlspecialchars($this->input->post('title', true) );
-			$body 				= $this->input->post('body');
+			$body 				= $_POST['body'];
 			$category_id	 	= htmlspecialchars($this->input->post('category_id', true) );
 			$updated_date 		= time();
 
@@ -280,5 +280,44 @@ class Blog extends CI_Controller {
 		$this->session->set_flashdata('blog', '<div class="alert alert-danger" role="alert"> Blog ' . $query->title . ' berhasil dihapus ! </div>');
 		redirect('blog_admin');
 	}
+
+
+	public function ckeditor(){
+		if(isset($_FILES['upload']['name'])){
+
+				$file = $_FILES['upload']['tmp_name'];
+			
+				$file_name = $_FILES['upload']['name'];
+			
+				$file_name_array = explode(".", $file_name);
+			
+				$extension = end($file_name_array);
+			
+				$new_image_name = rand() . '.' . $extension;
+			
+				chmod('./assets/admin/img/ckeditor/', 0777);
+			
+				$allowed_extension = array("jpg", "gif", "png", "jpeg");
+			
+				if(in_array($extension, $allowed_extension))
+			
+				{
+			
+				move_uploaded_file($file, './assets/admin/img/ckeditor/' . $new_image_name);
+			
+				$function_number = $_GET['CKEditorFuncNum'];
+			
+				$url = './assets/admin/img/ckeditor/' . $new_image_name;
+			
+				$message = '';
+			
+				echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($function_number, '$url', '$message');</script>";
+			
+				}
+		   
+		   }
+	}
+
+	
 
 }

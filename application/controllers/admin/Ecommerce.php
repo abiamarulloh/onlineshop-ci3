@@ -377,18 +377,27 @@ class Ecommerce extends CI_Controller {
 	// Delete Category
 	public function product_delete($id)
 	{	
-				// query data wagiman di footer
+		// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
 
+		// Hapus Product
 		$Query_delete_foto_product = $this->db->get_where("product", ['id' => $id])->row_array();
-		$Query_delete_foto_thumbnail = $this->db->get_where("product", ['id' => $id])->row_array();
-		$delete_foto = $Query_delete_foto['image_name'];
-		unlink(FCPATH . "./assets/admin/img/ecommerce/" . $Query_delete_foto_product);
-		unlink(FCPATH . "./assets/admin/img/ecommerce/ecommerce_thumbnails/" . $Query_delete_foto_thumbnail);
+		$delete_foto_product = $Query_delete_foto_product['image'];
+		unlink(FCPATH . "./assets/admin/img/ecommerce/" . $delete_foto_product);
+
+		// Hapus image thumbnail Product
+		$Query_delete_foto = $this->db->get_where("image_product", ['product_id' => $id])->result_array();
+		foreach($Query_delete_foto as $Query_delete_foto){
+			$delete_foto_thumbnails = $Query_delete_foto['image_name'];
+			unlink(FCPATH . "./assets/admin/img/ecommerce/ecommerce_thumbnails/" . $delete_foto_thumbnails);
+		}
+		
 		
 		$query = $this->db->get_where('product', ['id' => $id])->row();
 		$this->Ecommerce_model->delete_product($id);
+		$this->Ecommerce_model->delete_image_product($id);
+
 		$this->session->set_flashdata('product', '<div class="alert alert-danger" role="alert"> Product ' . $query->name . ' berhasil dihapus ! </div>');
 		redirect('ecommerce_admin');
 	}
@@ -488,6 +497,9 @@ class Ecommerce extends CI_Controller {
 		alert("product_image_thumnails", "Gambar berhasil dihapus");
 		redirect('ecommerce_product_image_multiple/' . $query->product_id);
 	}
+
+
+
 
 
 

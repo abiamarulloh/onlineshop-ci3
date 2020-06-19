@@ -162,9 +162,18 @@ class Restorasi_vespa extends CI_Controller {
 		$Query_delete_foto = $this->db->get_where("restorasi", ['id' => $id])->row_array();
 		$delete_foto = $Query_delete_foto['image'];
 		unlink(FCPATH . "./assets/admin/img/restorasi/" . $delete_foto);
-
+		
+		
+		// Hapus image thumbnail Restorasi
+		$Query_delete_foto = $this->db->get_where("image_restorasi", ['restorasi_id' => $id])->result_array();
+		foreach($Query_delete_foto as $Query_delete_foto){
+			$delete_foto_thumbnails = $Query_delete_foto['image_name'];
+			unlink(FCPATH . "./assets/admin/img/restorasi/restorasi_thumbnails/" . $delete_foto_thumbnails);
+		}
+		
 		$query = $this->db->get_where('restorasi', ['id' => $id])->row();
 		$this->db->delete("restorasi", ['id' => $id]);
+		$this->db->delete("image_restorasi", ['restorasi_id' => $id]);
 		alert("restorasi", "Selamat Data Restorasi Berhasil dihapus");
 		redirect('restorasi_admin');
 	}

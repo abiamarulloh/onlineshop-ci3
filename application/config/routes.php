@@ -98,6 +98,9 @@ $route['ecommerce_product_image_multiple_delete/(:num)'] = 'admin/ecommerce/ecom
 
 
 
+
+
+
 // Admin Blog
 $route['blog_publish_post'] = 'admin/blog/add';
 $route['blog_admin'] = 'admin/blog/index';
@@ -106,6 +109,9 @@ $route['blog_category'] = 'admin/blog/category';
 $route['blog_preview'] = 'admin/blog/preview_blog';
 $route['blog_edit/(:num)'] = 'admin/blog/blog_edit/$1';
 $route['blog_delete/(:num)'] = 'admin/blog/blog_delete/$1';
+
+// CKEDITOR Ecommerce
+$route['ckeditor'] = 'admin/blog/ckeditor';
 
 
 // Admin Restorasi
