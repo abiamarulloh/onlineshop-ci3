@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 16 Jun 2020 pada 21.01
--- Versi server: 10.3.23-MariaDB-cll-lve
--- Versi PHP: 7.3.6
+-- Waktu pembuatan: 19 Jun 2020 pada 23.47
+-- Versi server: 8.0.20-0ubuntu0.20.04.1
+-- Versi PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `wagimans_shop`
+-- Database: `wagimansupply`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `about` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `web_name` varchar(250) NOT NULL,
   `image` varchar(250) NOT NULL,
   `ceo` varchar(250) NOT NULL,
@@ -37,9 +37,9 @@ CREATE TABLE `about` (
   `address` varchar(250) NOT NULL,
   `phone` varchar(250) NOT NULL,
   `email` varchar(250) NOT NULL,
-  `province` int(11) NOT NULL,
-  `city` int(11) NOT NULL,
-  `created_date` int(11) NOT NULL
+  `province` int NOT NULL,
+  `city` int NOT NULL,
+  `created_date` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -56,7 +56,7 @@ INSERT INTO `about` (`id`, `web_name`, `image`, `ceo`, `description`, `address`,
 --
 
 CREATE TABLE `auth` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `role_id` tinyint(1) NOT NULL,
   `fullname` varchar(250) NOT NULL,
   `image` varchar(250) NOT NULL,
@@ -64,10 +64,10 @@ CREATE TABLE `auth` (
   `phone` varchar(30) NOT NULL,
   `password` varchar(250) NOT NULL,
   `is_actived` tinyint(1) NOT NULL,
-  `last_login` int(11) NOT NULL,
+  `last_login` int NOT NULL,
   `address` text NOT NULL,
-  `created_date` int(11) NOT NULL,
-  `updated_date` int(11) NOT NULL
+  `created_date` int NOT NULL,
+  `updated_date` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -75,8 +75,8 @@ CREATE TABLE `auth` (
 --
 
 INSERT INTO `auth` (`id`, `role_id`, `fullname`, `image`, `email`, `phone`, `password`, `is_actived`, `last_login`, `address`, `created_date`, `updated_date`) VALUES
-(9, 1, 'Andi Setiawan', 'pp.jpeg', 'hello@wagimansupply.com', '6283893504806', '$2y$10$We70GSpdaArwL1ZmtU6GcelrdGI0MqcGtx653GrLD4cAYcNDW3gY6', 1, 1592310265, ' KP.PANUNGGANGAN BARAT KEL.PANUNGGANGAN BARAT KEC.CIBODAS KOTA TANGERANG', 1590213690, 1592274653),
-(11, 2, 'Abi Amarulloh', 'ig.png', 'abiamarulloh06@gmail.com', '62895337813520', '$2y$10$Y1Vd1F/Whbf8YQAtgTMZ7OVUaevsCR/Orx.G/XalIQYUfckeuxVZS', 1, 1592307785, 'Jl. Kh. Maulana Hasanudin Kel.Porisgaga Kec. batu ceper, Gg.pintu air No 50, kodepos. 15122', 1590373922, 1592293700);
+(1, 1, 'Andi Setiawan', 'pp.jpeg', 'hello@wagimansupply.com', '6283893504806', '$2y$10$We70GSpdaArwL1ZmtU6GcelrdGI0MqcGtx653GrLD4cAYcNDW3gY6', 1, 1592584188, ' KP.PANUNGGANGAN BARAT KEL.PANUNGGANGAN BARAT KEC.CIBODAS KOTA TANGERANG', 1590213690, 1592274653),
+(2, 2, 'Abi Amarulloh', 'ig.png', 'abiamarulloh06@gmail.com', '62895337813520', '$2y$10$Y1Vd1F/Whbf8YQAtgTMZ7OVUaevsCR/Orx.G/XalIQYUfckeuxVZS', 1, 1592455665, 'Jl. Kh. Maulana Hasanudin Kel.Porisgaga Kec. batu ceper, Gg.pintu air No 50, kodepos. 15122', 1590373922, 1592293700);
 
 -- --------------------------------------------------------
 
@@ -85,10 +85,10 @@ INSERT INTO `auth` (`id`, `role_id`, `fullname`, `image`, `email`, `phone`, `pas
 --
 
 CREATE TABLE `auth_token` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `email` varchar(250) NOT NULL,
   `token` varchar(128) NOT NULL,
-  `created_date` int(11) NOT NULL
+  `created_date` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -98,7 +98,7 @@ CREATE TABLE `auth_token` (
 --
 
 CREATE TABLE `bank_payment` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `bank_name` varchar(250) NOT NULL,
   `on_behalf_of_the` varchar(250) NOT NULL,
   `account_number` varchar(250) NOT NULL
@@ -119,24 +119,15 @@ INSERT INTO `bank_payment` (`id`, `bank_name`, `on_behalf_of_the`, `account_numb
 --
 
 CREATE TABLE `blog` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(250) NOT NULL,
   `image` varchar(250) NOT NULL,
   `body` text NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `created_date` int(11) NOT NULL,
-  `updated_date` int(11) DEFAULT NULL
+  `user_id` int NOT NULL,
+  `category_id` int NOT NULL,
+  `created_date` int NOT NULL,
+  `updated_date` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `blog`
---
-
-INSERT INTO `blog` (`id`, `title`, `image`, `body`, `user_id`, `category_id`, `created_date`, `updated_date`) VALUES
-(6, 'Honhon Solution Aja', 'Screenshot_from_2020-05-22_07-13-03.jpg', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<h2>Why do we use it?</h2>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n\r\n<p> </p>\r\n\r\n<h2>Where does it come from?</h2>\r\n\r\n<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</p>\r\n', 9, 12, 1590216568, 1590216590),
-(7, 'Suwito', 'Screenshot_from_2020-05-09_15-03-56.png', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<h2>Why do we use it?</h2>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n\r\n<p> </p>\r\n\r\n<h2>Where does it come from?</h2>\r\n\r\n<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</p>\r\n', 9, 9, 1590216662, NULL),
-(8, 'Malam Santai', 'abstract-art-black-background-blur-1040499.jpg', '<h2><strong>What is Lorem Ipsum?</strong></h2>\r\n\r\n<blockquote>\r\n<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n</blockquote>\r\n\r\n<h2>Why do we use it?</h2>\r\n\r\n<ul>\r\n <li>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</li>\r\n</ul>\r\n\r\n<p> </p>\r\n\r\n<h2>Where does it come from?</h2>\r\n\r\n<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</p>\r\n', 9, 14, 1591256939, 1591256960);
 
 -- --------------------------------------------------------
 
@@ -145,20 +136,10 @@ INSERT INTO `blog` (`id`, `title`, `image`, `body`, `user_id`, `category_id`, `c
 --
 
 CREATE TABLE `blog_category` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(250) NOT NULL,
-  `created_date` int(11) NOT NULL
+  `created_date` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `blog_category`
---
-
-INSERT INTO `blog_category` (`id`, `name`, `created_date`) VALUES
-(9, 'Kisah Pribadi', 1589982095),
-(12, 'Orang Sukses', 1590034758),
-(13, 'Vespa Jadul', 1591256724),
-(14, 'Kelana Malam', 1591256731);
 
 -- --------------------------------------------------------
 
@@ -167,26 +148,13 @@ INSERT INTO `blog_category` (`id`, `name`, `created_date`) VALUES
 --
 
 CREATE TABLE `brand` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `image` varchar(250) NOT NULL,
   `name` varchar(250) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `created_date` int(11) NOT NULL,
-  `updated_date` int(11) NOT NULL
+  `user_id` int NOT NULL,
+  `created_date` int NOT NULL,
+  `updated_date` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `brand`
---
-
-INSERT INTO `brand` (`id`, `image`, `name`, `user_id`, `created_date`, `updated_date`) VALUES
-(17, 'Grab-logo-social.png', 'Grab', 9, 1590207445, 1590894021),
-(18, 'bukalapak-apa-itu-startup-pengertian-cara-memulai-dan-0-removebg-preview.png', 'Bukalapak', 9, 1590866986, 1592297217),
-(19, 'jalur-nugraha-ekakurir-logo-vector-graphics-courier-portable-network-graphics-png-favpng-RgxLByRHZsFLc9rzSBYZA4Lkv-removebg-preview.png', 'JNE', 9, 1590894530, 0),
-(20, 'kisspng-logo-vector-graphics-indofood-brand-font-salim-group-logo-www-pixshark-com-images-galleri-5b6d61932a4a02-removebg-preview.png', 'Indofood', 9, 1590894547, 0),
-(21, 'kisspng-nike-logo-image-swoosh-brand-nike-made-a-micro-climate-chair-that-will-help-kee-5ba33e2711a2f2-removebg-preview.png', 'Nike', 9, 1590894571, 0),
-(22, 'png-transparent-google-logo-google-doodle-google-search-google-company-text-logo-thumbnail-removebg-preview.png', 'Google', 9, 1590894592, 0),
-(23, 'png-transparent-responsive-web-design-bootstrap-front-end-web-development-logo-design-purple-template-web-design-removebg-preview.png', 'Bootstrap', 9, 1590894605, 0);
 
 -- --------------------------------------------------------
 
@@ -195,21 +163,12 @@ INSERT INTO `brand` (`id`, `image`, `name`, `user_id`, `created_date`, `updated_
 --
 
 CREATE TABLE `carausel` (
-  `id` int(11) NOT NULL,
-  `image` varchar(250) CHARACTER SET latin1 NOT NULL,
-  `menu_id` int(11) NOT NULL,
-  `status` varchar(11) CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `carausel`
---
-
-INSERT INTO `carausel` (`id`, `image`, `menu_id`, `status`) VALUES
-(8, 'ecommerce.jpg', 2, '1'),
-(10, 'blog.jpg', 4, '0'),
-(11, 'restorasi.jpg', 3, '0'),
-(12, 'Screenshot_from_2020-06-14_19-30-14.png', 5, '');
+  `id` int NOT NULL,
+  `image` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `menu_url` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `choose_id` int NOT NULL,
+  `status` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -218,14 +177,14 @@ INSERT INTO `carausel` (`id`, `image`, `menu_id`, `status`) VALUES
 --
 
 CREATE TABLE `city` (
-  `id` int(11) NOT NULL,
-  `city_id` int(11) NOT NULL,
-  `province_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `city_id` int NOT NULL,
+  `province_id` int NOT NULL,
   `province` varchar(250) NOT NULL,
   `type` varchar(250) NOT NULL,
   `city_name` varchar(250) NOT NULL,
   `postal_code` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `city`
@@ -741,38 +700,10 @@ INSERT INTO `city` (`id`, `city_id`, `province_id`, `province`, `type`, `city_na
 --
 
 CREATE TABLE `image_product` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `image_name` varchar(250) NOT NULL,
-  `product_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `image_product`
---
-
-INSERT INTO `image_product` (`id`, `image_name`, `product_id`) VALUES
-(30, 'man-wearing-black-zip-jacket-holding-smartphone-surrounded-775091.jpg', 12),
-(32, 'close-up-of-human-hand-with-text-2485261.jpg', 12),
-(33, 'man-in-white-dress-shirt-9263901.jpg', 12),
-(34, 'man-wearing-black-zip-jacket-holding-smartphone-surrounded-7750911.jpg', 12),
-(35, 'mokup-smartphone-technology-phone-344071.jpg', 12),
-(37, 'man-in-white-dress-shirt-9263902.jpg', 14),
-(40, 'close-up-of-human-hand-with-text-2485263.jpg', 15),
-(41, 'man-in-white-dress-shirt-9263903.jpg', 15),
-(42, 'man-wearing-black-zip-jacket-holding-smartphone-surrounded-7750913.jpg', 15),
-(43, 'mokup-smartphone-technology-phone-344073.jpg', 15),
-(44, 'woman-in-white-long-sleeved-shirt-holding-smartphone-sitting-920378.jpg', 15),
-(45, 'close-up-of-human-hand-with-text-2485264.jpg', 29),
-(46, 'detail_product.jpg', 29),
-(47, 'man-in-white-dress-shirt-9263904.jpg', 29),
-(48, 'man-wearing-black-zip-jacket-holding-smartphone-surrounded-7750914.jpg', 29),
-(49, 'mokup-smartphone-technology-phone-344074.jpg', 29),
-(50, 'pp.jpeg', 29),
-(51, 'Screenshot_from_2020-06-14_19-30-14.png', 29),
-(52, 'Screenshot_from_2020-06-14_19-31-58.png', 29),
-(53, 'Screenshot_from_2020-06-16_07-26-03.png', 29),
-(54, 'Screenshot_from_2020-06-16_12-05-31.png', 29),
-(55, 'woman-in-white-long-sleeved-shirt-holding-smartphone-sitting-9203781.jpg', 29);
+  `product_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -781,22 +712,10 @@ INSERT INTO `image_product` (`id`, `image_name`, `product_id`) VALUES
 --
 
 CREATE TABLE `image_restorasi` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `image_name` varchar(250) NOT NULL,
-  `restorasi_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `image_restorasi`
---
-
-INSERT INTO `image_restorasi` (`id`, `image_name`, `restorasi_id`) VALUES
-(11, 'image.png', 4),
-(13, 'man-in-white-dress-shirt-9263903.jpg', 4),
-(15, 'mokup-smartphone-technology-phone-344073.jpg', 4),
-(18, 'man-wearing-black-zip-jacket-holding-smartphone-surrounded-7750914.jpg', 2),
-(19, 'mokup-smartphone-technology-phone-344074.jpg', 2),
-(23, 'woman-in-white-long-sleeved-shirt-holding-smartphone-sitting-9203784.jpg', 2);
+  `restorasi_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -805,28 +724,21 @@ INSERT INTO `image_restorasi` (`id`, `image_name`, `restorasi_id`) VALUES
 --
 
 CREATE TABLE `invoice` (
-  `id` int(11) NOT NULL,
-  `auth_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL COMMENT '0 = belum bayar , 1 = proses, 2 = dikirim, 3= selesai',
+  `id` int NOT NULL,
+  `auth_id` int NOT NULL,
+  `status` int NOT NULL COMMENT '0 = belum bayar , 1 = proses, 2 = dikirim, 3= selesai',
   `resi` varchar(250) NOT NULL,
   `image_payment` varchar(250) NOT NULL,
-  `province_sender` int(11) NOT NULL,
-  `city_sender` int(11) NOT NULL,
-  `province_receiver` int(11) NOT NULL,
-  `city_receiver` int(11) NOT NULL,
-  `weight` int(11) NOT NULL,
+  `province_sender` int NOT NULL,
+  `city_sender` int NOT NULL,
+  `province_receiver` int NOT NULL,
+  `city_receiver` int NOT NULL,
+  `weight` int NOT NULL,
   `ekspedisi` varchar(250) NOT NULL,
   `sub_ekspedisi` varchar(250) NOT NULL,
-  `date_buyying` int(11) NOT NULL,
-  `dateline_buyying` int(11) NOT NULL
+  `date_buyying` int NOT NULL,
+  `dateline_buyying` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `invoice`
---
-
-INSERT INTO `invoice` (`id`, `auth_id`, `status`, `resi`, `image_payment`, `province_sender`, `city_sender`, `province_receiver`, `city_receiver`, `weight`, `ekspedisi`, `sub_ekspedisi`, `date_buyying`, `dateline_buyying`) VALUES
-(20, 11, 1, '176212JASB', 'mokup-smartphone-technology-phone-344072.jpg', 3, 456, 13, 35, 1050, 'tiki', 'REG', 1592304484, 1592477284);
 
 -- --------------------------------------------------------
 
@@ -835,11 +747,11 @@ INSERT INTO `invoice` (`id`, `auth_id`, `status`, `resi`, `image_payment`, `prov
 --
 
 CREATE TABLE `menu_member` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(250) NOT NULL,
   `url` varchar(250) NOT NULL,
   `icon` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `menu_member`
@@ -860,22 +772,15 @@ INSERT INTO `menu_member` (`id`, `title`, `url`, `icon`) VALUES
 --
 
 CREATE TABLE `order` (
-  `id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `invoice_id` int(11) NOT NULL,
-  `auth_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `invoice_id` int NOT NULL,
+  `auth_id` int NOT NULL,
   `name` varchar(250) NOT NULL,
-  `grand_qty` int(11) NOT NULL,
-  `grand_price` int(11) NOT NULL,
-  `created_date` int(11) NOT NULL
+  `grand_qty` int NOT NULL,
+  `grand_price` int NOT NULL,
+  `created_date` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `order`
---
-
-INSERT INTO `order` (`id`, `product_id`, `invoice_id`, `auth_id`, `name`, `grand_qty`, `grand_price`, `created_date`) VALUES
-(33, 12, 20, 11, 'Sepeda Fixi X', 1, 150000, 1592304484);
 
 -- --------------------------------------------------------
 
@@ -884,39 +789,19 @@ INSERT INTO `order` (`id`, `product_id`, `invoice_id`, `auth_id`, `name`, `grand
 --
 
 CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `image` varchar(250) NOT NULL,
   `name` varchar(120) NOT NULL,
   `description` text NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `weight` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `brand_id` int(11) NOT NULL,
-  `created_date` int(11) NOT NULL,
-  `updated_date` int(11) NOT NULL
+  `category_id` int NOT NULL,
+  `price` int NOT NULL,
+  `qty` int NOT NULL,
+  `weight` int NOT NULL,
+  `user_id` int NOT NULL,
+  `brand_id` int NOT NULL,
+  `created_date` int NOT NULL,
+  `updated_date` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `product`
---
-
-INSERT INTO `product` (`id`, `image`, `name`, `description`, `category_id`, `price`, `qty`, `weight`, `user_id`, `brand_id`, `created_date`, `updated_date`) VALUES
-(12, 'sepeda.jpeg', 'Sepeda Fixi X', '<p>Sepeda Lipat yang paling banyak digandrungi oleh para Pembalap Santai</p>\r\n', 2, 150000, 1, 1050, 9, 21, 1591086432, 1592100221),
-(14, 'laptop.jpg', 'HP Indo X', '<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n', 5, 5000000, 20, 1092, 9, 20, 1591100238, 1592100231),
-(15, 'taylor-xW4cBp9LoBM-unsplash.jpg', 'Jacket Jersy', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was populari<strong>sed in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</strong></p>\r\n', 3, 40000, 10, 1028, 9, 17, 1591339248, 1592100143),
-(16, 'apple-apple-device-blur-cell-phone-336948.jpg', 'T-shirt Break', '<h2><strong>What is Lorem Ipsum?</strong></h2>\r\n\r\n<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 3, 39000, 19, 1000, 9, 22, 1591340287, 1592105912),
-(17, 'hp.jpg', 'Laptop Aus Jerx', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 5, 300000, 18, 500, 9, 22, 1591340749, 1592100183),
-(18, 'semi-opened-laptop-computer-turned-on-on-table-2047905.jpg', 'Laptop HP Accer', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 5, 10000000, 80, 1500, 9, 22, 1591340827, 1592100211),
-(19, 'baju.jpg', 'Kemeja Kasual', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 3, 200000, 20, 2000, 9, 22, 1591341348, 1592100275),
-(20, 'ABF8480D-38F9-4A9A-8FCF-55C6EAE15A19.jpeg', 'Inoda T-shirt', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n', 3, 100000, 10, 1000, 9, 18, 1591360617, 1592100298),
-(21, 'man-in-white-dress-shirt-926390.jpg', 'Helmet', '<p>Ini oli bukan sembarang oli boskqyu</p>\r\n', 10, 100000, 1, 1000, 9, 23, 1591626811, 1592105922),
-(22, '1CF6A149-8D08-416F-BBFF-FD14206CEFF4.png', 'knalpot Bising X', '<p>kenalpot kolong buangan kanan premium untuk vespa  series</p>\r\n', 2, 1000000, 1, 2000, 9, 19, 1591626995, 1592100364),
-(23, 'sepedalipat.jpeg', 'Sepeda Lipat Zero X', '<p>oli samping</p>\r\n', 2, 500000, 1, 400, 9, 17, 1591627343, 1592100395),
-(24, '5C394F01-B31F-45A6-B230-E2E4054577FE2.jpeg', 'Oli Samping', '<p>jacket means</p>\r\n', 2, 1000000, 1, 400, 9, 19, 1591629163, 1592100422),
-(25, 'A396C3B1-C915-4C19-8696-92F58D0265C8.jpeg', 'Kaos Inoda', '<p>T-shirt </p>\r\n', 3, 100000, 1, 400, 9, 22, 1591629246, 1592100443),
-(26, 'sepatu.jpg', 'Adidas pro', '<p>long </p>\r\n', 1, 100000, 1, 1000, 9, 19, 1591629352, 1592100472);
 
 -- --------------------------------------------------------
 
@@ -925,27 +810,10 @@ INSERT INTO `product` (`id`, `image`, `name`, `description`, `category_id`, `pri
 --
 
 CREATE TABLE `product_category` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(250) NOT NULL,
-  `created_date` int(11) NOT NULL
+  `created_date` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `product_category`
---
-
-INSERT INTO `product_category` (`id`, `name`, `created_date`) VALUES
-(1, 'sepatu', 20200524),
-(2, 'sepeda', 1590316751),
-(3, 'Baju', 1590316760),
-(4, 'Celana', 1590316768),
-(5, 'Laptop', 1590321403),
-(6, 'HP', 1590321635),
-(7, 'Ipad', 1590321656),
-(8, 'Topi', 1591340192),
-(9, 'Dasi', 1591340195),
-(10, 'Helm', 1591340209),
-(11, 'Makanan', 1592304221);
 
 -- --------------------------------------------------------
 
@@ -954,10 +822,10 @@ INSERT INTO `product_category` (`id`, `name`, `created_date`) VALUES
 --
 
 CREATE TABLE `province` (
-  `id` int(11) NOT NULL,
-  `province_id` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `province_id` int NOT NULL,
   `province` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `province`
@@ -1006,19 +874,12 @@ INSERT INTO `province` (`id`, `province_id`, `province`) VALUES
 --
 
 CREATE TABLE `restorasi` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `image` varchar(250) NOT NULL,
   `name_restorasi` varchar(250) NOT NULL,
   `description` text NOT NULL,
-  `created_date` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `restorasi`
---
-
-INSERT INTO `restorasi` (`id`, `image`, `name_restorasi`, `description`, `created_date`) VALUES
-(4, 'close-up-of-human-hand-with-text-248526.jpg', 'Paket 2 Standar vespa', '<p>What is Lorem Ipsum?</p>\r\n\r\n<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<p>Why do we use it?</p>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n', 1592128279);
+  `created_date` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -1027,19 +888,11 @@ INSERT INTO `restorasi` (`id`, `image`, `name_restorasi`, `description`, `create
 --
 
 CREATE TABLE `social_media` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(250) NOT NULL,
   `url` varchar(250) NOT NULL,
   `icon` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `social_media`
---
-
-INSERT INTO `social_media` (`id`, `title`, `url`, `icon`) VALUES
-(3, 'Instagram', 'https://www.instagram.com/wagimansupply/', '<i class=\"fab fa-instagram-square\"></i>'),
-(4, 'Facebook', 'https://www.facebook.com/', '<i class=\"fab fa-facebook-square\"></i>');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Indexes for dumped tables
@@ -1167,115 +1020,115 @@ ALTER TABLE `social_media`
 -- AUTO_INCREMENT untuk tabel `about`
 --
 ALTER TABLE `about`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `auth`
 --
 ALTER TABLE `auth`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `auth_token`
 --
 ALTER TABLE `auth_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `bank_payment`
 --
 ALTER TABLE `bank_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `blog_category`
 --
 ALTER TABLE `blog_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `carausel`
 --
 ALTER TABLE `carausel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `city`
 --
 ALTER TABLE `city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=502;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=502;
 
 --
 -- AUTO_INCREMENT untuk tabel `image_product`
 --
 ALTER TABLE `image_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `image_restorasi`
 --
 ALTER TABLE `image_restorasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `menu_member`
 --
 ALTER TABLE `menu_member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `province`
 --
 ALTER TABLE `province`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT untuk tabel `restorasi`
 --
 ALTER TABLE `restorasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `social_media`
 --
 ALTER TABLE `social_media`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

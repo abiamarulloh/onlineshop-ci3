@@ -282,6 +282,7 @@ class Blog extends CI_Controller {
 	}
 
 
+	// Berlaku untuk semua ckeditor
 	public function ckeditor(){
 		if(isset($_FILES['upload']['name'])){
 
@@ -295,23 +296,22 @@ class Blog extends CI_Controller {
 			
 				$new_image_name = rand() . '.' . $extension;
 			
-				chmod('./assets/admin/img/ckeditor/', 0777);
+				chmod('./assets/admin/img/ckeditor', 0777);
 			
-				$allowed_extension = array("jpg", "gif", "png", "jpeg");
+				$allowed_extension = array("jpg", "gif", "png");
 			
 				if(in_array($extension, $allowed_extension))
-			
 				{
 			
-				move_uploaded_file($file, './assets/admin/img/ckeditor/' . $new_image_name);
-			
-				$function_number = $_GET['CKEditorFuncNum'];
-			
-				$url = './assets/admin/img/ckeditor/' . $new_image_name;
-			
-				$message = '';
-			
-				echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($function_number, '$url', '$message');</script>";
+					move_uploaded_file($file, './assets/admin/img/ckeditor/' . $new_image_name);
+				
+					$function_number = $_GET['CKEditorFuncNum'];
+				
+					$url = base_url() . '/assets/admin/img/ckeditor/' . $new_image_name;
+				
+					$message = '';
+				
+					echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($function_number, '$url', '$message');</script>";
 			
 				}
 		   

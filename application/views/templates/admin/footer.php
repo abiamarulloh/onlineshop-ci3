@@ -99,10 +99,9 @@ $(document).ready(function() {
 });
 
 
-// CKEDITOR.replace('body');
-CKEDITOR.replace( 'body', {
+CKEDITOR.replace('body', {
     height: 300,
-    filebrowserUploadUrl: "<?= base_url();?>ckeditor",
+    filebrowserUploadUrl: "<?= base_url('ckeditor');?>",
 });
 
 
