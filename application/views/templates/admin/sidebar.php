@@ -132,6 +132,7 @@
       <a class="collapse-item" href="<?=base_url('menu_setting') ?>"><i class="fas fa-fw fa-bars"></i>  Menu</a> 
       <a class="collapse-item" href="<?=base_url('carausel_setting') ?>"><i class="fas fa-fw fa-image"></i> Carausel</a> 
       <a class="collapse-item" href="<?=base_url('sosmed_setting') ?>"><i class="fas fa-fw fa-heart"></i> Sosial Media</a> 
+      <a class="collapse-item" href="<?=base_url('privacy_police_edit') ?>"><i class="fas fa-fw fa-user-secret"></i> Kebijakan Privasi</a> 
     </div>
   </div>
 </li>

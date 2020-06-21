@@ -177,3 +177,9 @@ $route['sosmed_setting_add'] = 'admin/setting/sosmed_setting_add';
 $route['sosmed_setting_delete/(:num)'] = 'admin/setting/sosmed_setting_delete/$1';
 
 
+// Privacy Setting
+$route['privacy_police'] = 'user/setting/privacy_police';
+// $route['privacy_police_add'] = 'admin/setting/privacy_police_add';
+$route['privacy_police_edit'] = 'admin/setting/privacy_police_edit';
+
+

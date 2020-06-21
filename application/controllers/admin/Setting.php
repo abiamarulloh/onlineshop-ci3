@@ -9,8 +9,8 @@ class Setting extends CI_Controller {
 		is_logged_in();
 	}
 
-public function index()
-{
+	public function index()
+	{
 				// query data wagiman di footer
 		$data['about'] = $this->db->get("about")->row();
 
@@ -478,6 +478,87 @@ public function index()
 					echo "<option value='". $res->id ."'>". $res->name_restorasi ."</option>";
 				}
 			}
+	}
+
+	public function privacy_police()
+	{
+		
+		// Social Media
+		$data['social_media'] = $this->db->get("social_media")->result();
+
+		// query data wagiman di footer
+		$data['about'] = $this->db->get("about")->row();
+		
+		// Query Privacy Police 
+		$data['privacy'] = $this->db->get("privacy_police")->result();
+
+		$data['title'] = "Privacy Police";
+		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+		$this->load->view('templates/user/header', $data);
+		$this->load->view('templates/user/navbar', $data);
+		$this->load->view('admin/privacy_police/index', $data);
+		$this->load->view('templates/user/footer', $data);
+	}
+
+	// public function privacy_police_add(){
+
+	// 	$this->form_validation->set_rules("body", "", "required",[
+	// 		"required" => "Privacy harus dilengkapi !"
+	// 	]);
+
+
+	// 	if($this->form_validation->run() == FALSE) {
+	// 		// query data wagiman di footer
+	// 		$data['about'] = $this->db->get("about")->row();
+
+	// 		$data['title'] = "About";
+	// 		$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+	// 		$this->load->view('templates/admin/header', $data);
+	// 		$this->load->view('templates/admin/sidebar', $data);
+	// 		$this->load->view('templates/admin/topbar', $data);
+	// 		$this->load->view('admin/privacy_police/add', $data);
+	// 		$this->load->view('templates/admin/footer', $data);
+	// 	}else{
+	// 		$privacy 		= $_POST['body'];
+
+	// 		$this->db->set('privacy', $privacy);
+	// 		$this->db->insert("privacy_police");
+	// 		alert("privacy_police_add", "Kebijakan Privasi berhasil ditambahkan");
+	// 		redirect("privacy_police_add");
+	// 	}
+
+	public function privacy_police_edit(){
+
+
+		$this->form_validation->set_rules("body", "", "required",[
+			"required" => "Privacy harus dilengkapi !"
+		]);
+
+
+		if($this->form_validation->run() == FALSE) {
+			// query data wagiman di footer
+			$data['about'] = $this->db->get("about")->row();
+			$data["privacy_police"] = $this->db->get("privacy_police")->result();
+
+			$data['title'] = "About";
+			$data['user'] = $this->db->get_where('auth', ['email' => $this->session->userdata('email') ] )->row();
+			$this->load->view('templates/admin/header', $data);
+			$this->load->view('templates/admin/sidebar', $data);
+			$this->load->view('templates/admin/topbar', $data);
+			$this->load->view('admin/privacy_police/edit', $data);
+			$this->load->view('templates/admin/footer', $data);
+		}else{
+			$privacy 		= $_POST['body'];
+
+			$this->db->set('privacy', $privacy);
+			$this->db->update("privacy_police");
+			alert("privacy_police_edit", "Kebijakan Privasi berhasil diupdate ");
+			redirect("privacy_police_edit");
+		}
+
+	
+
+		
 	}
 
 

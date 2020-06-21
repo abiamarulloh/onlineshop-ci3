@@ -1,68 +1,117 @@
 <!-- Footer -->
 <footer>
-   <div class="container py-5">
+    <div class="container py-5">
         <div class="row">
             <div class="col-md-4 mb-5">
                 <h4>Logo</h4>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                        aria-valuemax="100"></div>
                 </div>
                 <br>
                 <img src="<?= base_url() ?>assets/user/images/logos.png" class="img-fluid">
             </div>
             <div class="col-md-4 mb-5">
-                <h4>FAQ <small> ( Frequently Asked Question ) </small></h4>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <br>
-                <div class="accordion text-dark"  id="accordionExample">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link text-dark  btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="font-size:14px;">
-                        Bagaimana cara melakukan pembayaran ?  
-                        </button>
-                    </h2>
-                    </div>
+                <div class="row">
+                    <div class="col-md-12 mb-5">
+                        <h4>FAQ <small> ( Frequently Asked Question ) </small></h4>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                        <br>
+                        <div class="accordion text-dark" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-dark text-left collapsed"
+                                            type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo" style="font-size:14px;">
+                                            Bagaimana cara melakukan pembelian produk ?
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body" style="font-size:12px;">
+                                        Pastikan <a href="https://wagimansupply.com/member">Profile</a> sudah lengkap <i
+                                            class="fas fa-angle-double-right"></i> pergi kehalaman <a
+                                            href="https://wagimansupply.com/ecommerce">Online Shop</a> <i
+                                            class="fas fa-angle-double-right"></i> klik tombol <small type="button"
+                                            class="badge badge-primary"> <i class="fas fa-shopping-bag"></i> Tambah ke
+                                            keranjang</small> <i class="fas fa-angle-double-right"></i> Pergi kehalaman
+                                        <a href="https://wagimansupply.com/cart"> <i class="fas fa-shopping-cart"></i>
+                                            Cart</a> <i class="fas fa-angle-double-right"></i> Klik Tombol Hijau <small
+                                            class="badge badge-success">Pembayaran</small> <i
+                                            class="fas fa-angle-double-right"></i> Lengkapi Form Pembayaran <i
+                                            class="fas fa-angle-double-right"></i> klik tombol selesai <i
+                                            class="fas fa-angle-double-right"></i> Klik tombol <small
+                                            class="badge badge-primary">pergi ke halaman invoice</small> untuk lakukan
+                                        pembayaran
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link text-dark  btn-block text-left" type="button"
+                                            data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne" style="font-size:14px;">
+                                            Bagaimana cara melakukan pembayaran ?
+                                        </button>
+                                    </h2>
+                                </div>
 
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body" style="font-size:12px;">
-                        Pembayaran dapat dilakukan dengan cara pergi kehalaman <a href="https://wagimansupply.com/member">Profile</a> kalian <i class="fas fa-angle-double-right"></i> scroll ke bawah <i class="fas fa-angle-double-right"></i> lalu ada tabel <b>Data Invoice Transaksi</b> <i class="fas fa-angle-double-right"></i> kemudian upload bukti transaksi dengan cara menekan tombol  <i class="fas fa-upload"></i>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body" style="font-size:12px;">
+                                        Pembayaran dapat dilakukan dengan cara pergi kehalaman <a
+                                            href="https://wagimansupply.com/member">Profile</a> kalian <i
+                                            class="fas fa-angle-double-right"></i> scroll ke bawah <i
+                                            class="fas fa-angle-double-right"></i> lalu ada tabel <b>Data Invoice
+                                            Transaksi</b> <i class="fas fa-angle-double-right"></i> kemudian upload
+                                        bukti transaksi dengan cara menekan tombol <i class="fas fa-upload"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link text-dark btn-block text-left collapsed"
+                                            type="button" data-toggle="collapse" data-target="#collapseThree"
+                                            aria-expanded="false" aria-controls="collapseThree" style="font-size:14px;">
+                                            Mengapa pesanan saya belum diproses ?
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body p-0" style="font-size:12px;">
+                                        <ol type="1">
+                                            <li>Pastikan anda sudah mengupload bukti pembayaran dengan gambar yang jelas
+                                            </li>
+                                            <li>Sudah bayar tapi belum diproses ?, silahkan tunggu sampai kami
+                                                menyetujui bukti pembayarannya Maksimal 6 Jam dari waktu upload bukti,
+                                                Untuk dari jam 06.00 - 21.00 WIB maka akan dikonfirmasi lebih cepat,
+                                                jika pada jam lebih dari 21.00 WIB maka akan dikonfirmasi ke esokan
+                                                harinya, dan jika barang belum diproses juga maka anda dapat langsung
+                                                menghubungi call center kami</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-12 mb-5">
+                        <h5>Ketentuan Wagiman Supply</h5>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                        <br>
+                        <a href="<?= base_url();?>privacy_police" class="text-white"> <i class="fas fa-user-secret"></i> Panduan Kebijakan Privasi</a>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-dark text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-size:14px;">
-                        Bagaimana cara melakukan pembelian produk ? 
-                        </button>
-                    </h2>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body" style="font-size:12px;">
-                        Pastikan  <a href="https://wagimansupply.com/member">Profile</a> sudah lengkap <i class="fas fa-angle-double-right"></i> pergi kehalaman <a href="https://wagimansupply.com/ecommerce">Online Shop</a> <i class="fas fa-angle-double-right"></i> klik tombol <small type="button" class="badge badge-primary"> <i class="fas fa-shopping-bag"></i> Tambah ke keranjang</small> <i class="fas fa-angle-double-right"></i>  Pergi kehalaman <a href="https://wagimansupply.com/cart"> <i class="fas fa-shopping-cart"></i> Cart</a>  <i class="fas fa-angle-double-right"></i>  Klik Tombol Hijau <small class="badge badge-success">Pembayaran</small>  <i class="fas fa-angle-double-right"></i>  Lengkapi Form Pembayaran  <i class="fas fa-angle-double-right"></i>  klik tombol selesai <i class="fas fa-angle-double-right"></i>  Klik tombol <small class="badge badge-primary">pergi ke halaman invoice</small> untuk lakukan pembayaran
-                    </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link text-dark btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="font-size:14px;">
-                        Mengapa pesanan saya belum diproses ?
-                        </button>
-                    </h2>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    <div class="card-body p-0" style="font-size:12px;">
-                        <ol type="1">
-                            <li>Pastikan anda sudah mengupload bukti pembayaran dengan gambar yang jelas</li> 
-                            <li>Sudah bayar tapi belum diproses ?, silahkan tunggu sampai kami menyetujui bukti pembayarannya atau dapat langsung menghubungi call center kami</li>                       
-                        </ol>
-                    </div>
-                    </div>
-                </div>
                 </div>
             </div>
             <div class="col-md-4 mb-5">
@@ -70,29 +119,33 @@
                     <div class="col-md-12 mb-5">
                         <h4>Office</h4>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                         <br>
                         <p> <i class="fas fa-fw fa-phone"></i> +<?= $about->phone; ?></p>
                         <p> <i class="fas fa-fw fa-envelope-open"></i> <?= $about->email; ?></p>
-                        <p class="text-lowercase"> <i class="fas fa-fw fa-map-marked-alt"></i> <?= $about->address; ?></p>
+                        <p class="text-lowercase"> <i class="fas fa-fw fa-map-marked-alt"></i> <?= $about->address; ?>
+                        </p>
                     </div>
                     <div class="col-md-12 mb-5">
                         <h4>Social Media</h4>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                         <br>
                         <?php foreach($social_media as $social) : ?>
-                            <a href="<?= $social->url; ?>" class="text-white d-inline ml-2" target="_blank">
-                                <?= $social->icon . " " . $social->title; ?>
-                            </a>
+                        <a href="<?= $social->url; ?>" class="text-white d-inline ml-2" target="_blank">
+                            <?= $social->icon . " " . $social->title; ?>
+                        </a>
                         <?php endforeach; ?>
                     </div>
                     <div class="col-md-12 mb-5">
                         <h4>Credits</h4>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                         <br>
                         <div>
@@ -105,23 +158,23 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                © <?= $about->web_name; ?> 2020 
+                © <?= $about->web_name; ?> 2020
                 <?php if(date("Y", $about->created_date) > 2020) : ?>
-                    - <?= date("Y", time()); ?> .
+                - <?= date("Y", time()); ?> .
                 <?php endif; ?>
-                 All rights reserved - Love from 
-                 
-                 <?php $kota =  $this->db->get("city")->result(); ?>
-                 <?php foreach ($kota as $k ) : ?>
-                    <?php if($k->city_id == $about->city) : ?>
-                        <?= $k->type . " " . $k->city_name; ?> 
-                    <?php endif; ?>
-                 <?php endforeach; ?>
-                 
-                 <i class="fa fa-heart"></i>
+                All rights reserved - Love from
+
+                <?php $kota =  $this->db->get("city")->result(); ?>
+                <?php foreach ($kota as $k ) : ?>
+                <?php if($k->city_id == $about->city) : ?>
+                <?= $k->type . " " . $k->city_name; ?>
+                <?php endif; ?>
+                <?php endforeach; ?>
+
+                <i class="fa fa-heart"></i>
             </div>
         </div>
-   </div>
+    </div>
 </footer>
 
 
@@ -186,7 +239,7 @@ $(document).ready(function() {
 
 
 
-// Owl Carausel ( slider )
+    // Owl Carausel ( slider )
     $(".owl-carousel").owlCarousel();
 
 
@@ -198,11 +251,11 @@ $(document).ready(function() {
 
 
 
-// LightBOX
-lightbox.option({
-    'resizeDuration': 200,
-    'wrapAround': true
-})
+    // LightBOX
+    lightbox.option({
+        'resizeDuration': 200,
+        'wrapAround': true
+    })
 
 
 
@@ -241,7 +294,7 @@ lightbox.option({
 
 
 
-// Search By Category
+    // Search By Category
 
     $("#search_by_category").change(function() {
 
@@ -255,7 +308,7 @@ lightbox.option({
     })
 
 
-// Seach By Brand
+    // Seach By Brand
 
     $("#search_by_brand").change(function() {
 
@@ -271,119 +324,113 @@ lightbox.option({
 
 
 
-// Cek Form File Member Upload Foto Profile
-$("#file").change(function() {
-    var ukuran = 0;
-    var inputFile = document.getElementById('file');
-    var pathFile = inputFile.value;
-    var ekstensiOk = /(\.jpg|\.jpeg|\.png)$/i;
+    // Cek Form File Member Upload Foto Profile
+    $("#file").change(function() {
+        var ukuran = 0;
+        var inputFile = document.getElementById('file');
+        var pathFile = inputFile.value;
+        var ekstensiOk = /(\.jpg|\.jpeg|\.png)$/i;
 
-    if (!ekstensiOk.exec(pathFile)) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png!',
-        })
-        inputFile.value = '';
-        return false;
-    } else if (this.files[0].size > 2000000) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'File Terlalu besar, tidak boleh lebih dari 2MB',
-        })
-        inputFile.value = '';
-        return false;
+        if (!ekstensiOk.exec(pathFile)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png!',
+            })
+            inputFile.value = '';
+            return false;
+        } else if (this.files[0].size > 2000000) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'File Terlalu besar, tidak boleh lebih dari 2MB',
+            })
+            inputFile.value = '';
+            return false;
+        } else {
+            Swal.fire(
+                'Good job!',
+                '',
+                'success'
+            )
+            // Preview gambar
+            if (inputFile.files && inputFile.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview').innerHTML = '<img src="' + e.target.result +
+                        '" style="height:200px"/>';
+                };
+                reader.readAsDataURL(inputFile.files[0]);
+            }
+        }
+    })
+
+
+
+
+    $("#phone").change(function() {
+        let phoneInput = document.getElementById('phone')
+        let phone = phoneInput.value;
+        if (phone[0] == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Awali nomor telepon dengan 62 bukan 0 !',
+            })
+            phoneInput.value = '';
+            return false;
+        } else if (parseInt(phone[0]) != 6 || parseInt(phone[1]) != 2 || parseInt(phone[2]) != 8) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Nomor Telepon yang anda masukkan tidak valid !, harus 628*** ',
+            })
+            phoneInput.value = '';
+            return false;
+        } else {
+            Swal.fire(
+                'Good job!',
+                '',
+                'success'
+            )
+        }
+
+    })
+
+
+
+
+
+
+})
+
+
+function showHide() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
     } else {
-        Swal.fire(
-            'Good job!',
-            '',
-            'success'
-        )
-        // Preview gambar
-        if (inputFile.files && inputFile.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('preview').innerHTML = '<img src="' + e.target.result +
-                    '" style="height:200px"/>';
-            };
-            reader.readAsDataURL(inputFile.files[0]);
-        }
+        x.type = "password";
     }
-})
+}
 
-
-
-
-$("#phone").change(function() {
-    let phoneInput = document.getElementById('phone')
-    let phone = phoneInput.value;
-    if (phone[0] == 0) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Awali nomor telepon dengan 62 bukan 0 !',
-        })
-        phoneInput.value = '';
-        return false;
-    } else if (parseInt(phone[0]) != 6 || parseInt(phone[1]) != 2 || parseInt(phone[2]) != 8) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Nomor Telepon yang anda masukkan tidak valid !, harus 628*** ',
-        })
-        phoneInput.value = '';
-        return false;
+function showHideRegisterPassword() {
+    var x = document.getElementById("password1");
+    if (x.type === "password") {
+        x.type = "text";
     } else {
-        Swal.fire(
-            'Good job!',
-            '',
-            'success'
-        )
+        x.type = "password";
     }
+}
 
-})
-
-
-
-
-
-
-})
-
-
-    function showHide() {
-        var x = document.getElementById("password");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
+function showHideRegisterPasswordConfirm() {
+    var x = document.getElementById("password2");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
     }
-
-    function showHideRegisterPassword() {
-        var x = document.getElementById("password1");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
-
-    function showHideRegisterPasswordConfirm() {
-        var x = document.getElementById("password2");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
-
-
-    
-
-
-
+}
 </script>
 </body>
 
