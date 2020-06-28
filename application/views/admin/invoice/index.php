@@ -41,14 +41,14 @@
                                     <?= $invoice->invoice_id; ?>
                                 </td>
                                 <td>
-                                    <?php if($invoice->status == 1)  : ?>
+                                    <?php if($invoice->status == 1 )  : ?>
                                         <?php if($invoice->resi  ) : ?>
                                             <small class="badge badge-success my-2 py-2"><?= $invoice->resi; ?></small>
                                         <?php else : ?>
                                             -
                                         <?php endif;  ?>
                                             <!-- Button trigger modal -->
-                                            <button type="button" id="resi" data-id="<?= $invoice->invoice_id;  ?>" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalResi">
+                                            <button type="button" id="resi" data-idresi="<?= $invoice->invoice_id;  ?>" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalResi">
                                             <i class="fas fa-user-edit "></i>
                                             </button>
                                     <?php elseif($invoice->status >= 2) : ?>
@@ -142,7 +142,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="post">
+        <form>
             <div class="form-group">
                 <label for="resi">Resi</label>
                 <input type="text" class="form-control"   id="name_resi" placeholder="Resi">
