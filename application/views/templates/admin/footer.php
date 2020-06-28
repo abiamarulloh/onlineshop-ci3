@@ -74,7 +74,10 @@
 <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@3.1.0/js/froala_editor.pkgd.min.js'></script>
 
 <script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6241c39ce13ac04e41f35710fa6327cc6042057d
 $(document).ready(function() {
     // Cek Form File Member Upload Foto Profile
     $("#file").change(function() {
@@ -268,7 +271,11 @@ $(document).ready(function() {
 
     // Input Resi
     $("#name_resi").change(function() {
+<<<<<<< HEAD
     let id = $("#resi").data("id");
+=======
+    let id = $("#resi").data("idresi");
+>>>>>>> 6241c39ce13ac04e41f35710fa6327cc6042057d
     let name_resi = $("#name_resi").val();
     $.ajax({
         type: 'post',
@@ -366,6 +373,12 @@ $("#inputFile").on('click', function(event) {
 
 
 
+<<<<<<< HEAD
+=======
+    
+  
+
+>>>>>>> 6241c39ce13ac04e41f35710fa6327cc6042057d
     
  
 
