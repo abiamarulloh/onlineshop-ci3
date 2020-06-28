@@ -128,19 +128,19 @@
                         <p class="text-lowercase"> <i class="fas fa-fw fa-map-marked-alt"></i> <?= $about->address; ?>
                         </p>
                     </div>
-                    <div class="col-md-12 mb-5">
-                        <h4>Social Media</h4>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                        </div>
-                        <br>
-                        <?php foreach($social_media as $social) : ?>
-                        <a href="<?= $social->url; ?>" class="text-white d-inline ml-2" target="_blank">
-                            <?= $social->icon . " " . $social->title; ?>
-                        </a>
-                        <?php endforeach; ?>
-                    </div>
+                    <!--<div class="col-md-12 mb-5">-->
+                    <!--    <h4>Social Media</h4>-->
+                    <!--    <div class="progress">-->
+                    <!--        <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"-->
+                    <!--            aria-valuemax="100"></div>-->
+                    <!--    </div>-->
+                    <!--    <br>-->
+                    <!--    <?php foreach($social_media as $social) : ?>-->
+                    <!--    <a href="<?= $social->url; ?>" class="text-white d-inline ml-2" target="_blank">-->
+                    <!--        <?= $social->icon . " " . $social->title; ?>-->
+                    <!--    </a>-->
+                    <!--    <?php endforeach; ?>-->
+                    <!--</div>-->
                     <div class="col-md-12 mb-5">
                         <h4>Credits</h4>
                         <div class="progress">
@@ -157,7 +157,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
+                
                 © <?= $about->web_name; ?> 2020
                 <?php if(date("Y", $about->created_date) > 2020) : ?>
                 - <?= date("Y", time()); ?> .
@@ -172,6 +173,15 @@
                 <?php endforeach; ?>
 
                 <i class="fa fa-heart"></i>
+            </div>
+            <div class="col-md-4">
+                
+                      <?php foreach($social_media as $social) : ?>
+                        <a href="<?= $social->url; ?>" class="text-white d-inline ml-2" style="font-size:30px;" target="_blank">
+                            <?= $social->icon  ?>
+                        </a>
+                    <?php endforeach; ?>   
+           
             </div>
         </div>
     </div>

@@ -2,15 +2,15 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <a href="<?= base_url(); ?>member" class="btn btn-outline-primary"><i class="fas fa-angle-double-left"></i> Kembali</a>
+                <div class="card-header">
+                    <a href="<?= base_url(); ?>member" class="btn btn-outline-primary d-inline m-1 btn-sm"><i class="fas fa-angle-double-left"></i> Kembali</a>
 
-                    <button class="btn btn-primary">ID INVOICE <small
+                    <button class="btn btn-primary btn-sm m-1 d-inline">ID INVOICE <small
                             class="badge badge-light"><?= $id_invoice; ?></small></button>
                     
                     
                     <a href="<?= base_url(); ?>invoice_download_pdf/<?= $id_invoice; ?>" 
-                        class="btn btn-outline-info"><i class="fas fa-download"></i>Unduh</a>
+                        class="btn btn-outline-info m-1 d-inline btn-sm"><i class="fas fa-download"></i>Unduh</a>
                 </div>
                 <div class="card-body">
                     <div class="row">

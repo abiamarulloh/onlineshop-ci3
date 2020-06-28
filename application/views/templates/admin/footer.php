@@ -75,88 +75,48 @@
 
 <script>
 
+$(document).ready(function() {
+    // Cek Form File Member Upload Foto Profile
+    $("#file").change(function() {
+    var ukuran = 0;
+    var inputFile = document.getElementById('file');
+    var pathFile = inputFile.value;
+    var ekstensiOk = /(\.jpg|\.jpeg|\.png)$/i;
 
-
-// Preview before uploading image
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-            $('#preview').attr('src', e.target.result);
+    if (!ekstensiOk.exec(pathFile)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png!',
+        })
+        inputFile.value = '';
+        return false;
+    } else if (this.files[0].size > 2000000) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'File Terlalu besar, tidak boleh lebih dari 2MB',
+        })
+        inputFile.value = '';
+        return false;
+    } else {
+        Swal.fire(
+            'Good job!',
+            '',
+            'success'
+        )
+        // Preview gambar
+        if (inputFile.files && inputFile.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').innerHTML = '<img src="' + e.target.result +
+                    '" style="height:200px"/>';
+            };
+            reader.readAsDataURL(inputFile.files[0]);
         }
-        reader.readAsDataURL(input.files[0]);
     }
-}
-
-$("#img").change(function() {
-    readURL(this);
-});
-
-
-$(document).ready(function() {
-    $('#dataTable').DataTable();
-});
-
-
-CKEDITOR.replace('body', {
-    height: 300,
-    filebrowserUploadUrl: "<?= base_url('ckeditor');?>",
-});
-
-
-
-// new FroalaEditor("#body",{
-//   toolbarInline: false
-// });
-
-// LightBOX
-lightbox.option({
-    'resizeDuration': 200,
-    'wrapAround': true
-});
-
-$("#inputFile").change(function(event) {
-    fadeInAdd();
-    getURL(this);
-});
-
-$("#inputFile").on('click', function(event) {
-    fadeInAdd();
-});
-
-
-
-// Menyeting provinsi dan kota website
-$(document).ready(function() {
-    $("#province").change(function() {
-
-        fetch("<?= base_url('ecommerce_checkout_city/'); ?>" + this.value, {
-                method: "GET",
-            })
-            .then((response) => response.text())
-            .then((data) => {
-                document.getElementById("city").innerHTML = data;
-            })
-
     })
-})
 
-
-// Zoom Image
-$(document).ready(function() {
-    $('.image-zoom')
-        .wrap('<span style="display:inline-block"></span>')
-        .css('display', 'block')
-        .parent()
-        .zoom({
-            url: $(this).find('img').attr('data-zoom')
-        });
-});
-
-
-
-$(document).ready(function() {
     $("#phone").change(function() {
         let phoneInput = document.getElementById('phone')
         let phone = phoneInput.value;
@@ -184,74 +144,6 @@ $(document).ready(function() {
             )
         }
     })
-
-
-    // Input Resi
-    $('#name_resi').on('change', function(e) {
-        let id = $("#resi").data('id');
-        let name_resi = $("#name_resi").val();
-        $.ajax({
-            type: 'post',
-            url: '<?= base_url(); ?>invoice_give_resi',
-            data: {
-                'id': id,
-                'name_resi': name_resi
-            },
-            success: function(data) {
-                // var resi = JSON.parse(data);
-                // console.log(data);
-
-            }
-        })
-
-
-    })
-
-
-
-
-
-    // Cek Form File Member Upload Foto Profile
-    $("#file").change(function() {
-        var ukuran = 0;
-        var inputFile = document.getElementById('file');
-        var pathFile = inputFile.value;
-        var ekstensiOk = /(\.jpg|\.jpeg|\.png)$/i;
-
-        if (!ekstensiOk.exec(pathFile)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png!',
-            })
-            inputFile.value = '';
-            return false;
-        } else if (this.files[0].size > 2000000) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'File Terlalu besar, tidak boleh lebih dari 2MB',
-            })
-            inputFile.value = '';
-            return false;
-        } else {
-            Swal.fire(
-                'Good job!',
-                '',
-                'success'
-            )
-            // Preview gambar
-            if (inputFile.files && inputFile.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('preview').innerHTML = '<img src="' + e.target.result +
-                        '" style="height:200px"/>';
-                };
-                reader.readAsDataURL(inputFile.files[0]);
-            }
-        }
-    })
-
 
 
     // Validasi Form menu
@@ -284,8 +176,8 @@ $(document).ready(function() {
     })
 
 
-     // Validasi Form Sosmed
-     $("#button-sosmed").click(function() {
+        // Validasi Form Sosmed
+        $("#button-sosmed").click(function() {
         let title = $("#title")
         let url = $("#url")
         let icon = $("#icon")
@@ -314,39 +206,19 @@ $(document).ready(function() {
     })
 
 
-    // Checked Change Update
-    $(".carausel_check_active").click(function() {
-        let status = $(this).data("status");
-        let carausel_id = $(this).data("id");
-        $.ajax({
-            url: "<?= base_url("change_active"); ?>",
-            type: "POST",
-            data: {
-                status: status,
-                carausel_id: carausel_id
-            },
-            success: function(data) {
-                Swal.fire(
-                    'Good job!',
-                    '',
-                    'success'
-                )
-                // document.location.href = "<?= base_url("on_change_active"); ?>" 
-            }
-        })
-    })
+
 
     // Jika gambar kosong maka disabled input yang lain "ecommerce"
-   $("#file").change(function (){
-       let file = $("#file").val()
+    $("#file").change(function (){
+        let file = $("#file").val()
         if( file ){
             $("#name").removeAttr("disabled")
         }else {
             $("#name").attr("disabled", "disabled")
         }
-   })
+    })
 
-       // Jika gambar kosong maka disabled input yang lain "Blog"
+        // Jika gambar kosong maka disabled input yang lain "Blog"
     $("#file").change(function (){
         let file = $("#file").val()
         if( file ){
@@ -356,33 +228,146 @@ $(document).ready(function() {
         }
     })
 
-
+    // Checked Change Update
+    $(".carausel_check_active").click(function() {
+    let status = $(this).data("status");
+    let carausel_id = $(this).data("id");
+    $.ajax({
+        url: "<?= base_url("change_active"); ?>",
+        type: "POST",
+        data: {
+            status: status,
+            carausel_id: carausel_id
+        },
+        success: function(data) {
+            Swal.fire(
+                'Good job!',
+                '',
+                'success'
+            )
+            // document.location.href = "<?= base_url("on_change_active"); ?>" 
+        }
+    })
+    })
 
     // Menampilkan data sesuai menu yang dipilih carausel dengan ajax
     $("#menu_carausel_url").change(function() {
-        $.ajax({
-            type: 'post',
-            url: '<?= base_url(); ?>menu_carausel_url',
-            data: {
-                "menu_url": $(this).val()
-            },
-            success: function(data) {
-                $("#choose_id").html(data);
-                // console.log(data)
-            }
-        })
-       
+    $.ajax({
+        type: 'post',
+        url: '<?= base_url(); ?>menu_carausel_url',
+        data: {
+            "menu_url": $(this).val()
+        },
+        success: function(data) {
+            $("#choose_id").html(data);
+            // console.log(data)
+        }
     })
 
-    
-  
+    })
+
+    // Input Resi
+    $("#name_resi").change(function() {
+    let id = $("#resi").data("id");
+    let name_resi = $("#name_resi").val();
+    $.ajax({
+        type: 'post',
+        url: '<?= base_url(); ?>invoice_give_resi',
+        data: {
+            'id': id,
+            'name_resi': name_resi
+        },
+        success: function(data) {
+            // var resi = JSON.parse(data);
+            // console.log(data);
+
+        }
+    })
+
+})
+
+
+
+// Preview before uploading image
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#img").change(function() {
+    readURL(this);
+});
+
+
+$(document).ready(function() {
+    $('#dataTable').DataTable();
+});
+
+
+CKEDITOR.replace('body', {
+    height: 300,
+    filebrowserUploadUrl: "<?= base_url('ckeditor');?>",
+});
+
+
+
+// LightBOX
+lightbox.option({
+    'resizeDuration': 200,
+    'wrapAround': true
+});
+
+$("#inputFile").change(function(event) {
+    fadeInAdd();
+    getURL(this);
+});
+
+$("#inputFile").on('click', function(event) {
+    fadeInAdd();
+});
+
+
+
+// Menyeting provinsi dan kota website
+
+    $("#province").change(function() {
+
+        fetch("<?= base_url('ecommerce_checkout_city/'); ?>" + this.value, {
+                method: "GET",
+            })
+            .then((response) => response.text())
+            .then((data) => {
+                document.getElementById("city").innerHTML = data;
+            })
+
+    })
+
+
+// Zoom Image
+
+    $('.image-zoom')
+    .wrap('<span style="display:inline-block"></span>')
+    .css('display', 'block')
+    .parent()
+    .zoom({
+        url: $(this).find('img').attr('data-zoom')
+    });
 
 
 
 
 })
 
+
+
     
+ 
 
 </script>
 

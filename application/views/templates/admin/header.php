@@ -58,7 +58,7 @@
 
     
 
-    <script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
     <!-- <script src="<?= base_url(); ?>assets/admin/ckeditor/ckeditor.js"></script> -->
     <!-- <link href='https://cdn.jsdelivr.net/npm/froala-editor@3.1.0/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' /> -->
 
